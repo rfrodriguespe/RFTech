@@ -10,4 +10,14 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.github.gilberto-torrezan/viacep -->
+        <dependency>
+            <groupId>com.github.gilberto-torrezan</groupId>
+            <artifactId>viacep</artifactId>
+            <version>1.2.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

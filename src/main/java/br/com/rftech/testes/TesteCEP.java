@@ -24,9 +24,6 @@
 package br.com.rftech.testes;
 
 
-import com.github.gilbertotorrezan.viacep.gwt.ViaCEPGWTClient;
-import com.github.gilbertotorrezan.viacep.se.ViaCEPClient;
-import com.github.gilbertotorrezan.viacep.shared.ViaCEPEndereco;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
