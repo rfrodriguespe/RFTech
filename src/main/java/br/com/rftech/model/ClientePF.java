@@ -44,6 +44,14 @@ public class ClientePF extends Pessoas {
         super(nome, email, telefone, endereco);
         this.CPF = CPF;
     }
+    
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
 
     @Override
     public String toString() {
@@ -78,14 +86,4 @@ public class ClientePF extends Pessoas {
         return true;
     }
 
-    
-    
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-    
 }
