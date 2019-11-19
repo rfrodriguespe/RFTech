@@ -23,16 +23,26 @@
  */
 package br.com.rftech.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
 public class Pessoas {
-    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+    @Column
     private String nome;
+    @Column
     private String email;
+    @Column
     private String telefone;
+    @Column
     private Endereco endereco;
 
     public Pessoas() {
