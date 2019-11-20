@@ -21,34 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.model;
+package br.com.rftech.entities;
 
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-@Entity
-@Table(name="ClientePF")
-public class ClientePF extends Pessoas {
+public class Funcionario extends Pessoa {
     
-    @Column
     private String CPF;
+    private Cargo cargo;
 
-    public ClientePF(String CPF) {
+    public Funcionario(String CPF) {
         this.CPF = CPF;
     }
 
-    public ClientePF() {
+    public Funcionario() {
     }
 
-    public ClientePF(String CPF, String nome, String email, String telefone, Endereco endereco) {
+    public Funcionario(String CPF, String nome, String email, String telefone, Endereco endereco, Cargo cargo) {
         super(nome, email, telefone, endereco);
         this.CPF = CPF;
+        this.cargo = cargo;
     }
     
     public String getCPF() {
@@ -58,6 +54,16 @@ public class ClientePF extends Pessoas {
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+    
+    
 
     @Override
     public String toString() {
@@ -85,7 +91,7 @@ public class ClientePF extends Pessoas {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ClientePF other = (ClientePF) obj;
+        final Funcionario other = (Funcionario) obj;
         if (!Objects.equals(this.CPF, other.CPF)) {
             return false;
         }

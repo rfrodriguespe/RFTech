@@ -21,37 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.model;
+package br.com.rftech.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class Pessoas {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     @Column
     private String nome;
     @Column
-    private String email;
-    @Column
     private String telefone;
+    @Column
+    private String email;
     @Column
     private Endereco endereco;
 
-    public Pessoas() {
+    public Pessoa() {
     }
 
-    public Pessoas(String nome, String email, String telefone, Endereco endereco) {
+    public Pessoa(String nome, String telefone, String email, Endereco endereco) {
         this.nome = nome;
-        this.email = email;
         this.telefone = telefone;
+        this.email = email;
         this.endereco = endereco;
     }
 
@@ -71,20 +77,20 @@ public class Pessoas {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelefone() {
         return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Endereco getEndereco() {
@@ -94,7 +100,7 @@ public class Pessoas {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
+
     @Override
     public String toString() {
         return "Pessoas{" + "id=" + id +
