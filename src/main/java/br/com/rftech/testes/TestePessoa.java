@@ -23,8 +23,8 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.entities.ClientePf;
-import br.com.rftech.entities.Endereco;
+import br.com.rftech.bean.ClientePf;
+import br.com.rftech.bean.Endereco;
 
 /**
  *

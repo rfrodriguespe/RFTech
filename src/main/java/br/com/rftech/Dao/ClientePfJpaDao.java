@@ -23,7 +23,7 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.entities.ClientePf;
+import br.com.rftech.bean.ClientePf;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

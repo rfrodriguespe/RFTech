@@ -25,7 +25,7 @@ package br.com.rftech.controller;
 
 import br.com.rftech.Dao.ClientePfJdbcDao;
 import br.com.rftech.Dao.Dao;
-import br.com.rftech.entities.ClientePf;
+import br.com.rftech.bean.ClientePf;
 import java.util.List;
 
 /**

@@ -23,7 +23,7 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.entities.ClientePf;
+import br.com.rftech.bean.ClientePf;
 import br.com.rftech.util.ConnectionUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
