@@ -23,12 +23,11 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.Dao.ClientePfJdbcDao;
-import br.com.rftech.Dao.ClientePfJpaDao;
+import br.com.rftech.Dao.ClientePjJpaDao;
 import br.com.rftech.bean.ClientePf;
+import br.com.rftech.bean.ClientePj;
 import br.com.rftech.bean.Endereco;
 import java.io.IOException;
-import java.util.List;
 
 /**
  *
@@ -41,7 +40,9 @@ public class Testes {
         ClientePf cliPf = new ClientePf("01323197486", "Rodrigo Ferreira", "rodrigo2208@gmail.com", "81988557802", end );
         ClientePf cliPf2 = new ClientePf("29780622829", "Fabiana", "fabianabovo@gmail.com", "19993098039", end );
         ClientePf cliPf3 = new ClientePf("12345678900", "Lucas Bovo", "lucasbovo@gmail.com", "19993098039", end );
+        ClientePj cliPj = new ClientePj("47379565006126", "Marlise", "Proxxi Tecnologia LTDA", "Proxxi", "contato@proxxi.com.br", "8134247878", end);
         
+        ClientePjJpaDao.getInstance().create(cliPj);
         
 //        System.out.println("CEP do cliente: "+ cliPf.getNome()+" é "+ cliPf.getEndereco().getCEP());
 //        
@@ -58,11 +59,11 @@ public class Testes {
         //dao.create(cliPf2);
         
         //List<ClientePf> listaJdbc = daoJdbc.readAll();
-        List<ClientePf> listaJpa = ClientePfJpaDao.getInstance().readAll();
-        
-        for (ClientePf clientePf : listaJpa) {
-            System.out.println(clientePf);
-        }
+//        List<ClientePf> listaJpa = ClientePfJpaDao.getInstance().readAll();
+//        
+//        for (ClientePf clientePf : listaJpa) {
+//            System.out.println(clientePf);
+//        }
         //ClientePf cli = ClientePfJpaDao.getInstance().getById(3);
         
         //System.out.println(cli);

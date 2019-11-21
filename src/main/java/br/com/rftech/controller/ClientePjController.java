@@ -23,36 +23,36 @@
  */
 package br.com.rftech.controller;
 
-import br.com.rftech.Dao.ClientePfJdbcDao;
-import br.com.rftech.bean.ClientePf;
+import br.com.rftech.Dao.ClientePjJdbcDao;
+import br.com.rftech.bean.ClientePj;
 import java.util.List;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class ClientePfController {
+public class ClientePjController {
 
     public boolean create(Object arg0) {
-        ClientePf clientePf = (ClientePf) arg0;
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
-        return dao.create(clientePf);
+        ClientePj clientePj = (ClientePj) arg0;
+        ClientePjJdbcDao dao = new ClientePjJdbcDao();
+        return dao.create(clientePj);
     }
 
     public List readAll() {
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
+        ClientePjJdbcDao dao = new ClientePjJdbcDao();
         return dao.readAll();
     }
 
     public boolean update(Object arg0) {
-        ClientePf clientePf = (ClientePf) arg0;
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
-        return dao.update(clientePf);
+        ClientePj clientePj = (ClientePj) arg0;
+        ClientePjJdbcDao dao = new ClientePjJdbcDao();
+        return dao.update(clientePj);
     }
 
     public boolean delete(Object o) {
-        ClientePf clientePf = (ClientePf) o;
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
-        return dao.delete(clientePf);
+        ClientePj clientePj = (ClientePj) o;
+        ClientePjJdbcDao dao = new ClientePjJdbcDao();
+        return dao.delete(clientePj);
     }  
 }

@@ -23,7 +23,7 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.bean.ClientePf;
+import br.com.rftech.bean.ClientePj;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,19 +33,19 @@ import java.util.List;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class ClientePfJpaDao implements Dao {
+public class ClientePjJpaDao implements Dao {
 
-    private static ClientePfJpaDao instance;
+    private static ClientePjJpaDao instance;
     protected EntityManager entityManager;
 
-    public static ClientePfJpaDao getInstance() {
+    public static ClientePjJpaDao getInstance() {
         if (instance == null) {
-            instance = new ClientePfJpaDao();
+            instance = new ClientePjJpaDao();
         }
         return instance;
     }
 
-    private ClientePfJpaDao() {
+    private ClientePjJpaDao() {
         entityManager = getEntityManager();
     }
 
@@ -59,10 +59,10 @@ public class ClientePfJpaDao implements Dao {
 
     @Override
     public boolean create(Object arg0) {
-        ClientePf clientePf = (ClientePf) arg0;
+        ClientePj clientePj = (ClientePj) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(clientePf);
+            entityManager.persist(clientePj);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -76,15 +76,15 @@ public class ClientePfJpaDao implements Dao {
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
-        return entityManager.createQuery("SELECT clientePf FROM ClientePf clientePf", ClientePf.class).getResultList();
+        return entityManager.createQuery("SELECT clientePj FROM ClientePj clientePj", ClientePj.class).getResultList();
     }
 
     @Override
     public boolean update(Object arg0) {
-        ClientePf clientePf = (ClientePf) arg0;
+        ClientePj clientePj = (ClientePj) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(clientePf);
+            entityManager.merge(clientePj);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -98,11 +98,11 @@ public class ClientePfJpaDao implements Dao {
 
     @Override
     public boolean delete(Object arg0) {
-        ClientePf clientePf = (ClientePf) arg0;
+        ClientePj clientePj = (ClientePj) arg0;
         try {
             entityManager.getTransaction().begin();
-            clientePf = entityManager.find(ClientePf.class, clientePf.getId());
-            entityManager.remove(clientePf);
+            clientePj = entityManager.find(ClientePj.class, clientePj.getId());
+            entityManager.remove(clientePj);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -114,14 +114,14 @@ public class ClientePfJpaDao implements Dao {
         }
     }
 
-    public ClientePf getById(final int id) {
-        return entityManager.find(ClientePf.class, id);
+    public ClientePj getById(final int id) {
+        return entityManager.find(ClientePj.class, id);
     }
 
     public boolean removeById(final int id) {
         try {
-            ClientePf clientePf = getById(id);
-            delete(clientePf);
+            ClientePj clientePj = getById(id);
+            delete(clientePj);
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
