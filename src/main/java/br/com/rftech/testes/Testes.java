@@ -34,12 +34,13 @@ import java.util.List;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TestePessoa {
+public class Testes {
     
     public static void main(String[] args) throws IOException {
         Endereco end = new Endereco("54410310", "rua rossini roosevelt de albuquerque", "1300", "apto 301", "piedade", "jaboatao", "pe");
         ClientePf cliPf = new ClientePf("01323197486", "Rodrigo Ferreira", "rodrigo2208@gmail.com", "81988557802", end );
-        ClientePf cliPf2 = new ClientePf("29780622829", "Fabiana", "rodrigo2208@gmail.com", "81988557802", end );
+        ClientePf cliPf2 = new ClientePf("29780622829", "Fabiana", "fabianabovo@gmail.com", "19993098039", end );
+        ClientePf cliPf3 = new ClientePf("12345678900", "Lucas Bovo", "lucasbovo@gmail.com", "19993098039", end );
         
         
 //        System.out.println("CEP do cliente: "+ cliPf.getNome()+" é "+ cliPf.getEndereco().getCEP());
@@ -52,17 +53,25 @@ public class TestePessoa {
 //        System.out.println("CEP do cliente: "+ cliPf.getNome()+" é "+ cliPf.getEndereco().getCEP());
         
         
-        //ClientePfJpaDao.getInstance().create(cliPf2);
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
+        //ClientePfJpaDao.getInstance().create(cliPf3);
+        //ClientePfJdbcDao daoJdbc = new ClientePfJdbcDao();
         //dao.create(cliPf2);
         
-        List<ClientePf> lista = dao.readAll();
+        //List<ClientePf> listaJdbc = daoJdbc.readAll();
+        List<ClientePf> listaJpa = ClientePfJpaDao.getInstance().readAll();
         
-        for (ClientePf clientePf : lista) {
+        for (ClientePf clientePf : listaJpa) {
             System.out.println(clientePf);
         }
+        //ClientePf cli = ClientePfJpaDao.getInstance().getById(3);
         
+        //System.out.println(cli);
         
+//        cli.setId(2);
+//        
+//        ClientePfJpaDao.getInstance().update(cli);
+//        System.out.println("nome da classe: " +ClientePf.class.getName()); 
+//        System.out.println("nome da classe SIMPLE: " +ClientePf.class.getSimpleName()); 
     }
     
 }

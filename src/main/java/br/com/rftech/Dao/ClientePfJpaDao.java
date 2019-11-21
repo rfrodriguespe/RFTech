@@ -28,6 +28,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -75,8 +76,11 @@ public class ClientePfJpaDao implements Dao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List readAll() {
-        return entityManager.createQuery("FROM " + ClientePf.class.getName()).getResultList();
+    public List<ClientePf> readAll() {
+//        TypedQuery<ClientePf> consulta = entityManager.createQuery("SELECT cli FROM ClientePf cli", ClientePf.class);
+//        List<ClientePf> listaClientePf = consulta.getResultList();
+//        return listaClientePf;
+        return entityManager.createQuery("FROM " + ClientePf.class.getSimpleName()).getResultList();
     }
 
     @Override

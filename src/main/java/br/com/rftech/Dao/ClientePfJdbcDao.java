@@ -80,13 +80,12 @@ public class ClientePfJdbcDao implements Dao {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ClientePf clientePf = new ClientePf();
-                
-                clientePf.setId(rs.getInt(1));
-                clientePf.setCPF(rs.getString(2));
-                clientePf.setEmail(rs.getString(3));
-                clientePf.setNome(rs.getString(4));
-                clientePf.setTelefone(rs.getString(5));
-                clientePf.getEndereco().setCEP(rs.getString("CEP"));
+                clientePf.setId(rs.getInt("id"));
+                clientePf.setCPF(rs.getString("CPF"));
+                clientePf.setNome(rs.getString("Nome"));
+                clientePf.setTelefone(rs.getString("Telefone"));
+                clientePf.setEmail(rs.getString("Email"));
+                //clientePf.getEndereco().setCEP(rs.getString("CEP"));
 //                clientePf.getEndereco().setCEP(rs.getString(6));
 //                clientePf.getEndereco().setBairro(rs.getString(7));
 //                clientePf.getEndereco().setCidade(rs.getString(8));
@@ -94,21 +93,6 @@ public class ClientePfJdbcDao implements Dao {
 //                clientePf.getEndereco().setLogradouro(rs.getString(10));
 //                clientePf.getEndereco().setNumero(rs.getString(11));
 //                clientePf.getEndereco().setUf(rs.getString(12));
-                
-                
-                
-//                clientePf.setId(rs.getInt("id"));
-//                clientePf.setCPF(rs.getString("CPF"));
-//                clientePf.setNome(rs.getString("Nome"));
-//                clientePf.setTelefone(rs.getString("Telefone"));
-//                clientePf.setEmail(rs.getString("Email"));
-//                clientePf.getEndereco().setCEP(rs.getString("Cep"));
-//                clientePf.getEndereco().setLogradouro(rs.getString("Logradouro"));
-//                clientePf.getEndereco().setNumero(rs.getString("Numero"));
-//                clientePf.getEndereco().setComplemento(rs.getString("Complemento"));
-//                clientePf.getEndereco().setBairro(rs.getString("Bairro"));
-//                clientePf.getEndereco().setCidade(rs.getString("Cidade"));
-//                clientePf.getEndereco().setUf(rs.getString("Uf"));
                 listaClientesPf.add(clientePf);
             }
         } catch (SQLException ex) {
