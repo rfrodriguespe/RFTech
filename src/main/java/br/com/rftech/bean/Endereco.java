@@ -23,18 +23,30 @@
  */
 package br.com.rftech.bean;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class Endereco {
+@Embeddable
+public class Endereco implements Serializable {
 
+    @Column
     private String CEP;
+    @Column
     private String logradouro;
+    @Column
     private String numero;
+    @Column
     private String complemento;
+    @Column
     private String bairro;
+    @Column
     private String cidade;
+    @Column
     private String uf;
 
     public Endereco() {

@@ -26,12 +26,14 @@ package br.com.rftech.bean;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
 @Entity
+@PrimaryKeyJoinColumn(name="id")
 public class ClientePf extends Pessoa {
     
     @Column
@@ -59,8 +61,8 @@ public class ClientePf extends Pessoa {
 
     @Override
     public String toString() {
-        return "CPF=" + CPF + ", "
-                + "Id=" + super.getId()
+        return "Id= " + super.getId()
+                + ", CPF=" + CPF
                 + ", Nome= " + super.getNome()
                 + ", Email= " + super.getEmail()
                 + ", Telefone= " + super.getTelefone()

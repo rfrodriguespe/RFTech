@@ -25,39 +25,40 @@ package br.com.rftech.bean;
 
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-@Entity
+@MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Pessoa implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
     private String nome;
     @Column
-    private String telefone;
-    @Column
     private String email;
     @Column
+    private String telefone;
+    @Embedded
     private Endereco endereco;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String telefone, String email, Endereco endereco) {
+    public Pessoa(String nome, String email, String telefone, Endereco endereco) {
         this.nome = nome;
-        this.telefone = telefone;
         this.email = email;
+        this.telefone = telefone;
         this.endereco = endereco;
     }
 
@@ -106,7 +107,7 @@ public abstract class Pessoa implements Serializable {
         return "Pessoas{" + "id=" + id +
                 ", nome=" + nome +
                 ", email=" + email +
-                ", telefone=" + telefone + '}'+
+                ", telefone=" + telefone + '}' +
                 "Endereco{" + getEndereco()+ '}';
     }
     

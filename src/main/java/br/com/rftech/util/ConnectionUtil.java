@@ -16,11 +16,11 @@ public class ConnectionUtil {
 	public static Connection getConnection() {
 		Properties properties = new Properties();
 		try {
-			ResourceBundle resources = ResourceBundle.getBundle("br.com.rfloja.util.DatabaseProperties");
+			ResourceBundle rb = ResourceBundle.getBundle("Database");
 			for (@SuppressWarnings("rawtypes")
-			Enumeration keys = resources.getKeys(); keys.hasMoreElements();) {
+			Enumeration keys = rb.getKeys(); keys.hasMoreElements();) {
 				final String key = (String) keys.nextElement();
-				final String value = resources.getString(key);
+				final String value = rb.getString(key);
 				properties.put(key, value);
 			}
 			Class.forName(properties.getProperty("jdbcDriver")).newInstance();

@@ -23,8 +23,12 @@
  */
 package br.com.rftech.testes;
 
+import br.com.rftech.Dao.ClientePfJdbcDao;
+import br.com.rftech.Dao.ClientePfJpaDao;
 import br.com.rftech.bean.ClientePf;
 import br.com.rftech.bean.Endereco;
+import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -32,11 +36,32 @@ import br.com.rftech.bean.Endereco;
  */
 public class TestePessoa {
     
-    public static void main(String[] args) {
-        ClientePf cliPf = new ClientePf("01323197486", "Rodrigo Ferreira", "rodrigo2208@gmail.com", "81988557802", new Endereco("54410310", "rua rossini roosevelt de albuquerque", "1300", "apto 301", "piedade", "jaboatao", "pe"));
+    public static void main(String[] args) throws IOException {
+        Endereco end = new Endereco("54410310", "rua rossini roosevelt de albuquerque", "1300", "apto 301", "piedade", "jaboatao", "pe");
+        ClientePf cliPf = new ClientePf("01323197486", "Rodrigo Ferreira", "rodrigo2208@gmail.com", "81988557802", end );
+        ClientePf cliPf2 = new ClientePf("29780622829", "Fabiana", "rodrigo2208@gmail.com", "81988557802", end );
         
         
-        System.out.println(cliPf.toString());
+//        System.out.println("CEP do cliente: "+ cliPf.getNome()+" é "+ cliPf.getEndereco().getCEP());
+//        
+//        String novoCEP = "54420160";
+//        System.out.println("Mudando CEP para: "+novoCEP);
+//        
+//        cliPf.getEndereco().setCEP(novoCEP);
+//        
+//        System.out.println("CEP do cliente: "+ cliPf.getNome()+" é "+ cliPf.getEndereco().getCEP());
+        
+        
+        //ClientePfJpaDao.getInstance().create(cliPf2);
+        ClientePfJdbcDao dao = new ClientePfJdbcDao();
+        //dao.create(cliPf2);
+        
+        List<ClientePf> lista = dao.readAll();
+        
+        for (ClientePf clientePf : lista) {
+            System.out.println(clientePf);
+        }
+        
         
     }
     

@@ -42,7 +42,6 @@ public class ClientePfJpaDao implements Dao {
         if (instance == null) {
             instance = new ClientePfJpaDao();
         }
-
         return instance;
     }
 
@@ -51,12 +50,10 @@ public class ClientePfJpaDao implements Dao {
     }
 
     private EntityManager getEntityManager() {
-        EntityManagerFactory factory
-                = Persistence.createEntityManagerFactory("crudHibernatePU");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistencerftech");
         if (entityManager == null) {
             entityManager = factory.createEntityManager();
         }
-
         return entityManager;
     }
 
@@ -65,21 +62,21 @@ public class ClientePfJpaDao implements Dao {
         ClientePf clientePf = (ClientePf) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(clientePf);
+            entityManager.persist(clientePf);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
-            ex.printStackTrace();
             entityManager.getTransaction().rollback();
             return false;
+        } finally {
+            entityManager.close();
         }
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
-        return entityManager.createQuery("FROM "
-                + ClientePf.class.getName()).getResultList();
+        return entityManager.createQuery("FROM " + ClientePf.class.getName()).getResultList();
     }
 
     @Override
@@ -94,6 +91,8 @@ public class ClientePfJpaDao implements Dao {
             ex.printStackTrace();
             entityManager.getTransaction().rollback();
             return false;
+        } finally {
+            entityManager.close();
         }
     }
 
@@ -110,9 +109,11 @@ public class ClientePfJpaDao implements Dao {
             ex.printStackTrace();
             entityManager.getTransaction().rollback();
             return false;
+        } finally {
+            entityManager.close();
         }
     }
-    
+
     public ClientePf getById(final int id) {
         return entityManager.find(ClientePf.class, id);
     }
@@ -127,7 +128,5 @@ public class ClientePfJpaDao implements Dao {
             return false;
         }
     }
-
-    
 
 }
