@@ -42,28 +42,19 @@ public class SplashScreen extends javax.swing.JFrame {
     public SplashScreen() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // atribui look and feel
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        al = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if (barraSplash.getValue() < 100) {
-                    barraSplash.setValue(barraSplash.getValue() + 1);
-                } else {
-                    t.stop();
-                    iniciarAplicacao();
-                }
+        al = (ActionEvent ae) -> {
+            if (barraSplash.getValue() < 100) {
+                barraSplash.setValue(barraSplash.getValue() + 1);
+            } else {
+                t.stop();
+                iniciarAplicacao();
             }
         };
-        t = new Timer(100, al);
+        t = new Timer(1, al);
         //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/monetae/imagens/monetae-icone-91x91.png")));
         initComponents();
         //AWTUtilities.setWindowOpaque(this, false);

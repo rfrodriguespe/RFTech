@@ -23,36 +23,55 @@
  */
 package br.com.rftech.bean;
 
+import br.com.rftech.util.Sha256;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
+@Entity
+@PrimaryKeyJoinColumn(name="id")
 public class Funcionario extends Pessoa {
     
-    private String CPF;
+    @Column
+    private String Cpf;
+    
+    @Column
+    private String senha;
+    
+    @Enumerated(EnumType.STRING)
     private Cargo cargo;
-
-    public Funcionario(String CPF) {
-        this.CPF = CPF;
-    }
-
+    
     public Funcionario() {
     }
 
-    public Funcionario(String CPF, String nome, String email, String telefone, Endereco endereco, Cargo cargo) {
+    public Funcionario(String Cpf, Cargo cargo, String nome, String email, String telefone, Endereco endereco) {
         super(nome, email, telefone, endereco);
-        this.CPF = CPF;
+        this.Cpf = Cpf;
+        this.senha = Sha256.getInstance().getSHA256Hash("rftech");
         this.cargo = cargo;
     }
-    
-    public String getCPF() {
-        return CPF;
+
+    public String getCpf() {
+        return Cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String Cpf) {
+        this.Cpf = Cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public Cargo getCargo() {
@@ -64,20 +83,24 @@ public class Funcionario extends Pessoa {
     }
     
     
+    
+    
 
     @Override
     public String toString() {
-        return "CPF=" + CPF + ", "
-                + "Id=" + super.getId()
-                + ", Nome= " + super.getNome()
-                + ", Email= " + super.getEmail()
-                + ", Telefone= " + super.getTelefone()
-                + ", Endereco: {" + super.getEndereco() + ".";
+        return "Id: " + super.getId()
+                + ", Cpf: " + getCpf()
+                + ", Senha: " + getSenha()
+                + ", Cargo: " + getCargo()
+                + ", Nom: " + super.getNome()
+                + ", Email: " + super.getEmail()
+                + ", Telefon: " + super.getTelefone()
+                + ", Endereco: {" + super.getEndereco() + "}.";
     }
 
     @Override
     public int hashCode() {
-        return CPF.hashCode();
+        return Cpf.hashCode();
     }
 
     @Override
@@ -92,10 +115,7 @@ public class Funcionario extends Pessoa {
             return false;
         }
         final Funcionario other = (Funcionario) obj;
-        if (!Objects.equals(this.CPF, other.CPF)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.Cpf, other.Cpf);
     }
 
 }

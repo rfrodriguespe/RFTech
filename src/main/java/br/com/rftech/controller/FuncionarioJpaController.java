@@ -21,31 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.bean;
+package br.com.rftech.controller;
+
+import br.com.rftech.Dao.FuncionarioJpaDao;
+import br.com.rftech.bean.Funcionario;
+import java.util.List;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public enum Cargo{
-    
-    Gerente("Gerente"),
-    Helpdesk("Analista"),
-    Rh("Funcionário de RH"),
-    TecnicoLaboratorio ("Técnico de laboratório"),
-    TecnicoCampo ("Técnico de Campo");
+public class FuncionarioJpaController {
 
-    private String descricao;
-
-    private Cargo(String descricao) {
-        this.descricao = descricao;
+    public FuncionarioJpaController() {
     }
 
-    public String getDescricao() {
-        return descricao;
+    public boolean create(Object arg0) {
+        Funcionario funcionario = (Funcionario) arg0;
+        return FuncionarioJpaDao.getInstance().create(funcionario);
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public List readAll() {
+        return FuncionarioJpaDao.getInstance().readAll();
+    }
+
+    public boolean update(Object arg0) {
+        Funcionario funcionario = (Funcionario) arg0;
+        return FuncionarioJpaDao.getInstance().update(funcionario);
+    }
+
+    public boolean delete(Object o) {
+        Funcionario funcionario = (Funcionario) o;
+        return FuncionarioJpaDao.getInstance().delete(funcionario);
     }
 }

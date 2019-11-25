@@ -86,10 +86,7 @@ public class ClientePf extends Pessoa {
             return false;
         }
         final ClientePf other = (ClientePf) obj;
-        if (!Objects.equals(this.CPF, other.CPF)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.CPF, other.CPF);
     }
 
 }

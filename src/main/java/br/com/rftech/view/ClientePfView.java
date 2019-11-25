@@ -83,7 +83,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
     private void habilitaCampos(boolean estado) {
 
-        tfCpf.setEnabled(estado);
+        ftfCpf.setEnabled(estado);
         tfNome.setEnabled(estado);
     }
 
@@ -106,12 +106,15 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanelDadosFabricantes = new javax.swing.JPanel();
-        tfCpf = new javax.swing.JTextField();
         tfNome = new javax.swing.JTextField();
         tfId = new javax.swing.JTextField();
         jLabelCPF = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
         jLabelId = new javax.swing.JLabel();
+        ftfCpf = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        textoCampoCpf = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanelTabela = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableClientePf = new javax.swing.JTable();
@@ -139,18 +142,6 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         jPanelDadosFabricantes.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
         jPanelDadosFabricantes.setPreferredSize(new java.awt.Dimension(787, 412));
 
-        tfCpf.setText("000.000.000-00");
-        tfCpf.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tfCpfFocusLost(evt);
-            }
-        });
-        tfCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCpfActionPerformed(evt);
-            }
-        });
-
         tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomeActionPerformed(evt);
@@ -165,26 +156,54 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
         jLabelId.setText("ID:");
 
+        try {
+            ftfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel1.setText("textp campo cpf");
+
+        textoCampoCpf.setText("teste");
+
+        jButton1.setText("Captura CPF");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDadosFabricantesLayout = new javax.swing.GroupLayout(jPanelDadosFabricantes);
         jPanelDadosFabricantes.setLayout(jPanelDadosFabricantesLayout);
         jPanelDadosFabricantesLayout.setHorizontalGroup(
             jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
-                        .addComponent(jLabelId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCPF)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+                                .addComponent(jLabelId)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelCPF)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+                                .addComponent(jLabelNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
-                        .addComponent(jLabelNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 113, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoCampoCpf)))
+                .addGap(0, 57, Short.MAX_VALUE))
+            .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDadosFabricantesLayout.setVerticalGroup(
             jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,12 +213,18 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                     .addComponent(jLabelId)
                     .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCPF)
-                    .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNome)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(textoCampoCpf))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanelTabela.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes Pessoa Física"));
@@ -241,6 +266,8 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanelBotoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
 
         jButtonConsulta.setText("Consultar");
         jButtonConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -311,68 +338,68 @@ public class ClientePfView extends javax.swing.JInternalFrame {
             jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonConsulta)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonFecharJanela, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonNovo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonVerificaPendencias)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonLimpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonFecharJanela)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonVerificaPendencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
         jPanelBotoesLayout.setVerticalGroup(
             jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonAlterar)
-                        .addComponent(jButtonLimpar)
-                        .addComponent(jButtonSalvar)
-                        .addComponent(jButtonFecharJanela)
-                        .addComponent(jButtonExcluir)
-                        .addComponent(jButtonVerificaPendencias))
-                    .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonNovo)
-                        .addComponent(jButtonCancelar))
-                    .addComponent(jButtonConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonNovo)
+                    .addComponent(jButtonConsulta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalvar)
+                    .addComponent(jButtonLimpar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAlterar)
+                    .addComponent(jButtonVerificaPendencias))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonFecharJanela)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelTabela, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jPanelTabela.getAccessibleContext().setAccessibleName("Dados Pessoais");
@@ -385,7 +412,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
             ClientePfController fabCtrl = new ClientePfController();
             ClientePf clientePf = new ClientePf();
             clientePf.setId(Integer.parseInt(tfId.getText()));
-            clientePf.setNome(tfCpf.getText());
+            clientePf.setNome(ftfCpf.getText());
             clientePf.setEmail(tfNome.getText());
             if (fabCtrl.delete(clientePf)) {
                 JOptionPane.showMessageDialog(this, "ClientePf deletado com sucesso");
@@ -418,7 +445,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         ClientePfController fabCtrl = new ClientePfController();
         ClientePf clientePf = new ClientePf();
-        clientePf.setNome(tfCpf.getText());
+        clientePf.setNome(ftfCpf.getText());
         clientePf.setEmail(tfNome.getText());
         if (fabCtrl.create(clientePf)) {
             JOptionPane.showMessageDialog(this, "Salvo com sucesso");
@@ -434,7 +461,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
             ClientePfController fabCtrl = new ClientePfController();
             ClientePf clientePf = new ClientePf();
             clientePf.setId(Integer.parseInt(tfId.getText()));
-            clientePf.setNome(tfCpf.getText());
+            clientePf.setNome(ftfCpf.getText());
             clientePf.setEmail(tfNome.getText());
             if (fabCtrl.update(clientePf)) {
                 JOptionPane.showMessageDialog(this, "ClientePf Alterado com sucesso");
@@ -463,7 +490,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (jTableClientePf.getSelectedRow() != -1) {
             tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            tfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
+            ftfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
             tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_jTableClientePfMouseClicked
@@ -472,7 +499,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (jTableClientePf.getSelectedRow() != -1) {
             tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            tfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
+            ftfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
             tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_jTableClientePfMouseReleased
@@ -481,16 +508,10 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (jTableClientePf.getSelectedRow() != -1) {
             tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            tfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
+            ftfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
             tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_jTableClientePfKeyReleased
-
-    private void tfCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCpfFocusLost
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_tfCpfFocusLost
 
     private void jButtonVerificaPendenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerificaPendenciasActionPerformed
         // TODO add your handling code here:
@@ -503,11 +524,14 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonFecharJanelaActionPerformed
 
-    private void tfCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCpfActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCpfActionPerformed
+        textoCampoCpf.setText(ftfCpf.getSelectedText());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField ftfCpf;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsulta;
@@ -517,6 +541,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVerificaPendencias;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCPF;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelNome;
@@ -525,7 +550,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelTabela;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableClientePf;
-    private javax.swing.JTextField tfCpf;
+    private javax.swing.JLabel textoCampoCpf;
     private javax.swing.JTextField tfId;
     private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables

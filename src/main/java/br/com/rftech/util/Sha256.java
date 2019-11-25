@@ -21,31 +21,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.bean;
+package br.com.rftech.util;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public enum Cargo{
-    
-    Gerente("Gerente"),
-    Helpdesk("Analista"),
-    Rh("Funcionário de RH"),
-    TecnicoLaboratorio ("Técnico de laboratório"),
-    TecnicoCampo ("Técnico de Campo");
+public class Sha256 {
 
-    private String descricao;
+    private static Sha256 instance;
 
-    private Cargo(String descricao) {
-        this.descricao = descricao;
+    public static Sha256 getInstance() {
+        if (instance == null) {
+            instance = new Sha256();
+        }
+        return instance;
     }
 
-    public String getDescricao() {
-        return descricao;
+    private Sha256() {
+
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    /**
+     *
+     * @param data
+     * @return
+     */
+    public String getSHA256Hash(String data) {
+        String result = null;
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(data.getBytes("UTF-8"));
+            return bytesToHex(hash); //Transforma o array em um hexadeciomal
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+        }
+        return result;
     }
+
+    private String bytesToHex(byte[] hash) {
+        return DatatypeConverter.printHexBinary(hash);
+    }
+
 }
