@@ -55,7 +55,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     }
 
     public JTextField[] limparCampos() {
-        JTextField[] campos = {jTextFieldObs, jTextFieldCod};
+        JTextField[] campos = {tfNome, tfId};
         for (int i = 0; i < campos.length; i++) {
             campos[i].setText("");
         }
@@ -66,7 +66,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         int erros = 0;
         String cepvazio = "     -   ";
         String telvazio = "(  )       -     ";
-        JTextField[] campos = { jTextFieldObs};
+        JTextField[] campos = { tfNome};
         String[] camposNome = {"ClientePf", "Obs"};
         for (int i = 0; i < campos.length; i++) {
             if (campos[i].getText().equals("")) {
@@ -83,8 +83,8 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
     private void habilitaCampos(boolean estado) {
 
-        jTextFieldClientePf.setEnabled(estado);
-        jTextFieldObs.setEnabled(estado);
+        tfCpf.setEnabled(estado);
+        tfNome.setEnabled(estado);
     }
 
     private void habilitaBotoes(boolean estado) {
@@ -106,9 +106,9 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanelDadosFabricantes = new javax.swing.JPanel();
-        jTextFieldClientePf = new javax.swing.JTextField();
-        jTextFieldObs = new javax.swing.JTextField();
-        jTextFieldCod = new javax.swing.JTextField();
+        tfCpf = new javax.swing.JTextField();
+        tfNome = new javax.swing.JTextField();
+        tfId = new javax.swing.JTextField();
         jLabelCPF = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
         jLabelId = new javax.swing.JLabel();
@@ -139,25 +139,31 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         jPanelDadosFabricantes.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
         jPanelDadosFabricantes.setPreferredSize(new java.awt.Dimension(787, 412));
 
-        jTextFieldClientePf.addFocusListener(new java.awt.event.FocusAdapter() {
+        tfCpf.setText("000.000.000-00");
+        tfCpf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldClientePfFocusLost(evt);
+                tfCpfFocusLost(evt);
             }
         });
-
-        jTextFieldObs.addActionListener(new java.awt.event.ActionListener() {
+        tfCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldObsActionPerformed(evt);
+                tfCpfActionPerformed(evt);
             }
         });
 
-        jTextFieldCod.setEditable(false);
+        tfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNomeActionPerformed(evt);
+            }
+        });
 
-        jLabelCPF.setText("Fabricante:");
+        tfId.setEditable(false);
 
-        jLabelNome.setText("Obs");
+        jLabelCPF.setText("CPF:");
 
-        jLabelId.setText("Cód:");
+        jLabelNome.setText("Nome:");
+
+        jLabelId.setText("ID:");
 
         javax.swing.GroupLayout jPanelDadosFabricantesLayout = new javax.swing.GroupLayout(jPanelDadosFabricantes);
         jPanelDadosFabricantes.setLayout(jPanelDadosFabricantesLayout);
@@ -165,20 +171,20 @@ public class ClientePfView extends javax.swing.JInternalFrame {
             jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
                         .addComponent(jLabelId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelCPF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldClientePf, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
                         .addComponent(jLabelNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldObs)))
-                .addGap(0, 73, Short.MAX_VALUE))
+                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 113, Short.MAX_VALUE))
         );
         jPanelDadosFabricantesLayout.setVerticalGroup(
             jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,13 +192,13 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelId)
-                    .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCPF)
-                    .addComponent(jTextFieldClientePf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNome)
-                    .addComponent(jTextFieldObs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -378,9 +384,9 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         if (jTableClientePf.getSelectedRow() != -1) {
             ClientePfController fabCtrl = new ClientePfController();
             ClientePf clientePf = new ClientePf();
-            clientePf.setId(Integer.parseInt(jTextFieldCod.getText()));
-            clientePf.setNome(jTextFieldClientePf.getText());
-            clientePf.setEmail(jTextFieldObs.getText());
+            clientePf.setId(Integer.parseInt(tfId.getText()));
+            clientePf.setNome(tfCpf.getText());
+            clientePf.setEmail(tfNome.getText());
             if (fabCtrl.delete(clientePf)) {
                 JOptionPane.showMessageDialog(this, "ClientePf deletado com sucesso");
                 preencheTabela();
@@ -400,9 +406,9 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonConsultaActionPerformed
 
-    private void jTextFieldObsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldObsActionPerformed
+    private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldObsActionPerformed
+    }//GEN-LAST:event_tfNomeActionPerformed
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         // Limpa os campos
@@ -412,8 +418,8 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         ClientePfController fabCtrl = new ClientePfController();
         ClientePf clientePf = new ClientePf();
-        clientePf.setNome(jTextFieldClientePf.getText());
-        clientePf.setEmail(jTextFieldObs.getText());
+        clientePf.setNome(tfCpf.getText());
+        clientePf.setEmail(tfNome.getText());
         if (fabCtrl.create(clientePf)) {
             JOptionPane.showMessageDialog(this, "Salvo com sucesso");
             preencheTabela();
@@ -427,9 +433,9 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         if (jTableClientePf.getSelectedRow() != -1) {
             ClientePfController fabCtrl = new ClientePfController();
             ClientePf clientePf = new ClientePf();
-            clientePf.setId(Integer.parseInt(jTextFieldCod.getText()));
-            clientePf.setNome(jTextFieldClientePf.getText());
-            clientePf.setEmail(jTextFieldObs.getText());
+            clientePf.setId(Integer.parseInt(tfId.getText()));
+            clientePf.setNome(tfCpf.getText());
+            clientePf.setEmail(tfNome.getText());
             if (fabCtrl.update(clientePf)) {
                 JOptionPane.showMessageDialog(this, "ClientePf Alterado com sucesso");
                 preencheTabela();
@@ -456,35 +462,35 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private void jTableClientePfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientePfMouseClicked
         // TODO add your handling code here:
         if (jTableClientePf.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            jTextFieldClientePf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
-            jTextFieldObs.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
+            tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
+            tfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
+            tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_jTableClientePfMouseClicked
 
     private void jTableClientePfMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientePfMouseReleased
         // TODO add your handling code here:
         if (jTableClientePf.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            jTextFieldClientePf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
-            jTextFieldObs.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
+            tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
+            tfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
+            tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_jTableClientePfMouseReleased
 
     private void jTableClientePfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableClientePfKeyReleased
         // TODO add your handling code here:
         if (jTableClientePf.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            jTextFieldClientePf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
-            jTextFieldObs.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
+            tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
+            tfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
+            tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_jTableClientePfKeyReleased
 
-    private void jTextFieldClientePfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClientePfFocusLost
+    private void tfCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCpfFocusLost
         // TODO add your handling code here:
 
 
-    }//GEN-LAST:event_jTextFieldClientePfFocusLost
+    }//GEN-LAST:event_tfCpfFocusLost
 
     private void jButtonVerificaPendenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerificaPendenciasActionPerformed
         // TODO add your handling code here:
@@ -496,6 +502,10 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private void jButtonFecharJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharJanelaActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonFecharJanelaActionPerformed
+
+    private void tfCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCpfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
@@ -515,8 +525,8 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelTabela;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableClientePf;
-    private javax.swing.JTextField jTextFieldClientePf;
-    private javax.swing.JTextField jTextFieldCod;
-    private javax.swing.JTextField jTextFieldObs;
+    private javax.swing.JTextField tfCpf;
+    private javax.swing.JTextField tfId;
+    private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
 }

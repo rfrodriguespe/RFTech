@@ -75,23 +75,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabelId" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldCod" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="tfId" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabelCPF" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldClientePf" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="tfCpf" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldObs" max="32767" attributes="0"/>
+                          <Component id="tfNome" min="-2" pref="274" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="113" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,14 +101,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCod" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldClientePf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldObs" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfNome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
@@ -116,34 +116,38 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTextFieldClientePf">
+        <Component class="javax.swing.JTextField" name="tfCpf">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="000.000.000-00"/>
+          </Properties>
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldClientePfFocusLost"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfCpfFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCpfActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldObs">
+        <Component class="javax.swing.JTextField" name="tfNome">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldObsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNomeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCod">
+        <Component class="javax.swing.JTextField" name="tfId">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCPF">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fabricante:"/>
+            <Property name="text" type="java.lang.String" value="CPF:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNome">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Obs"/>
+            <Property name="text" type="java.lang.String" value="Nome:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelId">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;d:"/>
+            <Property name="text" type="java.lang.String" value="ID:"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -88,5 +88,12 @@
             <version>2.5.2</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Brazil Documents-->
+        <dependency>
+            <groupId>br.com.rfrodrigues</groupId>
+            <artifactId>BrazilDocuments</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
