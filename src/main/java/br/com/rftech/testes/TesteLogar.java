@@ -29,6 +29,7 @@ import br.com.rftech.bean.ClientePf;
 import br.com.rftech.bean.ClientePj;
 import br.com.rftech.bean.Endereco;
 import br.com.rftech.bean.Funcionario;
+import br.com.rftech.bean.Sessao;
 
 /**
  *
@@ -44,8 +45,11 @@ public class TesteLogar {
         ClientePj cliPj = new ClientePj("47379565006126", "Marlise", "Proxxi Tecnologia LTDA", "Proxxi", "contato@proxxi.com.br", "8134247878", end);
         Funcionario func = new Funcionario("01323197486", "rfrodrigues", Cargo.Gerente, "Rodrigo Ferreira", "tecnico@rftech.com.br", "8133613927", end);
 
+        
+        System.out.println("Usuario da sessão antes do login: " + Sessao.getInstance().getFuncionario() );
+        
         String nomeUsuario = "lucasb";
-        String password = "rftech";
+        String password = "teste";
 
         System.out.println("Autenticando: " + nomeUsuario);
 
@@ -63,6 +67,8 @@ public class TesteLogar {
         } else {
             System.out.println("Usuário não existe");
         }
+        
+        System.out.println("Usuario da sessão APOS do login: " + Sessao.getInstance().getFuncionario() );
 
     }
 

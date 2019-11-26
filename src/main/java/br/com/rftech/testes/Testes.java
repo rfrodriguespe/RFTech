@@ -44,7 +44,9 @@ public class Testes {
         ClientePf cliPf2 = new ClientePf("29780622829", "Fabiana", "fabianabovo@gmail.com", "19993098039", end);
         ClientePf cliPf3 = new ClientePf("12345678900", "Lucas Bovo", "lucasbovo@gmail.com", "19993098039", end);
         ClientePj cliPj = new ClientePj("47379565006126", "Marlise", "Proxxi Tecnologia LTDA", "Proxxi", "contato@proxxi.com.br", "8134247878", end);
-        Funcionario func = new Funcionario("01323197486", "rfrodrigues", Cargo.Gerente, "Rodrigo Ferreira", "tecnico@rftech.com.br", "8133613927", end);
+        Funcionario func = new Funcionario("01323197486", "rfrodrigues", Cargo.Gerente, "Ferreira", "tecnico@rftech.com.br", "8133613927", end);
+
+        FuncionarioJpaDao.getInstance().create(func);
 //        
         //String nomeUsuario = "rfrodrigues";
         

@@ -2,6 +2,7 @@ package br.com.rftech.view;
 
 import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.Sessao;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -42,6 +43,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RF Loja");
+        setIconImage(new ImageIcon(getClass().getResource("/IMGS/iconFnr.png")).getImage());
+
+        jDesktopPanel.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPanel.setForeground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jDesktopPanelLayout = new javax.swing.GroupLayout(jDesktopPanel);
         jDesktopPanel.setLayout(jDesktopPanelLayout);
@@ -54,9 +59,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 380, Short.MAX_VALUE)
         );
 
+        jMenuLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGS/connect.png"))); // NOI18N
         jMenuLogin.setMnemonic('a');
         jMenuLogin.setText("Login");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGS/disconnect.png"))); // NOI18N
         jMenuItem1.setText("Logout / Trocar de Usuário");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +73,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuLogin.add(jMenuItem1);
 
         jMenuArquivoSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
+        jMenuArquivoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGS/exit_power.png"))); // NOI18N
         jMenuArquivoSair.setMnemonic('s');
         jMenuArquivoSair.setText("Sair");
         jMenuArquivoSair.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +85,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBarMenuPrincipal.add(jMenuLogin);
 
+        jMenuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGS/user.png"))); // NOI18N
         jMenuCadastro.setText("Cadastro");
 
         jMenu2.setText("Clientes");
@@ -135,6 +144,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        Sessao.getInstance().setFuncionario(null);
         new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed

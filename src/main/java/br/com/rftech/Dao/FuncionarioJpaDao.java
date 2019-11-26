@@ -65,7 +65,7 @@ public class FuncionarioJpaDao implements Dao {
         Funcionario funcionario = (Funcionario) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(funcionario);
+            entityManager.merge(funcionario);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -87,6 +87,7 @@ public class FuncionarioJpaDao implements Dao {
         Funcionario funcionario = (Funcionario) arg0;
         try {
             entityManager.getTransaction().begin();
+            funcionario = entityManager.find(Funcionario.class, funcionario.getId());
             entityManager.merge(funcionario);
             entityManager.getTransaction().commit();
             return true;
@@ -140,11 +141,9 @@ public class FuncionarioJpaDao implements Dao {
     }
 
     public boolean auth(String userName, String password) {
-        Funcionario funcionario = null;
         try {
-            funcionario = findByUserName(userName);
-            String hashPassword = Sha256.getInstance().getSHA256Hash(password);
-            if (funcionario != null && hashPassword.equals(funcionario.getSenha())) {
+            Funcionario funcionario = findByUserName(userName);
+            if (funcionario.getSenha().equals(Sha256.getInstance().getSHA256Hash(password))) {
                 Sessao.getInstance().setFuncionario(funcionario);
                 return true;
             } else {

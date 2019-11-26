@@ -31,14 +31,20 @@ public class Login extends javax.swing.JFrame {
         if (login.equals("") && senha.equals("")) {
             JOptionPane.showMessageDialog(null, "Campos de usuário e senha em branco");
         } else if (FuncionarioJpaDao.getInstance().auth(login, senha)) {
-            JOptionPane.showMessageDialog(null, "ACESSO PERMITIDO\n"
-                    + "Bem Vindo " + login + "\n"
-                    + "Você está logado como usuário " + Sessao.getInstance().getFuncionario().getNomeUsuario());
-            new TelaPrincipal().setVisible(true);
-            this.dispose();
+            if (Sha256.getInstance().getSHA256Hash(senha).equals("7E32C6E5E1D0D0106FB6BC8F2F838CB71CEC1A14E9F165A4E77A0C3154E0D01F")) {
+                new MudaSenhaInicial().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "ACESSO PERMITIDO\n"
+                        + "Bem Vindo " + login + "\n"
+                        + "Você está logado como usuário " + Sessao.getInstance().getFuncionario().getNomeUsuario());
+                new TelaPrincipal().setVisible(true);
+                this.dispose();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Acesso negado");
         }
+
     }
 
     /**
@@ -164,14 +170,14 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,6 +198,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonAcessarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarSistemaActionPerformed
+        System.out.println("Sessao "+Sessao.getInstance().getFuncionario());
         acessaSistema();
     }//GEN-LAST:event_jButtonAcessarSistemaActionPerformed
 
