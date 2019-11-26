@@ -29,7 +29,14 @@ import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.FuncionarioTableModel;
 import br.com.rftech.bean.TableColumnAdjuster;
 import br.com.rftech.controller.FuncionarioJpaController;
+import br.com.rftech.testes.TesteCEP;
+import br.com.rftech.util.ValidaCampos;
+import com.github.gilbertotorrezan.viacep.se.ViaCEPClient;
+import com.github.gilbertotorrezan.viacep.shared.ViaCEPEndereco;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -97,9 +104,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }
 
     private void habilitaCampos(boolean estado) {
-
-        ftfCpf.setEnabled(estado);
-        tfNome.setEnabled(estado);
+        jPanelDadosFuncionario.setEnabled(estado);
+        jPanelEndereco.setEnabled(estado);
     }
 
     private void habilitaBotoes(boolean estado) {
@@ -120,7 +126,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelDadosFabricantes = new javax.swing.JPanel();
+        jPanelDadosFuncionario = new javax.swing.JPanel();
         tfNome = new javax.swing.JTextField();
         tfId = new javax.swing.JTextField();
         jLabelCPF = new javax.swing.JLabel();
@@ -130,13 +136,13 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         tfNomeUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordFieldSenha = new javax.swing.JPasswordField();
+        pfSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxCargo = new javax.swing.JComboBox<>();
         ftfTelefone = new javax.swing.JFormattedTextField();
-        jTextFieldEmail = new javax.swing.JTextField();
+        tfEmail = new javax.swing.JTextField();
         jPanelTabela = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableFuncionario = new javax.swing.JTable();
@@ -154,15 +160,15 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         ftfCep = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
-        tfRua = new javax.swing.JTextField();
+        tfLogradouro = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tfNumero = new javax.swing.JTextField();
+        tfComplemento = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        tfBairro = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        tfCidade = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jComboBoxEstado = new javax.swing.JComboBox<>();
@@ -177,8 +183,8 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             e1.printStackTrace();
         }
 
-        jPanelDadosFabricantes.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
-        jPanelDadosFabricantes.setPreferredSize(new java.awt.Dimension(787, 412));
+        jPanelDadosFuncionario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
+        jPanelDadosFuncionario.setPreferredSize(new java.awt.Dimension(787, 412));
 
         tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +205,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ftfCpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ftfCpfFocusLost(evt);
+            }
+        });
 
         jLabel1.setText("Nome de Usuário:");
 
@@ -210,12 +221,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Senha:");
 
-        jPasswordFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+        pfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jPasswordFieldSenhaKeyPressed(evt);
+                pfSenhaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jPasswordFieldSenhaKeyTyped(evt);
+                pfSenhaKeyTyped(evt);
             }
         });
 
@@ -233,24 +244,24 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        javax.swing.GroupLayout jPanelDadosFabricantesLayout = new javax.swing.GroupLayout(jPanelDadosFabricantes);
-        jPanelDadosFabricantes.setLayout(jPanelDadosFabricantesLayout);
-        jPanelDadosFabricantesLayout.setHorizontalGroup(
-            jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelDadosFuncionarioLayout = new javax.swing.GroupLayout(jPanelDadosFuncionario);
+        jPanelDadosFuncionario.setLayout(jPanelDadosFuncionarioLayout);
+        jPanelDadosFuncionarioLayout.setHorizontalGroup(
+            jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPasswordFieldSenha))
-                            .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+                                .addComponent(pfSenha))
+                            .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                                 .addComponent(jLabelId)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,7 +274,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfNome)))
                         .addGap(10, 10, 10))
-                    .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+                    .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,14 +285,14 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldEmail)
+                        .addComponent(tfEmail)
                         .addContainerGap())))
         );
-        jPanelDadosFabricantesLayout.setVerticalGroup(
-            jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+        jPanelDadosFuncionarioLayout.setVerticalGroup(
+            jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelId)
                     .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCPF)
@@ -289,20 +300,20 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(jLabelNome)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
                         .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5)
-                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -479,6 +490,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel12.setText("UF");
 
         jButton1.setText("Pesquisa CEP");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         jComboBoxEstado.setToolTipText("");
@@ -499,11 +515,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfRua))
+                        .addComponent(tfLogradouro))
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4)
+                        .addComponent(tfCidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -511,15 +527,15 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2)
+                        .addComponent(tfComplemento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanelEnderecoLayout.setVerticalGroup(
             jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -529,22 +545,22 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(ftfCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jLabel7)
-                    .addComponent(tfRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 56, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -556,7 +572,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+                            .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
                             .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -567,7 +583,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -702,13 +718,26 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNomeUsuarioActionPerformed
 
-    private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyPressed
+    private void pfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyPressed
         
-    }//GEN-LAST:event_jPasswordFieldSenhaKeyPressed
+    }//GEN-LAST:event_pfSenhaKeyPressed
 
-    private void jPasswordFieldSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyTyped
+    private void pfSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldSenhaKeyTyped
+    }//GEN-LAST:event_pfSenhaKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        pesquisaCEP(ftfCep.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ftfCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftfCpfFocusLost
+        // TODO add your handling code here:
+        if (!ValidaCampos.getInstance().isCpf(ftfCpf.getText())) {
+            JOptionPane.showMessageDialog(null, "CPF inválido");
+            ftfCpf.requestFocus();
+        }
+    }//GEN-LAST:event_ftfCpfFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField ftfCep;
@@ -742,20 +771,33 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JPanel jPanelBotoes;
-    private javax.swing.JPanel jPanelDadosFabricantes;
+    private javax.swing.JPanel jPanelDadosFuncionario;
     private javax.swing.JPanel jPanelEndereco;
     private javax.swing.JPanel jPanelTabela;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableFuncionario;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JPasswordField pfSenha;
+    private javax.swing.JTextField tfBairro;
+    private javax.swing.JTextField tfCidade;
+    private javax.swing.JTextField tfComplemento;
+    private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfId;
+    private javax.swing.JTextField tfLogradouro;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNomeUsuario;
-    private javax.swing.JTextField tfRua;
+    private javax.swing.JTextField tfNumero;
     // End of variables declaration//GEN-END:variables
+
+    private void pesquisaCEP(String cep) {
+        try {
+            ViaCEPEndereco resultCEP = new ViaCEPClient().getEndereco(cep);
+            tfLogradouro.setText(resultCEP.getLogradouro());
+            tfComplemento.setText(resultCEP.getComplemento());
+            tfBairro.setText(resultCEP.getBairro());
+            tfCidade.setText(resultCEP.getLocalidade());
+            jComboBoxEstado.setSelectedItem(resultCEP.getUf());
+        } catch (IOException ex) {
+            Logger.getLogger(TesteCEP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

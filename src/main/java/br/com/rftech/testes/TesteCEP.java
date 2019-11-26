@@ -37,7 +37,7 @@ public class TesteCEP {
 
     public static void main(String[] args) {    
         try {
-            ViaCEPEndereco resultCEP = new ViaCEPClient().getEndereco("13617665");
+            ViaCEPEndereco resultCEP = new ViaCEPClient().getEndereco("54420-160");
             System.out.println("CEP: "+resultCEP.getCep());
             System.out.println("Rua: "+resultCEP.getLogradouro());
             System.out.println("Cidade: "+resultCEP.getLocalidade());
