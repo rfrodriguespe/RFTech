@@ -55,7 +55,7 @@ public class TesteLogar {
 
         //Funcionario achei = FuncionarioJpaDao.getInstance().auth(nomeUsuario);
         Funcionario logou = null;
-        logou = FuncionarioJpaDao.getInstance().findByUserName(nomeUsuario);
+        logou = FuncionarioJpaDao.getInstance().getByUserName(nomeUsuario);
         if (logou != null) {
             String nome = logou.getNomeUsuario();
             System.out.println("Usuário " + logou.getNomeUsuario() + " existe, vamos comparar as senhas");

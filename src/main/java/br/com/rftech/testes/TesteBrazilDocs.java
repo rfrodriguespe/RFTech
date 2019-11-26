@@ -23,6 +23,8 @@
  */
 package br.com.rftech.testes;
 
+import br.com.rftech.util.ValidaCampos;
+
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
@@ -35,9 +37,9 @@ public class TesteBrazilDocs {
         String cpf ="01327197486";
         String cnpj = "47379565006126";
         
-        System.out.println(br.com.rfrodrigues.brazildocuments.Cnpj.getInstance().isCnpj(cnpj));
+        System.out.println(ValidaCampos.getInstance().isCnpj(cnpj));
         
-        if (br.com.rfrodrigues.brazildocuments.Cpf.getInstance().isCpf(cpf)){
+        if (ValidaCampos.getInstance().isCpf(cpf)){
             System.out.println("O CPF: '"+cpf+"' é válido.");
         } else {
             System.out.println("O CPF: '"+cpf+"' é inválido.");

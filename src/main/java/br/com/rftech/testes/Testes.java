@@ -23,6 +23,7 @@
  */
 package br.com.rftech.testes;
 
+import br.com.rftech.Dao.ClientePfJpaDao;
 import br.com.rftech.Dao.FuncionarioJpaDao;
 import br.com.rftech.bean.Cargo;
 import br.com.rftech.bean.ClientePf;
@@ -31,6 +32,7 @@ import br.com.rftech.bean.Endereco;
 import br.com.rftech.bean.Funcionario;
 import br.com.rftech.util.Sha256;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -46,16 +48,14 @@ public class Testes {
         ClientePj cliPj = new ClientePj("47379565006126", "Marlise", "Proxxi Tecnologia LTDA", "Proxxi", "contato@proxxi.com.br", "8134247878", end);
         Funcionario func = new Funcionario("01323197486", "rfrodrigues", Cargo.Gerente, "Ferreira", "tecnico@rftech.com.br", "8133613927", end);
 
-        FuncionarioJpaDao.getInstance().create(func);
+        //FuncionarioJpaDao.getInstance().create(func);
 //        
         //String nomeUsuario = "rfrodrigues";
-        
+
         //System.out.println(FuncionarioJpaDao.getInstance().existsUsername(nomeUsuario));
         //System.out.println(FuncionarioJpaDao.getInstance().findByUserName(nomeUsuario));
-
         //FuncionarioJpaDao.getInstance().create(func);
         //ClientePjJpaDao.getInstance().create(cliPj);
-
         //        System.out.println("CEP do cliente: "+ cliPf.getNome()+" é "+ cliPf.getEndereco().getCEP());
         //        
         //        String novoCEP = "54420160";
@@ -64,11 +64,9 @@ public class Testes {
         //        cliPf.getEndereco().setCEP(novoCEP);
         //        
         //        System.out.println("CEP do cliente: "+ cliPf.getNome()+" é "+ cliPf.getEndereco().getCEP());
-
         //ClientePfJpaDao.getInstance().create(cliPf3);
         //ClientePfJdbcDao daoJdbc = new ClientePfJdbcDao();
         //dao.create(cliPf2);
-
         //List<ClientePf> listaJdbc = daoJdbc.readAll();
         //        List<ClientePf> listaJpa = ClientePfJpaDao.getInstance().readAll();
         //        
@@ -76,15 +74,18 @@ public class Testes {
         //            System.out.println(clientePf);
         //        }
         //ClientePf cli = ClientePfJpaDao.getInstance().getById(3);
-
         //System.out.println(cli);
-
         //        cli.setId(2);
         //        
         //        ClientePfJpaDao.getInstance().update(cli);
         //        System.out.println("nome da classe: " +ClientePf.class.getName());
         //        System.out.println("nome da classe SIMPLE: " +ClientePf.class.getSimpleName()); 
-        ;
+        List<Funcionario> listaFunc = FuncionarioJpaDao.getInstance().readAll();
+        listaFunc.forEach(System.out::println);
+        
+//        List<ClientePf> listacliPf = ClientePfJpaDao.getInstance().readAll();
+//        listacliPf.forEach(System.out::println);
+
     }
 
 }

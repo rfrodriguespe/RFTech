@@ -79,7 +79,7 @@ public class FuncionarioJpaDao implements Dao {
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
-        return entityManager.createQuery("SELECT funcionario FROM Funcionario funcionario", Funcionario.class).getResultList();
+        return entityManager.createQuery("SELECT f FROM Funcionario f", Funcionario.class).getResultList();
     }
 
     @Override
@@ -130,7 +130,7 @@ public class FuncionarioJpaDao implements Dao {
         }
     }
 
-    public Funcionario findByUserName(String userName) {
+    public Funcionario getByUserName(String userName) {
         try {
             Query query = entityManager.createQuery("Select f FROM Funcionario f WHERE f.nomeUsuario = :nomeUsuario");
             query.setParameter("nomeUsuario", userName);
@@ -142,7 +142,7 @@ public class FuncionarioJpaDao implements Dao {
 
     public boolean auth(String userName, String password) {
         try {
-            Funcionario funcionario = findByUserName(userName);
+            Funcionario funcionario = getByUserName(userName);
             if (funcionario.getSenha().equals(Sha256.getInstance().getSHA256Hash(password))) {
                 Sessao.getInstance().setFuncionario(funcionario);
                 return true;

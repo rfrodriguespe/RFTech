@@ -37,32 +37,32 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class ClientePf extends Pessoa {
     
     @Column
-    private String CPF;
+    private String Cpf;
   
-    public ClientePf(String CPF) {
-        this.CPF = CPF;
+    public ClientePf(String Cpf) {
+        this.Cpf = Cpf;
     }
 
     public ClientePf() {
     }
 
-    public ClientePf(String CPF, String nome, String email, String telefone, Endereco endereco) {
+    public ClientePf(String Cpf, String nome, String email, String telefone, Endereco endereco) {
         super(nome, email, telefone, endereco);
-        this.CPF = CPF;
+        this.Cpf = Cpf;
     }
     
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return Cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String Cpf) {
+        this.Cpf = Cpf;
     }
 
     @Override
     public String toString() {
         return "Id= " + super.getId()
-                + ", CPF=" + CPF
+                + ", CPF=" + getCpf()
                 + ", Nome= " + super.getNome()
                 + ", Email= " + super.getEmail()
                 + ", Telefone= " + super.getTelefone()
@@ -71,7 +71,7 @@ public class ClientePf extends Pessoa {
 
     @Override
     public int hashCode() {
-        return CPF.hashCode();
+        return Cpf.hashCode();
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ClientePf extends Pessoa {
             return false;
         }
         final ClientePf other = (ClientePf) obj;
-        return Objects.equals(this.CPF, other.CPF);
+        return Objects.equals(this.Cpf, other.Cpf);
     }
 
 }

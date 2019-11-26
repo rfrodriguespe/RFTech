@@ -47,7 +47,7 @@ public class ClientePfJdbcDao implements Dao {
         String sql = "INSERT INTO clientepf (CPF, NOME, EMAIL, TELEFONE, CEP, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, clientePf.getCPF());
+            stmt.setString(1, clientePf.getCpf());
             stmt.setString(2, clientePf.getNome());
             stmt.setString(3, clientePf.getEmail());
             stmt.setString(4, clientePf.getTelefone());
@@ -81,7 +81,7 @@ public class ClientePfJdbcDao implements Dao {
             while (rs.next()) {
                 ClientePf clientePf = new ClientePf();
                 clientePf.setId(rs.getInt("id"));
-                clientePf.setCPF(rs.getString("CPF"));
+                clientePf.setCpf(rs.getString("CPF"));
                 clientePf.setNome(rs.getString("Nome"));
                 clientePf.setTelefone(rs.getString("Telefone"));
                 clientePf.setEmail(rs.getString("Email"));
@@ -111,7 +111,7 @@ public class ClientePfJdbcDao implements Dao {
         String sql = "UPDATE `clientePf` SET `clientePf`=?,`obs`=? WHERE cod=?";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, clientePf.getCPF());
+            stmt.setString(1, clientePf.getCpf());
             stmt.setString(2, clientePf.getNome());
             stmt.setString(3, clientePf.getEmail());
             stmt.setString(4, clientePf.getTelefone());

@@ -64,6 +64,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RF Loja");
@@ -128,6 +129,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Equipamentos");
         jMenuCadastro.add(jMenu1);
 
+        jMenuItem2.setText("Funcionários");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItem2);
+
         jMenuBarMenuPrincipal.add(jMenuCadastro);
 
         setJMenuBar(jMenuBarMenuPrincipal);
@@ -172,6 +181,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FuncionarioView tela = new FuncionarioView();
+        jDesktopPanel.add(tela);
+        tela.setVisible(true);
+        try {
+            tela.setSelected(true);
+            //diz que a janela interna é maximizável   
+            tela.setMaximizable(true);
+            //set o tamanho máximo dela, que depende da janela pai   
+            tela.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +242,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarMenuPrincipal;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenuLogin;
     // End of variables declaration//GEN-END:variables
