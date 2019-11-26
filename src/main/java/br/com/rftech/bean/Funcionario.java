@@ -35,12 +35,15 @@ import javax.persistence.PrimaryKeyJoinColumn;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-@Entity
+@Entity(name="Funcionario")
 @PrimaryKeyJoinColumn(name="id")
 public class Funcionario extends Pessoa {
     
     @Column
     private String Cpf;
+    
+    @Column
+    private String nomeUsuario;
     
     @Column
     private String senha;
@@ -51,9 +54,10 @@ public class Funcionario extends Pessoa {
     public Funcionario() {
     }
 
-    public Funcionario(String Cpf, Cargo cargo, String nome, String email, String telefone, Endereco endereco) {
+    public Funcionario(String Cpf, String nomeUsuario, Cargo cargo, String nome, String email, String telefone, Endereco endereco) {
         super(nome, email, telefone, endereco);
         this.Cpf = Cpf;
+        this.nomeUsuario = nomeUsuario;
         this.senha = Sha256.getInstance().getSHA256Hash("rftech");
         this.cargo = cargo;
     }
@@ -65,6 +69,16 @@ public class Funcionario extends Pessoa {
     public void setCpf(String Cpf) {
         this.Cpf = Cpf;
     }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+    
+    
 
     public String getSenha() {
         return senha;
@@ -90,6 +104,7 @@ public class Funcionario extends Pessoa {
     public String toString() {
         return "Id: " + super.getId()
                 + ", Cpf: " + getCpf()
+                + ", Nome de Usuário: " + getNomeUsuario()
                 + ", Senha: " + getSenha()
                 + ", Cargo: " + getCargo()
                 + ", Nom: " + super.getNome()

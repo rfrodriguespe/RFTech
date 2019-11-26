@@ -1,5 +1,7 @@
 package br.com.rftech.view;
 
+import br.com.rftech.bean.Funcionario;
+import br.com.rftech.bean.Sessao;
 import javax.swing.JFrame;
 
 /**
@@ -14,6 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
 
         initComponents();
+        permissoesFuncionario();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
@@ -29,7 +32,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jDesktopPanel = new javax.swing.JDesktopPane();
         jMenuBarMenuPrincipal = new javax.swing.JMenuBar();
-        jMenuArquivo = new javax.swing.JMenu();
+        jMenuLogin = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuArquivoSair = new javax.swing.JMenuItem();
         jMenuCadastro = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -50,8 +54,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 380, Short.MAX_VALUE)
         );
 
-        jMenuArquivo.setMnemonic('a');
-        jMenuArquivo.setText("Arquivo");
+        jMenuLogin.setMnemonic('a');
+        jMenuLogin.setText("Login");
+
+        jMenuItem1.setText("Logout / Trocar de Usuário");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuLogin.add(jMenuItem1);
 
         jMenuArquivoSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
         jMenuArquivoSair.setMnemonic('s');
@@ -61,9 +73,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuArquivoSairActionPerformed(evt);
             }
         });
-        jMenuArquivo.add(jMenuArquivoSair);
+        jMenuLogin.add(jMenuArquivoSair);
 
-        jMenuBarMenuPrincipal.add(jMenuArquivo);
+        jMenuBarMenuPrincipal.add(jMenuLogin);
 
         jMenuCadastro.setText("Cadastro");
 
@@ -121,6 +133,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -163,10 +181,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenuArquivo;
     private javax.swing.JMenuItem jMenuArquivoSair;
     private javax.swing.JMenuBar jMenuBarMenuPrincipal;
     private javax.swing.JMenu jMenuCadastro;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenu jMenuLogin;
     // End of variables declaration//GEN-END:variables
+
+    public void permissoesFuncionario() {
+        Funcionario funcLogado = Sessao.getInstance().getFuncionario();
+        this.setTitle("RFTECH - usuário logado: " + funcLogado.getNome() + " Cargo: " + funcLogado.getCargo());
+        if (!funcLogado.getCargo().toString().equals("Gerente")) {
+            jMenuCadastro.setVisible(false);
+        }
+    }
 }

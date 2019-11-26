@@ -24,10 +24,13 @@
 package br.com.rftech.Dao;
 
 import br.com.rftech.bean.Funcionario;
+import br.com.rftech.bean.Sessao;
+import br.com.rftech.util.Sha256;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -126,4 +129,29 @@ public class FuncionarioJpaDao implements Dao {
         }
     }
 
+    public Funcionario findByUserName(String userName) {
+        try {
+            Query query = entityManager.createQuery("Select f FROM Funcionario f WHERE f.nomeUsuario = :nomeUsuario");
+            query.setParameter("nomeUsuario", userName);
+            return (Funcionario) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public boolean auth(String userName, String password) {
+        Funcionario funcionario = null;
+        try {
+            funcionario = findByUserName(userName);
+            String hashPassword = Sha256.getInstance().getSHA256Hash(password);
+            if (funcionario != null && hashPassword.equals(funcionario.getSenha())) {
+                Sessao.getInstance().setFuncionario(funcionario);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

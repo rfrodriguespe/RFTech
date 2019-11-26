@@ -63,7 +63,8 @@ public class SplashScreen extends javax.swing.JFrame {
 
     // Método para chamar a janela principal ao encerrar o carregamento
     private void iniciarAplicacao() {
-        TelaPrincipal tela = new TelaPrincipal();
+        //TelaPrincipal tela = new TelaPrincipal();
+        Login tela = new Login();
         tela.setVisible(true);
         this.dispose();
     }
