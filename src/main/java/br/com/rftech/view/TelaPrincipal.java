@@ -24,10 +24,15 @@
 
 package br.com.rftech.view;
 
+import br.com.rftech.Dao.FuncionarioJpaDao;
 import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.Sessao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -39,8 +44,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Construtor
      */
     public TelaPrincipal() {
+        
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // atribui look and feel
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         initComponents();
+        
+        //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
+        Funcionario funcionario = FuncionarioJpaDao.getInstance().getById(1);
+        Sessao.getInstance().setFuncionario(funcionario);
+        //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
+        
         permissoesFuncionario();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
