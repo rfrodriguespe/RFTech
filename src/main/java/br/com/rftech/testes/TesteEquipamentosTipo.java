@@ -23,40 +23,37 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.Dao.CargoJpaDao;
-import br.com.rftech.bean.Cargo;
+import br.com.rftech.Dao.EquipamentosTipoJpaDao;
+import br.com.rftech.bean.EquipamentosTipo;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TesteCargo {
+public class TesteEquipamentosTipo {
     
     public static void main(String[] args) {
-        String tecLab = "Tecnico de Laboratório";
-        String tecCampo = "Tecnico de Campo";
-        String helpdesk = "Helpdesk";
-        String gerente = "Gerente";
-        String rh = "Rh";
-        String comercial = "Comercial";
+        String notebook = "Notebook";
+        String pc = "Pc";
+        String monitor = "Monitor";
+        String impressora = "Impressora";
+        
 
-        Cargo profGerente = new Cargo(gerente);
-        Cargo profRh = new Cargo(rh);
-        Cargo profHelpdesk = new Cargo(helpdesk);
-        Cargo profTecCampo = new Cargo(tecCampo);
-        Cargo profTecLab = new Cargo(tecLab);
-        Cargo profComercial = new Cargo(comercial);
-        
-//        CargoJpaDao.getInstance().create(profGerente);
-//        CargoJpaDao.getInstance().create(profRh);
-//        CargoJpaDao.getInstance().create(profHelpdesk);
-//        CargoJpaDao.getInstance().create(profTecCampo);
-//        CargoJpaDao.getInstance().create(profTecLab);
-        CargoJpaDao.getInstance().create(profComercial);
+        EquipamentosTipo tipoimp = new EquipamentosTipo(impressora);
+        EquipamentosTipo tipomonitor = new EquipamentosTipo(monitor);
+        EquipamentosTipo tipopc = new EquipamentosTipo(pc);
+        EquipamentosTipo tiponote = new EquipamentosTipo(notebook);
         
         
-//        System.out.println("Cargo retornada do nome: "+gerente+" é:");
-//        System.out.println(CargoJpaDao.getInstance().getByName(gerente));
+
+        EquipamentosTipoJpaDao.getInstance().create(tiponote);
+        EquipamentosTipoJpaDao.getInstance().create(tipopc);
+        EquipamentosTipoJpaDao.getInstance().create(tipomonitor);
+        EquipamentosTipoJpaDao.getInstance().create(tipoimp);
+        
+        
+//        System.out.println("EquipamentosTipo retornada do nome: "+gerente+" é:");
+//        System.out.println(EquipamentosTipoJpaDao.getInstance().getByName(gerente));
         
     }
     

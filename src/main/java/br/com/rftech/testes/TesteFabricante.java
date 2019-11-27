@@ -23,40 +23,37 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.Dao.CargoJpaDao;
-import br.com.rftech.bean.Cargo;
+import br.com.rftech.Dao.FabricanteJpaDao;
+import br.com.rftech.bean.Fabricante;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TesteCargo {
+public class TesteFabricante {
     
     public static void main(String[] args) {
-        String tecLab = "Tecnico de Laboratório";
-        String tecCampo = "Tecnico de Campo";
-        String helpdesk = "Helpdesk";
-        String gerente = "Gerente";
-        String rh = "Rh";
-        String comercial = "Comercial";
+        String dell = "Dell";
+        String lenovo = "Lenovo";
+        String hp = "Hp";
+        String lexmark = "Lexmark";
+        
 
-        Cargo profGerente = new Cargo(gerente);
-        Cargo profRh = new Cargo(rh);
-        Cargo profHelpdesk = new Cargo(helpdesk);
-        Cargo profTecCampo = new Cargo(tecCampo);
-        Cargo profTecLab = new Cargo(tecLab);
-        Cargo profComercial = new Cargo(comercial);
-        
-//        CargoJpaDao.getInstance().create(profGerente);
-//        CargoJpaDao.getInstance().create(profRh);
-//        CargoJpaDao.getInstance().create(profHelpdesk);
-//        CargoJpaDao.getInstance().create(profTecCampo);
-//        CargoJpaDao.getInstance().create(profTecLab);
-        CargoJpaDao.getInstance().create(profComercial);
+        Fabricante fablex = new Fabricante(lexmark);
+        Fabricante fabhp = new Fabricante(hp);
+        Fabricante fablenovo = new Fabricante(lenovo);
+        Fabricante fabdell = new Fabricante(dell);
         
         
-//        System.out.println("Cargo retornada do nome: "+gerente+" é:");
-//        System.out.println(CargoJpaDao.getInstance().getByName(gerente));
+
+        FabricanteJpaDao.getInstance().create(fabdell);
+        FabricanteJpaDao.getInstance().create(fablenovo);
+        FabricanteJpaDao.getInstance().create(fabhp);
+        FabricanteJpaDao.getInstance().create(fablex);
+        
+        
+//        System.out.println("Fabricante retornada do nome: "+gerente+" é:");
+//        System.out.println(FabricanteJpaDao.getInstance().getByName(gerente));
         
     }
     

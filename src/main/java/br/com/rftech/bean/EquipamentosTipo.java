@@ -21,43 +21,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.testes;
+package br.com.rftech.bean;
 
-import br.com.rftech.Dao.CargoJpaDao;
-import br.com.rftech.bean.Cargo;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TesteCargo {
-    
-    public static void main(String[] args) {
-        String tecLab = "Tecnico de Laboratório";
-        String tecCampo = "Tecnico de Campo";
-        String helpdesk = "Helpdesk";
-        String gerente = "Gerente";
-        String rh = "Rh";
-        String comercial = "Comercial";
+@Entity(name="EquipamentosTipo")
+public class EquipamentosTipo implements Serializable {
 
-        Cargo profGerente = new Cargo(gerente);
-        Cargo profRh = new Cargo(rh);
-        Cargo profHelpdesk = new Cargo(helpdesk);
-        Cargo profTecCampo = new Cargo(tecCampo);
-        Cargo profTecLab = new Cargo(tecLab);
-        Cargo profComercial = new Cargo(comercial);
-        
-//        CargoJpaDao.getInstance().create(profGerente);
-//        CargoJpaDao.getInstance().create(profRh);
-//        CargoJpaDao.getInstance().create(profHelpdesk);
-//        CargoJpaDao.getInstance().create(profTecCampo);
-//        CargoJpaDao.getInstance().create(profTecLab);
-        CargoJpaDao.getInstance().create(profComercial);
-        
-        
-//        System.out.println("Cargo retornada do nome: "+gerente+" é:");
-//        System.out.println(CargoJpaDao.getInstance().getByName(gerente));
-        
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String tipo;
+
+    public EquipamentosTipo() {
+    }
+
+    public EquipamentosTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + getId()
+                +" Tipo: "+getTipo();
     }
     
+    
+
 }

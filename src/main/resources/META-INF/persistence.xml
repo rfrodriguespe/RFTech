@@ -6,6 +6,8 @@
     <class>br.com.rftech.bean.ClientePj</class>
     <class>br.com.rftech.bean.Funcionario</class>
     <class>br.com.rftech.bean.Cargo</class>
+    <class>br.com.rftech.bean.Fabricante</class>
+    <class>br.com.rftech.bean.EquipamentosTipo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rftech?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
