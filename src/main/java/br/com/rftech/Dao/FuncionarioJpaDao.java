@@ -73,6 +73,7 @@ public class FuncionarioJpaDao implements Dao {
             return false;
         } finally {
             entityManager.close();
+            instance = null;
         }
     }
 
@@ -96,6 +97,7 @@ public class FuncionarioJpaDao implements Dao {
             return false;
         } finally {
             entityManager.close();
+            instance = null;
         }
     }
 
@@ -113,6 +115,7 @@ public class FuncionarioJpaDao implements Dao {
             return false;
         } finally {
             entityManager.close();
+            instance = null;
         }
     }
 

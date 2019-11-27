@@ -23,29 +23,30 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.bean.Empregado;
+import br.com.rftech.bean.Cargo;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class EmpregadoJpaDao implements Dao {
+public class CargoJpaDao implements Dao {
 
-    private static EmpregadoJpaDao instance;
+    private static CargoJpaDao instance;
     protected EntityManager entityManager;
 
-    public static EmpregadoJpaDao getInstance() {
+    public static CargoJpaDao getInstance() {
         if (instance == null) {
-            instance = new EmpregadoJpaDao();
+            instance = new CargoJpaDao();
         }
         return instance;
     }
 
-    private EmpregadoJpaDao() {
+    private CargoJpaDao() {
         entityManager = getEntityManager();
     }
 
@@ -59,10 +60,10 @@ public class EmpregadoJpaDao implements Dao {
 
     @Override
     public boolean create(Object arg0) {
-        Empregado empregado = (Empregado) arg0;
+        Cargo cargo = (Cargo) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(empregado);
+            entityManager.persist(cargo);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -76,16 +77,16 @@ public class EmpregadoJpaDao implements Dao {
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
-        return entityManager.createQuery("SELECT e FROM Empregado e", Empregado.class).getResultList();
+        return entityManager.createQuery("SELECT c FROM Cargo c", Cargo.class).getResultList();
     }
 
     @Override
     public boolean update(Object arg0) {
-        Empregado empregado = (Empregado) arg0;
+        Cargo cargo = (Cargo) arg0;
         try {
             entityManager.getTransaction().begin();
-            empregado = entityManager.find(Empregado.class, empregado.getId());
-            entityManager.merge(empregado);
+            cargo = entityManager.find(Cargo.class, cargo.getId());
+            entityManager.merge(cargo);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -98,11 +99,11 @@ public class EmpregadoJpaDao implements Dao {
 
     @Override
     public boolean delete(Object arg0) {
-        Empregado empregado = (Empregado) arg0;
+        Cargo cargo = (Cargo) arg0;
         try {
             entityManager.getTransaction().begin();
-            empregado = entityManager.find(Empregado.class, empregado.getId());
-            entityManager.remove(empregado);
+            cargo = entityManager.find(Cargo.class, cargo.getId());
+            entityManager.remove(cargo);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -113,17 +114,28 @@ public class EmpregadoJpaDao implements Dao {
         }
     }
 
-    public Empregado getById(final int id) {
-        return entityManager.find(Empregado.class, id);
+    public Cargo getById(final int id) {
+        return entityManager.find(Cargo.class, id);
     }
 
     public boolean removeById(final int id) {
         try {
-            Empregado empregado = getById(id);
-            delete(empregado);
+            Cargo cargo = getById(id);
+            delete(cargo);
             return true;
         } catch (Exception ex) {
             return false;
         }
     }
+    
+    public Cargo getByName(String nome) {
+        try {
+            Query query = entityManager.createQuery("Select c FROM Cargo c WHERE c.nome = :nome");
+            query.setParameter("nome", nome);
+            return (Cargo) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
 }

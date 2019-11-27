@@ -23,33 +23,18 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.Dao.EmpregadoJpaDao;
-import br.com.rftech.Dao.ProfissaoJpaDao;
-import br.com.rftech.bean.Empregado;
-import br.com.rftech.bean.Endereco;
-import br.com.rftech.bean.Profissao;
-import java.util.List;
+import br.com.rftech.util.Sha256;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TesteEmpregado {
+public class TesteSenha {
     
     public static void main(String[] args) {
-        Endereco end = new Endereco("54410310", "rua rossini", "1200", "apto 301", "piedade", "jaboatao", "pe");
-        Profissao rh = ProfissaoJpaDao.getInstance().getById(2);
-        Empregado emp = new Empregado("29780622829", "fbovo", "teste", rh, "Fabiana Bovo", "rodrigo2208@gmail.com", "81988557802", end);
-        
-        //System.out.println(emp);
-        
-        //EmpregadoJpaDao.getInstance().create(emp);
-        
-        List<Empregado> lista = EmpregadoJpaDao.getInstance().readAll();
-        
-        lista.forEach((empregado) -> {
-            System.out.println(empregado);
-        });
+        System.out.println("Senha 'rftech' criptografada");
+        System.out.println(Sha256.getInstance().getSHA256Hash("rftech"));
     }
+            
     
 }

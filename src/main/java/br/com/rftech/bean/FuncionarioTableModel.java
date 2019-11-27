@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 public class FuncionarioTableModel extends AbstractTableModel {
 
     private ArrayList<Funcionario> dados = new ArrayList<>();
-    private String[] colunas = {"Id", "Cpf", "Nome", "Nome de Usuário", "Senha", "Cargo", "Telefone",
+    private String[] colunas = {"Id", "Cpf", "Nome", "Nome de Usuário", /*"Senha",*/ "Cargo", "Telefone",
         "E-mail", "Cep", "logradouro", "Numero", "Complemento", "Bairro", "Cidade", "Uf"};
 
     @Override
@@ -39,27 +39,27 @@ public class FuncionarioTableModel extends AbstractTableModel {
                 return dados.get(linha).getNome();
             case 3:
                 return dados.get(linha).getNomeUsuario();
+//            case 4:
+//                return dados.get(linha).getSenha();
             case 4:
-                return dados.get(linha).getSenha();
+                return dados.get(linha).getCargo().getNome();
             case 5:
-                return dados.get(linha).getCargo();
-            case 6:
                 return dados.get(linha).getTelefone();
-            case 7:
+            case 6:
                 return dados.get(linha).getEmail();
-            case 8:
+            case 7:
                 return dados.get(linha).getEndereco().getCEP();
-            case 9:
+            case 8:
                 return dados.get(linha).getEndereco().getLogradouro();
-            case 10:
+            case 9:
                 return dados.get(linha).getEndereco().getNumero();
-            case 11:
+            case 10:
                 return dados.get(linha).getEndereco().getComplemento();
-            case 12:
+            case 11:
                 return dados.get(linha).getEndereco().getBairro();
-            case 13:
+            case 12:
                 return dados.get(linha).getEndereco().getCidade();
-            case 14:
+            case 13:
                 return dados.get(linha).getEndereco().getUf();
             default:
                 return null;
@@ -77,27 +77,27 @@ public class FuncionarioTableModel extends AbstractTableModel {
                 dados.get(linha).setNome((String) valor);
             case 3:
                 dados.get(linha).setNomeUsuario((String) valor);
+//            case 4:
+//                dados.get(linha).setSenha((String) valor);
             case 4:
-                dados.get(linha).setSenha((String) valor);
-            case 5:
                 dados.get(linha).setCargo((Cargo) valor);
-            case 6:
+            case 5:
                 dados.get(linha).setTelefone((String) valor);
-            case 7:
+            case 6:
                 dados.get(linha).setEmail((String) valor);
-            case 8:
+            case 7:
                 dados.get(linha).getEndereco().setCEP((String) valor);
-            case 9:
+            case 8:
                 dados.get(linha).getEndereco().setLogradouro((String) valor);
-            case 10:
+            case 9:
                 dados.get(linha).getEndereco().setNumero((String) valor);
-            case 11:
+            case 10:
                 dados.get(linha).getEndereco().setComplemento((String) valor);
-            case 12:
+            case 11:
                 dados.get(linha).getEndereco().setBairro((String) valor);
-            case 13:
+            case 12:
                 dados.get(linha).getEndereco().setCidade((String) valor);
-            case 14:
+            case 13:
                 dados.get(linha).getEndereco().setUf((String) valor);
         }
         this.fireTableRowsUpdated(linha, linha);

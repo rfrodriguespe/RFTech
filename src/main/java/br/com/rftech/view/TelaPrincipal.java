@@ -250,7 +250,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void permissoesFuncionario() {
         Funcionario funcLogado = Sessao.getInstance().getFuncionario();
         this.setTitle("RFTECH - usuário logado: " + funcLogado.getNome() + " Cargo: " + funcLogado.getCargo());
-        if (!funcLogado.getCargo().toString().equals("Gerente")) {
+        if (!funcLogado.getCargo().getNome().equals("Gerente")) {
             jMenuCadastro.setVisible(false);
         }
     }

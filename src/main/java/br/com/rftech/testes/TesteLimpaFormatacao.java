@@ -21,55 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.bean;
-
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package br.com.rftech.testes;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-@Entity(name="Cargo")
-public class Cargo implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nome;
-
-    public Cargo() {
-    }
-
-    public Cargo(String nome) {
-        this.nome = nome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public String toString() {
-        return "Id: " + getId()
-                +" Nome: "+getNome();
-    }
+public class TesteLimpaFormatacao {
     
+    public static void main(String[] args) {
+        String cpf = "013.231.974.86";
+        String cpfCru = cpf.replace("-", "").replace(".", "");
+        String telefone = "(19)993098029";
+        String telefoneCru = telefone.replace("(", "").replace(")", "").replace("-", "");
+        String cep = "13617-665";
+        String cepCru = cep.replace("-", "");
+        
+        System.out.println("Meus campos eram: e agora ficaram...");
+        System.out.println(cpf+" - "+ cpfCru);
+        System.out.println(telefone+" - "+ telefoneCru);
+        System.out.println(cep+" - "+ cepCru);
+    }
+            
+            
     
-
 }

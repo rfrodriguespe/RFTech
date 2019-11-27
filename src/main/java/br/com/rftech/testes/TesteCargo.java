@@ -21,55 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.bean;
+package br.com.rftech.testes;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.rftech.Dao.CargoJpaDao;
+import br.com.rftech.bean.Cargo;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-@Entity(name="Profissao")
-public class Profissao implements Serializable {
+public class TesteCargo {
+    
+    public static void main(String[] args) {
+        String tecLab = "Tecnico de Laboratório";
+        String tecCampo = "Tecnico de Campo";
+        String helpdesk = "Helpdesk";
+        String gerente = "Gerente";
+        String rh = "Rh";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String cargo;
-
-    public Profissao() {
-    }
-
-    public Profissao(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    @Override
-    public String toString() {
-        return "Id: " + getId()
-                +"Cargo: "+getCargo();
+        Cargo profGerente = new Cargo(gerente);
+        Cargo profRh = new Cargo(rh);
+        Cargo profHelpdesk = new Cargo(helpdesk);
+        Cargo profTecCampo = new Cargo(tecCampo);
+        Cargo profTecLab = new Cargo(tecLab);
+        
+//        CargoJpaDao.getInstance().create(profGerente);
+//        CargoJpaDao.getInstance().create(profRh);
+//        CargoJpaDao.getInstance().create(profHelpdesk);
+//        CargoJpaDao.getInstance().create(profTecCampo);
+//        CargoJpaDao.getInstance().create(profTecLab);
+        
+        
+//        System.out.println("Cargo retornada do nome: "+gerente+" é:");
+//        System.out.println(CargoJpaDao.getInstance().getByName(gerente));
+        
     }
     
-    
-
 }

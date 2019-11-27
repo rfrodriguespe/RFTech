@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package br.com.rftech.view;
 
 import br.com.rftech.Dao.FuncionarioJpaDao;
-import br.com.rftech.Dao.ProfissaoJpaDao;
+import br.com.rftech.Dao.CargoJpaDao;
 import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.FuncionarioTableModel;
-import br.com.rftech.bean.Profissao;
+import br.com.rftech.bean.Cargo;
+import br.com.rftech.bean.Endereco;
 import br.com.rftech.bean.TableColumnAdjuster;
 import br.com.rftech.controller.FuncionarioJpaController;
 import br.com.rftech.testes.TesteCEP;
@@ -66,60 +66,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     //Instancia minha jTable com base no modelo de Tabela definido no pacote MODEL
     FuncionarioTableModel tableModel = new FuncionarioTableModel();
 
-    public void preencheTabela() {
-
-        tableModel.limpaTabela();
-        List<Funcionario> listaFuncionario = FuncionarioJpaDao.getInstance().readAll();
-        listaFuncionario.forEach((funcionario) -> {
-            tableModel.addRow(funcionario);
-        });
-        jTableFuncionario.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnAdjuster tca = new TableColumnAdjuster(jTableFuncionario);
-        tca.adjustColumns();
-
-    }
-
-    public JTextField[] limparCampos() {
-        JTextField[] campos = {tfNome, tfId};
-        for (int i = 0; i < campos.length; i++) {
-            campos[i].setText("");
-        }
-        return campos;
-    }
-
-    public boolean verificaCamposEmBranco() {
-        int erros = 0;
-        String cepvazio = "     -   ";
-        String telvazio = "(  )       -     ";
-        JTextField[] campos = { tfNome};
-        String[] camposNome = {"Funcionario", "Obs"};
-        for (int i = 0; i < campos.length; i++) {
-            if (campos[i].getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Campo " + camposNome[i] + " em branco, verifique");
-                erros++;
-            }
-        }
-        if (erros == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private void habilitaCampos(boolean estado) {
-        jPanelDadosFuncionario.setEnabled(estado);
-        jPanelEndereco.setEnabled(estado);
-    }
-
-    private void habilitaBotoes(boolean estado) {
-        jButtonAlterar.setEnabled(estado);
-        jButtonCancelar.setEnabled(estado);
-        jButtonExcluir.setEnabled(estado);
-        jButtonLimpar.setEnabled(estado);
-        jButtonSalvar.setEnabled(estado);
-        jButtonVerificaPendencias.setEnabled(estado);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,8 +84,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         ftfCpf = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         tfNomeUsuario = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        pfSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -175,7 +119,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jComboBoxEstado = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -223,17 +166,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Senha:");
-
-        pfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pfSenhaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                pfSenhaKeyTyped(evt);
-            }
-        });
-
         jLabel3.setText("Cargo:");
 
         jLabel4.setText("Telefone:");
@@ -254,15 +186,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pfSenha))
+                                .addComponent(tfNomeUsuario))
                             .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                                 .addComponent(jLabelId)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,17 +198,20 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelCPF)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                                 .addComponent(jLabelNome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfNome)))
-                        .addGap(10, 10, 10))
+                                .addComponent(tfNome)
+                                .addGap(10, 10, 10))
+                            .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
                     .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,20 +233,18 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(jLabelNome)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)
+                        .addComponent(tfNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -335,11 +264,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTableFuncionarioMouseReleased(evt);
-            }
-        });
-        jTableFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTableFuncionarioKeyReleased(evt);
             }
         });
         jScrollPane2.setViewportView(jTableFuncionario);
@@ -501,13 +425,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         jComboBoxEstado.setToolTipText("");
 
-        jButton2.setText("Capturar COmbobox");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
         jPanelEndereco.setLayout(jPanelEnderecoLayout);
         jPanelEnderecoLayout.setHorizontalGroup(
@@ -545,10 +462,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jButton2)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelEnderecoLayout.setVerticalGroup(
             jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -573,9 +486,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -614,15 +525,14 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         if (jTableFuncionario.getSelectedRow() != -1) {
-            FuncionarioJpaController fabCtrl = new FuncionarioJpaController();
             Funcionario funcionario = new Funcionario();
             funcionario.setId(Integer.parseInt(tfId.getText()));
-            funcionario.setNome(ftfCpf.getText());
-            funcionario.setEmail(tfNome.getText());
-            if (fabCtrl.delete(funcionario)) {
+            if (FuncionarioJpaDao.getInstance().delete(funcionario)) {
                 JOptionPane.showMessageDialog(this, "Funcionario deletado com sucesso");
                 preencheTabela();
                 limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível deletar o funcionário id: " + funcionario.getId());
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Funcionario para deletar");
@@ -648,11 +558,26 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        FuncionarioJpaController fabCtrl = new FuncionarioJpaController();
         Funcionario funcionario = new Funcionario();
-        funcionario.setNome(ftfCpf.getText());
-        funcionario.setEmail(tfNome.getText());
-        if (fabCtrl.create(funcionario)) {
+        Endereco endereco = new Endereco();
+        Cargo cargo = new Cargo();
+        funcionario.setCpf(ftfCpf.getText().replace("-", "").replace(".", ""));
+        funcionario.setNome(tfNome.getText());
+        funcionario.setNomeUsuario(tfNomeUsuario.getText());
+        funcionario.setSenha("7E32C6E5E1D0D0106FB6BC8F2F838CB71CEC1A14E9F165A4E77A0C3154E0D01F");
+        funcionario.setTelefone(ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""));
+        funcionario.setEmail(tfEmail.getText());
+        endereco.setCEP(ftfCep.getText().replace("-", ""));
+        endereco.setLogradouro(tfLogradouro.getText());
+        endereco.setNumero(tfNumero.getText());
+        endereco.setComplemento(tfComplemento.getText());
+        endereco.setBairro(tfBairro.getText());
+        endereco.setCidade(tfCidade.getText());
+        endereco.setUf(jComboBoxEstado.getSelectedItem().toString());
+        funcionario.setEndereco(endereco);
+        cargo = CargoJpaDao.getInstance().getByName((String) jComboBoxCargo.getSelectedItem());
+        funcionario.setCargo(cargo);
+        if (FuncionarioJpaDao.getInstance().create(funcionario)) {
             JOptionPane.showMessageDialog(this, "Salvo com sucesso");
             preencheTabela();
         } else {
@@ -663,15 +588,30 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
         if (jTableFuncionario.getSelectedRow() != -1) {
-            FuncionarioJpaController fabCtrl = new FuncionarioJpaController();
-            Funcionario funcionario = new Funcionario();
-            funcionario.setId(Integer.parseInt(tfId.getText()));
-            funcionario.setNome(ftfCpf.getText());
-            funcionario.setEmail(tfNome.getText());
-            if (fabCtrl.update(funcionario)) {
+            Funcionario funcionario = FuncionarioJpaDao.getInstance().getById(Integer.parseInt(tfId.getText()));
+            Endereco endereco = new Endereco();
+            Cargo cargo = new Cargo();
+            funcionario.setCpf(ftfCpf.getText().replace("-", "").replace(".", ""));
+            funcionario.setNome(tfNome.getText());
+            funcionario.setNomeUsuario(tfNomeUsuario.getText());
+            funcionario.setTelefone(ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""));
+            funcionario.setEmail(tfEmail.getText());
+            endereco.setCEP(ftfCep.getText().replace("-", ""));
+            endereco.setLogradouro(tfLogradouro.getText());
+            endereco.setNumero(tfNumero.getText());
+            endereco.setComplemento(tfComplemento.getText());
+            endereco.setBairro(tfBairro.getText());
+            endereco.setCidade(tfCidade.getText());
+            endereco.setUf(jComboBoxEstado.getSelectedItem().toString());
+            funcionario.setEndereco(endereco);
+            cargo = CargoJpaDao.getInstance().getByName(jComboBoxCargo.getSelectedItem().toString());
+            funcionario.setCargo(cargo);
+            if (FuncionarioJpaDao.getInstance().update(funcionario)) {
                 JOptionPane.showMessageDialog(this, "Funcionario Alterado com sucesso");
                 preencheTabela();
                 limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível alterar o funcionário id: " + funcionario.getId());
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Funcionario para alterar");
@@ -697,6 +637,17 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             tfId.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 0).toString());
             ftfCpf.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 1).toString());
             tfNome.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 2).toString());
+            tfNomeUsuario.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 3).toString());
+            jComboBoxCargo.setSelectedItem(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 4).toString());
+            ftfTelefone.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 5).toString());
+            tfEmail.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 6).toString());
+            ftfCep.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 7).toString());
+            tfLogradouro.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 8).toString());
+            tfNumero.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 9).toString());
+            tfComplemento.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 10).toString());
+            tfBairro.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 11).toString());
+            tfCidade.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 12).toString());
+            jComboBoxEstado.setSelectedItem(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 13).toString());
         }
     }//GEN-LAST:event_jTableFuncionarioMouseClicked
 
@@ -706,17 +657,19 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             tfId.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 0).toString());
             ftfCpf.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 1).toString());
             tfNome.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 2).toString());
+            tfNomeUsuario.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 3).toString());
+            jComboBoxCargo.setSelectedItem(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 4).toString());
+            ftfTelefone.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 5).toString());
+            tfEmail.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 6).toString());
+            ftfCep.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 7).toString());
+            tfLogradouro.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 8).toString());
+            tfNumero.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 9).toString());
+            tfComplemento.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 10).toString());
+            tfBairro.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 11).toString());
+            tfCidade.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 12).toString());
+            jComboBoxEstado.setSelectedItem(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 13).toString());
         }
     }//GEN-LAST:event_jTableFuncionarioMouseReleased
-
-    private void jTableFuncionarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableFuncionarioKeyReleased
-        // TODO add your handling code here:
-        if (jTableFuncionario.getSelectedRow() != -1) {
-            tfId.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 0).toString());
-            ftfCpf.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 1).toString());
-            tfNome.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 2).toString());
-        }
-    }//GEN-LAST:event_jTableFuncionarioKeyReleased
 
     private void jButtonVerificaPendenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerificaPendenciasActionPerformed
         // TODO add your handling code here:
@@ -733,14 +686,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNomeUsuarioActionPerformed
 
-    private void pfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyPressed
-        
-    }//GEN-LAST:event_pfSenhaKeyPressed
-
-    private void pfSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pfSenhaKeyTyped
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         pesquisaCEP(ftfCep.getText());
@@ -754,17 +699,11 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ftfCpfFocusLost
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        System.out.println(ProfissaoJpaDao.getInstance().getByUserName((String) jComboBoxCargo.getSelectedItem()));
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField ftfCep;
     private javax.swing.JFormattedTextField ftfCpf;
     private javax.swing.JFormattedTextField ftfTelefone;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsulta;
@@ -780,7 +719,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -797,7 +735,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelTabela;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableFuncionario;
-    private javax.swing.JPasswordField pfSenha;
     private javax.swing.JTextField tfBairro;
     private javax.swing.JTextField tfCidade;
     private javax.swing.JTextField tfComplemento;
@@ -809,6 +746,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfNumero;
     // End of variables declaration//GEN-END:variables
 
+  
     private void pesquisaCEP(String cep) {
         try {
             ViaCEPEndereco resultCEP = new ViaCEPClient().getEndereco(cep);
@@ -823,9 +761,63 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }
 
     private void preencheComboBoxProfissao() {
-        List<Profissao> listaProfissoes = ProfissaoJpaDao.getInstance().readAll();
-        for (Profissao prof : listaProfissoes) {
-            jComboBoxCargo.addItem(prof.getCargo());
+        List<Cargo> listaProfissoes = CargoJpaDao.getInstance().readAll();
+        for (Cargo prof : listaProfissoes) {
+            jComboBoxCargo.addItem(prof.getNome());
         }
+    }
+
+    public void preencheTabela() {
+
+        tableModel.limpaTabela();
+        List<Funcionario> listaFuncionario = FuncionarioJpaDao.getInstance().readAll();
+        listaFuncionario.forEach((funcionario) -> {
+            tableModel.addRow(funcionario);
+        });
+        jTableFuncionario.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnAdjuster tca = new TableColumnAdjuster(jTableFuncionario);
+        tca.adjustColumns();
+
+    }
+
+    public JTextField[] limparCampos() {
+        JTextField[] campos = {tfNome, tfId};
+        for (int i = 0; i < campos.length; i++) {
+            campos[i].setText("");
+        }
+        return campos;
+    }
+
+    public boolean verificaCamposEmBranco() {
+        int erros = 0;
+        String cepvazio = "     -   ";
+        String telvazio = "(  )       -     ";
+        JTextField[] campos = {tfNome};
+        String[] camposNome = {"Funcionario", "Obs"};
+        for (int i = 0; i < campos.length; i++) {
+            if (campos[i].getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Campo " + camposNome[i] + " em branco, verifique");
+                erros++;
+            }
+        }
+        if (erros == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void habilitaCampos(boolean estado) {
+        jPanelDadosFuncionario.setEnabled(estado);
+        jPanelEndereco.setEnabled(estado);
+    }
+
+    private void habilitaBotoes(boolean estado) {
+        jButtonAlterar.setEnabled(estado);
+        jButtonCancelar.setEnabled(estado);
+        jButtonExcluir.setEnabled(estado);
+        jButtonLimpar.setEnabled(estado);
+        jButtonSalvar.setEnabled(estado);
+        jButtonVerificaPendencias.setEnabled(estado);
     }
 }

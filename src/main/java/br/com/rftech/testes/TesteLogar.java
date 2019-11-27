@@ -38,12 +38,13 @@ import br.com.rftech.bean.Sessao;
 public class TesteLogar {
 
     public static void main(String[] args) {
+        Cargo cargo = new Cargo("Gerente");
         Endereco end = new Endereco("54410310", "rua rossini roosevelt de albuquerque", "1300", "apto 301", "piedade", "jaboatao", "pe");
         ClientePf cliPf = new ClientePf("01323197486", "Rodrigo Ferreira", "rodrigo2208@gmail.com", "81988557802", end);
         ClientePf cliPf2 = new ClientePf("29780622829", "Fabiana", "fabianabovo@gmail.com", "19993098039", end);
         ClientePf cliPf3 = new ClientePf("12345678900", "Lucas Bovo", "lucasbovo@gmail.com", "19993098039", end);
         ClientePj cliPj = new ClientePj("47379565006126", "Marlise", "Proxxi Tecnologia LTDA", "Proxxi", "contato@proxxi.com.br", "8134247878", end);
-        Funcionario func = new Funcionario("01323197486", "rfrodrigues", Cargo.Gerente, "Rodrigo Ferreira", "tecnico@rftech.com.br", "8133613927", end);
+        Funcionario func = new Funcionario("01323197486", "rfrodrigues", cargo, "Rodrigo Ferreira", "tecnico@rftech.com.br", "8133613927", end);
 
         
         System.out.println("Usuario da sessão antes do login: " + Sessao.getInstance().getFuncionario() );

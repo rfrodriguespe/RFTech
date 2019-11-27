@@ -21,55 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rftech.bean;
+package br.com.rftech.testes;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-@Entity(name="Cargo")
-public class Cargo implements Serializable {
+public class TesteFactory {
+    
+    public static EntityManager entityManager;
+    
+    public static void main(String[] args) {
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistencerftech");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nome;
-
-    public Cargo() {
-    }
-
-    public Cargo(String nome) {
-        this.nome = nome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public String toString() {
-        return "Id: " + getId()
-                +" Nome: "+getNome();
+        System.out.println("Entidade fechada");
+        System.out.println(entityManager);
+        
+        
+        System.out.println("Abriu a entidade");
+        entityManager = factory.createEntityManager();
+        
+        
+        
+        
+        System.out.println("fechou");
+        entityManager.close();
+        
+        
+        
     }
     
-    
-
 }

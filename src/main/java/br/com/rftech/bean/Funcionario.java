@@ -27,8 +27,7 @@ import br.com.rftech.util.Sha256;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
@@ -48,7 +47,7 @@ public class Funcionario extends Pessoa {
     @Column
     private String senha;
     
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Cargo cargo;
     
     public Funcionario() {
@@ -78,8 +77,6 @@ public class Funcionario extends Pessoa {
         this.nomeUsuario = nomeUsuario;
     }
     
-    
-
     public String getSenha() {
         return senha;
     }
@@ -106,7 +103,7 @@ public class Funcionario extends Pessoa {
                 + ", Cpf: " + getCpf()
                 + ", Nome de Usuário: " + getNomeUsuario()
                 + ", Senha: " + getSenha()
-                + ", Cargo: " + getCargo()
+                + ", Cargo: " + getCargo().getNome()
                 + ", Nom: " + super.getNome()
                 + ", Email: " + super.getEmail()
                 + ", Telefon: " + super.getTelefone()

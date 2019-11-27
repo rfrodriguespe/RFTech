@@ -23,38 +23,45 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.Dao.ProfissaoJpaDao;
-import br.com.rftech.bean.Profissao;
+import br.com.rftech.Dao.CargoJpaDao;
+import br.com.rftech.Dao.FuncionarioJpaDao;
+import br.com.rftech.bean.Cargo;
+import br.com.rftech.bean.Endereco;
+import br.com.rftech.bean.Funcionario;
+import java.util.List;
+import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TesteProfissao {
+public class TesteFuncionario {
     
     public static void main(String[] args) {
-        String tecLab = "Tecnico de Laboratório";
-        String tecCampo = "Tecnico de Campo";
-        String helpdesk = "Helpdesk";
-        String gerente = "Gerente";
-        String rh = "Rh";
-
-        Profissao profGerente = new Profissao(gerente);
-        Profissao profRh = new Profissao(rh);
-        Profissao profHelpdesk = new Profissao(helpdesk);
-        Profissao profTecCampo = new Profissao(tecCampo);
-        Profissao profTecLab = new Profissao(tecLab);
+        Endereco end = new Endereco("54", "rua", "151", "casa", "bairro", "recife", "AC");
+        Cargo cargo = CargoJpaDao.getInstance().getByName("Gerente");
+        Funcionario func1 = new Funcionario("01323197486", "rfrodrigues", cargo, "Rodrigo Ferreira Rodrigues", "rodrigo2208@gmail.com", "81988557802", end);
         
-        //ProfissaoJpaDao.getInstance().create(profGerente);
-        //ProfissaoJpaDao.getInstance().create(profRh);
-        //ProfissaoJpaDao.getInstance().create(profHelpdesk);
-        //ProfissaoJpaDao.getInstance().create(profTecCampo);
-        //ProfissaoJpaDao.getInstance().create(profTecLab);
+//        System.out.println("CEP: "+ func1.getEndereco().getCEP());
+//        func1.getEndereco().setCEP("12345678");
+//        System.out.println("mudei, agora é...");
+//        System.out.println("CEP: "+ func1.getEndereco().getCEP());
         
+        FuncionarioJpaDao.getInstance().create(func1);
         
-        System.out.println("Profissao retornada do nome: "+gerente+" é:");
-        System.out.println(ProfissaoJpaDao.getInstance().getByUserName(gerente));
+        List<Funcionario> listaFunc = FuncionarioJpaDao.getInstance().readAll();
         
+        listaFunc.forEach((funcionario) -> {
+            System.out.println(funcionario);
+        });
+        
+        FuncionarioJpaDao.getInstance().create(func1);
+        
+        listaFunc = FuncionarioJpaDao.getInstance().readAll();
+        
+        listaFunc.forEach((funcionario) -> {
+            System.out.println(funcionario);
+        });
     }
     
 }
