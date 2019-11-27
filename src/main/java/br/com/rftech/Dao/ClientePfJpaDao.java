@@ -70,6 +70,7 @@ public class ClientePfJpaDao implements Dao {
             return false;
         } finally {
             entityManager.close();
+            instance = null;
         }
     }
 
@@ -93,6 +94,7 @@ public class ClientePfJpaDao implements Dao {
             return false;
         } finally {
             entityManager.close();
+            instance = null;
         }
     }
 
@@ -111,6 +113,7 @@ public class ClientePfJpaDao implements Dao {
             return false;
         } finally {
             entityManager.close();
+            instance = null;
         }
     }
 

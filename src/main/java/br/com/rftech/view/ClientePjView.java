@@ -23,10 +23,10 @@
  */
 package br.com.rftech.view;
 
-import br.com.rftech.Dao.ClientePfJpaDao;
+import br.com.rftech.Dao.ClientePjJpaDao;
 import br.com.rftech.Dao.CargoJpaDao;
-import br.com.rftech.bean.ClientePf;
-import br.com.rftech.bean.ClientePfTableModel;
+import br.com.rftech.bean.ClientePj;
+import br.com.rftech.bean.ClientePjTableModel;
 import br.com.rftech.bean.Cargo;
 import br.com.rftech.bean.Endereco;
 import br.com.rftech.bean.TableColumnAdjuster;
@@ -47,20 +47,20 @@ import javax.swing.JTextField;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class ClientePfView extends javax.swing.JInternalFrame {
+public class ClientePjView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClientesPFView
      */
-    public ClientePfView() {
+    public ClientePjView() {
         initComponents();
-        jTableClientePf.setModel(tableModel);
+        jTableClientePj.setModel(tableModel);
         preencheTabela();
         habilitaCampos(false);
     }
 
     //Instancia minha jTable com base no modelo de Tabela definido no pacote MODEL
-    ClientePfTableModel tableModel = new ClientePfTableModel();
+    ClientePjTableModel tableModel = new ClientePjTableModel();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,14 +77,18 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         jLabelCPF = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
         jLabelId = new javax.swing.JLabel();
-        ftfCpf = new javax.swing.JFormattedTextField();
+        ftfCnpj = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         ftfTelefone = new javax.swing.JFormattedTextField();
         tfEmail = new javax.swing.JTextField();
+        jLabelNome1 = new javax.swing.JLabel();
+        tfRazaoSocial = new javax.swing.JTextField();
+        jLabelNome2 = new javax.swing.JLabel();
+        tfNomeContato = new javax.swing.JTextField();
         jPanelTabela = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableClientePf = new javax.swing.JTable();
+        jTableClientePj = new javax.swing.JTable();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonExcluir = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
@@ -133,21 +137,21 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
         tfId.setEditable(false);
 
-        jLabelCPF.setText("CPF:");
+        jLabelCPF.setText("CNPJ:");
 
         jLabelNome.setText("Nome:");
 
         jLabelId.setText("ID:");
 
         try {
-            ftfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            ftfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.##/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftfCpf.setEnabled(false);
-        ftfCpf.addFocusListener(new java.awt.event.FocusAdapter() {
+        ftfCnpj.setEnabled(false);
+        ftfCnpj.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                ftfCpfFocusLost(evt);
+                ftfCnpjFocusLost(evt);
             }
         });
 
@@ -164,6 +168,24 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
         tfEmail.setEnabled(false);
 
+        jLabelNome1.setText("Razaão Social");
+
+        tfRazaoSocial.setEnabled(false);
+        tfRazaoSocial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfRazaoSocialActionPerformed(evt);
+            }
+        });
+
+        jLabelNome2.setText("Nome do Contato:");
+
+        tfNomeContato.setEnabled(false);
+        tfNomeContato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNomeContatoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDadosFuncionarioLayout = new javax.swing.GroupLayout(jPanelDadosFuncionario);
         jPanelDadosFuncionario.setLayout(jPanelDadosFuncionarioLayout);
         jPanelDadosFuncionarioLayout.setHorizontalGroup(
@@ -178,12 +200,11 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelCPF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ftfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
+                        .addComponent(tfNome))
                     .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,8 +212,15 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfEmail)
-                        .addContainerGap())))
+                        .addComponent(tfEmail))
+                    .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
+                        .addComponent(jLabelNome1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfRazaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
+                    .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
+                        .addComponent(jLabelNome2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNomeContato, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))))
         );
         jPanelDadosFuncionarioLayout.setVerticalGroup(
             jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,21 +230,29 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                     .addComponent(jLabelId)
                     .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCPF)
-                    .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNome)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNome1)
+                    .addComponent(tfRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNome2)
+                    .addComponent(tfNomeContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jPanelTabela.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes Pessoa Física"));
+        jPanelTabela.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes Pessoa Jurídica"));
 
-        jTableClientePf.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClientePj.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "HP", "Garantia pelo Fabricante"}
             },
@@ -224,22 +260,24 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                 "Cód", "Fabricante", "Obs"
             }
         ));
-        jTableClientePf.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableClientePj.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableClientePfMouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTableClientePfMouseReleased(evt);
+                jTableClientePjMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableClientePf);
+        jTableClientePj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableClientePjKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableClientePj);
 
         javax.swing.GroupLayout jPanelTabelaLayout = new javax.swing.GroupLayout(jPanelTabela);
         jPanelTabela.setLayout(jPanelTabelaLayout);
         jPanelTabelaLayout.setHorizontalGroup(
             jPanelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelTabelaLayout.setVerticalGroup(
@@ -429,7 +467,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                        .addComponent(tfComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -470,10 +508,11 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                     .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                            .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
                             .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(105, 105, 105)
-                        .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -482,7 +521,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -497,18 +536,18 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        if (jTableClientePf.getSelectedRow() != -1) {
-            ClientePf clientePf = new ClientePf();
-            clientePf.setId(Integer.parseInt(tfId.getText()));
-            if (ClientePfJpaDao.getInstance().delete(clientePf)) {
-                JOptionPane.showMessageDialog(this, "ClientePf deletado com sucesso");
+        if (jTableClientePj.getSelectedRow() != -1) {
+            ClientePj clientePj = new ClientePj();
+            clientePj.setId(Integer.parseInt(tfId.getText()));
+            if (ClientePjJpaDao.getInstance().delete(clientePj)) {
+                JOptionPane.showMessageDialog(this, "ClientePj deletado com sucesso");
                 preencheTabela();
                 limparCampos();
             } else {
-                JOptionPane.showMessageDialog(this, "Não foi possível deletar o funcionário id: " + clientePf.getId());
+                JOptionPane.showMessageDialog(this, "Não foi possível deletar o funcionário id: " + clientePj.getId());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um ClientePf para deletar");
+            JOptionPane.showMessageDialog(this, "Selecione um ClientePj para deletar");
         }
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -524,12 +563,14 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         if (!CamposEmBranco()) {
-            ClientePf clientePf = new ClientePf();
+            ClientePj clientePj = new ClientePj();
             Endereco endereco = new Endereco();
-            clientePf.setCpf(ftfCpf.getText().replace("-", "").replace(".", ""));
-            clientePf.setNome(tfNome.getText());
-            clientePf.setTelefone(ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
-            clientePf.setEmail(tfEmail.getText());
+            clientePj.setCnpj(ftfCnpj.getText().replace("-", "").replace(".", "").replace("/", ""));
+            clientePj.setNome(tfNome.getText());
+            clientePj.setRazaoSocial(tfRazaoSocial.getText());
+            clientePj.setNomeContato(tfNomeContato.getText());
+            clientePj.setTelefone(ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
+            clientePj.setEmail(tfEmail.getText());
             endereco.setCEP(ftfCep.getText().replace("-", ""));
             endereco.setLogradouro(tfLogradouro.getText());
             endereco.setNumero(tfNumero.getText());
@@ -537,8 +578,8 @@ public class ClientePfView extends javax.swing.JInternalFrame {
             endereco.setBairro(tfBairro.getText());
             endereco.setCidade(tfCidade.getText());
             endereco.setUf(jComboBoxEstado.getSelectedItem().toString());
-            clientePf.setEndereco(endereco);
-            if (ClientePfJpaDao.getInstance().create(clientePf)) {
+            clientePj.setEndereco(endereco);
+            if (ClientePjJpaDao.getInstance().create(clientePj)) {
                 JOptionPane.showMessageDialog(this, "Salvo com sucesso");
                 preencheTabela();
             } else {
@@ -550,13 +591,15 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
         if (!CamposEmBranco()) {
-            if (jTableClientePf.getSelectedRow() != -1) {
-                ClientePf clientePf = ClientePfJpaDao.getInstance().getById(Integer.parseInt(tfId.getText()));
+            if (jTableClientePj.getSelectedRow() != -1) {
+                ClientePj clientePj = ClientePjJpaDao.getInstance().getById(Integer.parseInt(tfId.getText()));
                 Endereco endereco = new Endereco();
-                clientePf.setCpf(ftfCpf.getText().replace("-", "").replace(".", ""));
-                clientePf.setNome(tfNome.getText());
-                clientePf.setTelefone(ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
-                clientePf.setEmail(tfEmail.getText());
+                clientePj.setCnpj(ftfCnpj.getText().replace("-", "").replace(".", "").replace("/", ""));
+                clientePj.setNome(tfNome.getText());
+                clientePj.setRazaoSocial(tfRazaoSocial.getText());
+                clientePj.setNomeContato(tfNomeContato.getText());
+                clientePj.setTelefone(ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
+                clientePj.setEmail(tfEmail.getText());
                 endereco.setCEP(ftfCep.getText().replace("-", ""));
                 endereco.setLogradouro(tfLogradouro.getText());
                 endereco.setNumero(tfNumero.getText());
@@ -564,16 +607,16 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                 endereco.setBairro(tfBairro.getText());
                 endereco.setCidade(tfCidade.getText());
                 endereco.setUf(jComboBoxEstado.getSelectedItem().toString());
-                clientePf.setEndereco(endereco);
-                if (ClientePfJpaDao.getInstance().update(clientePf)) {
-                    JOptionPane.showMessageDialog(this, "ClientePf Alterado com sucesso");
+                clientePj.setEndereco(endereco);
+                if (ClientePjJpaDao.getInstance().update(clientePj)) {
+                    JOptionPane.showMessageDialog(this, "ClientePj Alterado com sucesso");
                     preencheTabela();
                     limparCampos();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Não foi possível alterar o funcionário id: " + clientePf.getId());
+                    JOptionPane.showMessageDialog(this, "Não foi possível alterar o funcionário id: " + clientePj.getId());
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Selecione um ClientePf para alterar");
+                JOptionPane.showMessageDialog(this, "Selecione um ClientePj para alterar");
             }
         }
 
@@ -591,47 +634,32 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         habilitaCampos(false);
         jButtonExcluir.setEnabled(false);
         jButtonAlterar.setEnabled(false);
+        limparCampos();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTableClientePfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientePfMouseClicked
+    private void jTableClientePjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientePjMouseClicked
         // TODO add your handling code here:
-        if (jTableClientePf.getSelectedRow() != -1) {
+        if (jTableClientePj.getSelectedRow() != -1) {
 
             jButtonExcluir.setEnabled(true);
             jButtonAlterar.setEnabled(true);
 
-            tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            ftfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
-            tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
-            ftfTelefone.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 3).toString());
-            tfEmail.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 4).toString());
-            ftfCep.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 5).toString());
-            tfLogradouro.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 6).toString());
-            tfNumero.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 7).toString());
-            tfComplemento.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 8).toString());
-            tfBairro.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 9).toString());
-            tfCidade.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 10).toString());
-            jComboBoxEstado.setSelectedItem(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 11).toString());
+            tfId.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 0).toString());
+            ftfCnpj.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 1).toString());
+            tfNome.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 2).toString());
+            tfRazaoSocial.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 3).toString());
+            tfNomeContato.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 4).toString());
+            ftfTelefone.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 5).toString());
+            tfEmail.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 6).toString());
+            ftfCep.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 7).toString());
+            tfLogradouro.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 8).toString());
+            tfNumero.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 9).toString());
+            tfComplemento.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 10).toString());
+            tfBairro.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 11).toString());
+            tfCidade.setText(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 12).toString());
+            jComboBoxEstado.setSelectedItem(jTableClientePj.getValueAt(jTableClientePj.getSelectedRow(), 13).toString());
         }
-    }//GEN-LAST:event_jTableClientePfMouseClicked
-
-    private void jTableClientePfMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientePfMouseReleased
-        // TODO add your handling code here:
-        if (jTableClientePf.getSelectedRow() != -1) {
-            tfId.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 0).toString());
-            ftfCpf.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 1).toString());
-            tfNome.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 2).toString());
-            ftfTelefone.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 3).toString());
-            tfEmail.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 4).toString());
-            ftfCep.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 5).toString());
-            tfLogradouro.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 6).toString());
-            tfNumero.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 7).toString());
-            tfComplemento.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 8).toString());
-            tfBairro.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 9).toString());
-            tfCidade.setText(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 10).toString());
-            jComboBoxEstado.setSelectedItem(jTableClientePf.getValueAt(jTableClientePf.getSelectedRow(), 11).toString());
-        }
-    }//GEN-LAST:event_jTableClientePfMouseReleased
+    }//GEN-LAST:event_jTableClientePjMouseClicked
 
     private void jButtonVerificaPendenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerificaPendenciasActionPerformed
         // TODO add your handling code here:
@@ -649,17 +677,30 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         pesquisaCEP(ftfCep.getText());
     }//GEN-LAST:event_jButtonPesquisaCepActionPerformed
 
-    private void ftfCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftfCpfFocusLost
+    private void ftfCnpjFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftfCnpjFocusLost
         // TODO add your handling code here:
-        if (!ValidaCampos.getInstance().isCpf(ftfCpf.getText())) {
-            JOptionPane.showMessageDialog(null, "CPF inválido");
-            ftfCpf.requestFocus();
+        if (!ValidaCampos.getInstance().isCnpj(ftfCnpj.getText())) {
+            JOptionPane.showMessageDialog(null, "CNPJ inválido");
+            ftfCnpj.requestFocus();
         }
-    }//GEN-LAST:event_ftfCpfFocusLost
+    }//GEN-LAST:event_ftfCnpjFocusLost
+
+    private void tfRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRazaoSocialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfRazaoSocialActionPerformed
+
+    private void tfNomeContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeContatoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNomeContatoActionPerformed
+
+    private void jTableClientePjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableClientePjKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTableClientePjKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField ftfCep;
-    private javax.swing.JFormattedTextField ftfCpf;
+    private javax.swing.JFormattedTextField ftfCnpj;
     private javax.swing.JFormattedTextField ftfTelefone;
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonCancelar;
@@ -683,12 +724,14 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelCPF;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelNome;
+    private javax.swing.JLabel jLabelNome1;
+    private javax.swing.JLabel jLabelNome2;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDadosFuncionario;
     private javax.swing.JPanel jPanelEndereco;
     private javax.swing.JPanel jPanelTabela;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableClientePf;
+    private javax.swing.JTable jTableClientePj;
     private javax.swing.JTextField tfBairro;
     private javax.swing.JTextField tfCidade;
     private javax.swing.JTextField tfComplemento;
@@ -696,7 +739,9 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfId;
     private javax.swing.JTextField tfLogradouro;
     private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfNomeContato;
     private javax.swing.JTextField tfNumero;
+    private javax.swing.JTextField tfRazaoSocial;
     // End of variables declaration//GEN-END:variables
 
     private void pesquisaCEP(String cep) {
@@ -714,14 +759,14 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
     public void preencheTabela() {
         limpaTabela();
-        List<ClientePf> listaClientePf = ClientePfJpaDao.getInstance().readAll();
-        listaClientePf.forEach((clientePf) -> {
-            tableModel.addRow(clientePf);
+        List<ClientePj> listaClientePj = ClientePjJpaDao.getInstance().readAll();
+        listaClientePj.forEach((clientePj) -> {
+            tableModel.addRow(clientePj);
         });
-        jTableClientePf.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnAdjuster tca = new TableColumnAdjuster(jTableClientePf);
+        jTableClientePj.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnAdjuster tca = new TableColumnAdjuster(jTableClientePj);
         tca.adjustColumns();
-        listaClientePf = null;
+        listaClientePj = null;
     }
 
     public void limpaTabela() {
@@ -729,8 +774,8 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     }
 
     public JTextField[] limparCampos() {
-        JTextField[] campos = {tfId, ftfCpf, tfNome, ftfTelefone,
-            tfEmail, ftfCep, tfLogradouro, tfNumero, tfComplemento,
+        JTextField[] campos = {tfId, ftfCnpj, tfNome, tfRazaoSocial, tfNomeContato,
+            ftfTelefone, tfEmail, ftfCep, tfLogradouro, tfNumero, tfComplemento,
             tfBairro, tfCidade};
         for (int i = 0; i < campos.length; i++) {
             campos[i].setText("");
@@ -741,11 +786,11 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
     public boolean CamposEmBranco() {
         int erros = 0;
-        String cpfVazio = "   .   .   -  ";
+        String cpfVazio = "   .   .  /    -  ";
         String cepVazio = "     -   ";
         String telVazio = "(  )     -    ";
-        if (ftfCpf.getText().equals(cpfVazio)) {
-            JOptionPane.showMessageDialog(this, "Campo CPF em branco, verifique");
+        if (ftfCnpj.getText().equals(cpfVazio)) {
+            JOptionPane.showMessageDialog(this, "Campo Cnpj em branco, verifique");
             erros++;
         }
         if (ftfTelefone.getText().equals(telVazio)) {
@@ -756,9 +801,9 @@ public class ClientePfView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Campo CEP em branco, verifique");
             erros++;
         }
-        JTextField[] campos = {tfNome, tfEmail,
+        JTextField[] campos = {tfNome, tfRazaoSocial, tfNomeContato, tfEmail,
             tfLogradouro, tfNumero, tfBairro, tfCidade};
-        String[] camposNome = {"Nome", "E-Mail", "Logradouro",
+        String[] camposNome = {"Nome", "Razão Social", "Nome do Contato", "E-Mail", "Logradouro",
             "Número", "Bairro", "Cidade"};
         for (int i = 0; i < campos.length; i++) {
             if (campos[i].getText().equals("")) {
@@ -778,12 +823,12 @@ public class ClientePfView extends javax.swing.JInternalFrame {
     }
 
     private void habilitaCampos(boolean estado) {
-        JTextField[] listaCampos = {tfNome, tfEmail,
+        JTextField[] listaCampos = {tfNome, tfRazaoSocial, tfNomeContato, tfEmail,
             tfLogradouro, tfComplemento, tfNumero, tfBairro, tfCidade};
         for (JTextField campos : listaCampos) {
             campos.setEnabled(estado);
         }
-        JFormattedTextField[] listaCamposFormatados = {ftfCpf, ftfCep, ftfTelefone};
+        JFormattedTextField[] listaCamposFormatados = {ftfCnpj, ftfCep, ftfTelefone};
         for (JFormattedTextField camposFormatados : listaCamposFormatados) {
             camposFormatados.setEnabled(estado);
         }

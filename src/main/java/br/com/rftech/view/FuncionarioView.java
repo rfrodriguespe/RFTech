@@ -778,6 +778,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }
 
     public void preencheTabela() {
+        limpaTabela();
         List<Funcionario> listaFuncionario = FuncionarioJpaDao.getInstance().readAll();
         listaFuncionario.forEach((funcionario) -> {
             tableModel.addRow(funcionario);
@@ -843,7 +844,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
     private void habilitaCampos(boolean estado) {
         JTextField[] listaCampos = {tfNome, tfNomeUsuario, tfEmail,
-            tfLogradouro, tfNumero, tfBairro, tfCidade};
+            tfLogradouro, tfNumero, tfComplemento, tfBairro, tfCidade};
         for (JTextField campos : listaCampos) {
             campos.setEnabled(estado);
         }
@@ -856,8 +857,6 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
     }
 
     private void habilitaBotoes(boolean estado) {
-        //jButtonAlterar.setEnabled(estado);
-        //jButtonExcluir.setEnabled(estado);
         jButtonCancelar.setEnabled(estado);
         jButtonLimpar.setEnabled(estado);
         jButtonSalvar.setEnabled(estado);

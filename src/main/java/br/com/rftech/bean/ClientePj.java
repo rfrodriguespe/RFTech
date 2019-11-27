@@ -37,7 +37,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class ClientePj extends Pessoa {
     
     @Column
-    private String CNPJ;
+    private String Cnpj;
     @Column
     private String razaoSocial;
     @Column
@@ -46,19 +46,19 @@ public class ClientePj extends Pessoa {
     public ClientePj() {
     }
 
-    public ClientePj(String CNPJ,String nomeContato, String razaoSocial, String nome, String email, String telefone, Endereco endereco) {
+    public ClientePj(String Cnpj,String nomeContato, String razaoSocial, String nome, String email, String telefone, Endereco endereco) {
         super(nome, email, telefone, endereco);
-        this.CNPJ = CNPJ;
+        this.Cnpj = Cnpj;
         this.nomeContato = nomeContato;
         this.razaoSocial = razaoSocial;
     }
 
-    public String getCNPJ() {
-        return CNPJ;
+    public String getCnpj() {
+        return Cnpj;
     }
 
-    public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
+    public void setCnpj(String Cnpj) {
+        this.Cnpj = Cnpj;
     }
 
     public String getRazaoSocial() {
@@ -82,7 +82,7 @@ public class ClientePj extends Pessoa {
     @Override
     public String toString() {
         return "Id: " + super.getId()
-                + ", Cnpj: " + getCNPJ()
+                + ", Cnpj: " + getCnpj()
                 + ", Nome: " + super.getNome()
                 + ", Razão Social: " + getRazaoSocial()
                 + ", Nome do Contato: " + getNomeContato()
@@ -93,7 +93,7 @@ public class ClientePj extends Pessoa {
 
     @Override
     public int hashCode() {
-        return CNPJ.hashCode();
+        return Cnpj.hashCode();
     }
 
     @Override
@@ -108,7 +108,7 @@ public class ClientePj extends Pessoa {
             return false;
         }
         final ClientePj other = (ClientePj) obj;
-        if (!Objects.equals(this.CNPJ, other.CNPJ)) {
+        if (!Objects.equals(this.Cnpj, other.Cnpj)) {
             return false;
         }
         return true;
