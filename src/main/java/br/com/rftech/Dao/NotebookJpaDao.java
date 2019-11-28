@@ -23,7 +23,7 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.bean.EquipamentosTipo;
+import br.com.rftech.bean.Notebook;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -34,19 +34,19 @@ import javax.persistence.Query;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class EquipamentosTipoJpaDao implements Dao {
+public class NotebookJpaDao implements Dao {
 
-    private static EquipamentosTipoJpaDao instance;
+    private static NotebookJpaDao instance;
     protected EntityManager entityManager;
 
-    public static EquipamentosTipoJpaDao getInstance() {
+    public static NotebookJpaDao getInstance() {
         if (instance == null) {
-            instance = new EquipamentosTipoJpaDao();
+            instance = new NotebookJpaDao();
         }
         return instance;
     }
 
-    private EquipamentosTipoJpaDao() {
+    private NotebookJpaDao() {
         entityManager = getEntityManager();
     }
 
@@ -60,10 +60,10 @@ public class EquipamentosTipoJpaDao implements Dao {
 
     @Override
     public boolean create(Object arg0) {
-        EquipamentosTipo equipamentosTipo = (EquipamentosTipo) arg0;
+        Notebook notebook = (Notebook) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(equipamentosTipo);
+            entityManager.persist(notebook);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -78,16 +78,16 @@ public class EquipamentosTipoJpaDao implements Dao {
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
-        return entityManager.createQuery("SELECT et FROM EquipamentosTipo et", EquipamentosTipo.class).getResultList();
+        return entityManager.createQuery("SELECT n FROM Notebook n", Notebook.class).getResultList();
     }
 
     @Override
     public boolean update(Object arg0) {
-        EquipamentosTipo equipamentosTipo = (EquipamentosTipo) arg0;
+        Notebook notebook = (Notebook) arg0;
         try {
             entityManager.getTransaction().begin();
-            equipamentosTipo = entityManager.find(EquipamentosTipo.class, equipamentosTipo.getId());
-            entityManager.merge(equipamentosTipo);
+            notebook = entityManager.find(Notebook.class, notebook.getId());
+            entityManager.merge(notebook);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -101,11 +101,11 @@ public class EquipamentosTipoJpaDao implements Dao {
 
     @Override
     public boolean delete(Object arg0) {
-        EquipamentosTipo equipamentosTipo = (EquipamentosTipo) arg0;
+        Notebook notebook = (Notebook) arg0;
         try {
             entityManager.getTransaction().begin();
-            equipamentosTipo = entityManager.find(EquipamentosTipo.class, equipamentosTipo.getId());
-            entityManager.remove(equipamentosTipo);
+            notebook = entityManager.find(Notebook.class, notebook.getId());
+            entityManager.remove(notebook);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -117,25 +117,25 @@ public class EquipamentosTipoJpaDao implements Dao {
         }
     }
 
-    public EquipamentosTipo getById(final int id) {
-        return entityManager.find(EquipamentosTipo.class, id);
+    public Notebook getById(final int id) {
+        return entityManager.find(Notebook.class, id);
     }
 
     public boolean removeById(final int id) {
         try {
-            EquipamentosTipo equipamentosTipo = getById(id);
-            delete(equipamentosTipo);
+            Notebook notebook = getById(id);
+            delete(notebook);
             return true;
         } catch (Exception ex) {
             return false;
         }
     }
     
-    public EquipamentosTipo getByTipo(String tipo) {
+    public Notebook getBySerial(String serial) {
         try {
-            Query query = entityManager.createQuery("Select et FROM EquipamentosTipo et WHERE et.tipo = :tipo");
-            query.setParameter("tipo", tipo);
-            return (EquipamentosTipo) query.getSingleResult();
+            Query query = entityManager.createQuery("Select n FROM Notebook n WHERE n.serial = :serial");
+            query.setParameter("serial", serial);
+            return (Notebook) query.getSingleResult();
         } catch (Exception e) {
             return null;
         }

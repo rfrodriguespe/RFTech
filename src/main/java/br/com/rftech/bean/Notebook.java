@@ -23,8 +23,12 @@
  */
 package br.com.rftech.bean;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -35,9 +39,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @PrimaryKeyJoinColumn(name="id")
 public class Notebook extends Equipamentos {
-    
-    @Column
-    private String modelo;
+
     @Column
     private String tamanhoTela;
     @Column
@@ -48,20 +50,11 @@ public class Notebook extends Equipamentos {
     public Notebook() {
     }
 
-    public Notebook(String modelo, String tamanhoTela, String ram, String hd, Fabricante fabricante, EquipamentosTipo equipamentoTipo) {
-        super(fabricante, equipamentoTipo);
-        this.modelo = modelo;
+    public Notebook(ClientePf dono, EquipamentosTipo equipamentoTipo, Fabricante fabricante, String modelo, String serial,String tamanhoTela, String ram, String hd) {
+        super(dono, equipamentoTipo, fabricante, modelo, serial);
         this.tamanhoTela = tamanhoTela;
         this.ram = ram;
         this.hd = hd;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
     }
 
     public String getTamanhoTela() {
@@ -90,15 +83,14 @@ public class Notebook extends Equipamentos {
 
     @Override
     public String toString() {
-        return "Notebook{"
-                + " Fabricante: " + super.getFabricante().getNome()
-                + " Tipo: " + super.getEquipamentoTipo().getTipo()
-                + " Modelo: " + getModelo()
-                + ", tamanhoTela: " + getTamanhoTela()
-                + ", ram: " + getRam()
-                + ", hd: " + getHd() + '}';
+        return "Notebook{:"
+                + " Id: " + getId()
+                + ", Dono: " + getDono()
+                + ", Fabricante: " + getFabricante().getNome()
+                + ", Modelo: " + getModelo()
+                + ", Serial: " + getSerial()
+                + ", TamanhoTela: " + getTamanhoTela()
+                + ", Ram: " + getRam()
+                + ", Hd: " + getHd() + '}';
     }
-    
-    
-    
 }

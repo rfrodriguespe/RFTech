@@ -24,6 +24,7 @@
 package br.com.rftech.bean;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,24 +44,49 @@ public abstract class Equipamentos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
-    private Fabricante fabricante;
+    private ClientePf dono;
     @ManyToOne
     private EquipamentosTipo equipamentoTipo;
+    @ManyToOne
+    private Fabricante fabricante;
+    @Column
+    private String modelo;
+    @Column
+    private String serial;
 
     public Equipamentos() {
     }
 
-    public Equipamentos(Fabricante fabricante, EquipamentosTipo equipamentoTipo) {
-        this.fabricante = fabricante;
+    public Equipamentos(ClientePf dono, EquipamentosTipo equipamentoTipo, Fabricante fabricante, String modelo, String serial) {
+        this.dono = dono;
         this.equipamentoTipo = equipamentoTipo;
+        this.fabricante = fabricante;
+        this.modelo = modelo;
+        this.serial = serial;
     }
-    
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ClientePf getDono() {
+        return dono;
+    }
+
+    public void setDono(ClientePf dono) {
+        this.dono = dono;
+    }
+
+    public EquipamentosTipo getEquipamentoTipo() {
+        return equipamentoTipo;
+    }
+
+    public void setEquipamentoTipo(EquipamentosTipo equipamentoTipo) {
+        this.equipamentoTipo = equipamentoTipo;
     }
 
     public Fabricante getFabricante() {
@@ -71,19 +97,49 @@ public abstract class Equipamentos implements Serializable {
         this.fabricante = fabricante;
     }
 
-    public EquipamentosTipo getEquipamentoTipo() {
-        return equipamentoTipo;
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setEquipamentoTipo(EquipamentosTipo equipamentoTipo) {
-        this.equipamentoTipo = equipamentoTipo;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
-    
-        @Override
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    @Override
     public String toString() {
-        return "Id: " + getId() +
-                ", Fabricante: " + getFabricante().getNome() +
-                ", Tipo: " + getEquipamentoTipo().getTipo() +".";
+        return "Equipamentos{" + "id=" + id + ", dono=" + dono + ", equipamentoTipo=" + equipamentoTipo + ", fabricante=" + fabricante + ", modelo=" + modelo + ", serial=" + serial + '}';
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Equipamentos other = (Equipamentos) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
 }

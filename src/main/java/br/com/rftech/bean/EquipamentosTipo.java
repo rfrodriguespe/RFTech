@@ -24,6 +24,7 @@
 package br.com.rftech.bean;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +40,7 @@ public class EquipamentosTipo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private String tipo;
 
     public EquipamentosTipo() {
@@ -69,7 +71,4 @@ public class EquipamentosTipo implements Serializable {
         return "Id: " + getId()
                 +" Tipo: "+getTipo();
     }
-    
-    
-
 }
