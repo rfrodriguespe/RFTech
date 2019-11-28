@@ -68,7 +68,6 @@ public class EquipamentosTipo implements Serializable {
 
     @Override
     public String toString() {
-        return "Id: " + getId()
-                +" Tipo: "+getTipo();
+        return getTipo();
     }
 }

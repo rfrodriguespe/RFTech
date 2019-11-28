@@ -66,8 +66,7 @@ public class Fabricante implements Serializable {
 
     @Override
     public String toString() {
-        return "Id: " + getId()
-                +" Nome: "+getNome();
+        return getNome();
     }
     
     
