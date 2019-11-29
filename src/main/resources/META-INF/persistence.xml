@@ -10,6 +10,7 @@
     <class>br.com.rftech.bean.EquipamentosTipo</class>
     <class>br.com.rftech.bean.Notebook</class>
     <class>br.com.rftech.bean.Chamado</class>
+    <class>br.com.rftech.testes.EntidadeTeste</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rftech?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

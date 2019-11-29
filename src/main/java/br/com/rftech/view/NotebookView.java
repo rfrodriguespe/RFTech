@@ -113,7 +113,7 @@ public class NotebookView extends javax.swing.JInternalFrame {
             e1.printStackTrace();
         }
 
-        jPanelDadosFuncionario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
+        jPanelDadosFuncionario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Notebook"));
         jPanelDadosFuncionario.setPreferredSize(new java.awt.Dimension(787, 412));
 
         tfId.setEditable(false);
@@ -393,7 +393,7 @@ public class NotebookView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                        .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())

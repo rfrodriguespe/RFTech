@@ -35,12 +35,19 @@
             <scope>compile</scope>
         </dependency>
         
-        <!-- https://bintray.com/hibernate/artifacts/hibernate-orm -->
+        <!-- https://bintray.com/corete/artifacts/hibernate-orm -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-agroal</artifactId>
             <version>5.4.9.Final</version>
             <type>pom</type>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.9.Final</version>
             <scope>compile</scope>
         </dependency>
         

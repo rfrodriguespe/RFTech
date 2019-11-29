@@ -24,20 +24,16 @@
 package br.com.rftech.bean;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 /**
  *
@@ -45,14 +41,17 @@ import org.eclipse.persistence.jpa.jpql.parser.DateTime;
  */
 @Entity(name = "Chamado")
 public class Chamado implements Serializable {
-    
+
+    public static final String ABERTO = "Aberto";
+    public static final String FECHADO = "Fechado";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
+    @OneToOne
     private Notebook notebook;
-    @Column
-    private LocalDateTime dataAbertura;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataAbertura;
     @Column
     private String defeitoRelatado;
     @Column
@@ -60,7 +59,7 @@ public class Chamado implements Serializable {
     @Column
     private String solucao;
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime dataFechamento;
+    private Date dataFechamento;
     @Column
     private String status;
 
@@ -68,9 +67,13 @@ public class Chamado implements Serializable {
     }
 
     public Chamado(Notebook notebook, String defeitoRelatado) {
-        this.dataAbertura = LocalDateTime.now();
+        this.dataAbertura = Calendar.getInstance().getTime();
         this.notebook = notebook;
         this.defeitoRelatado = defeitoRelatado;
+        this.defeitoConstatado = "A analisar";
+        this.solucao = "A analisar";
+        //this.dataFechamento = Calendar.getInstance().getTime();
+        this.status = Chamado.ABERTO;
     }
 
     public int getId() {
@@ -89,11 +92,11 @@ public class Chamado implements Serializable {
         this.notebook = notebook;
     }
 
-    public LocalDateTime getDataAbertura() {
+    public Date getDataAbertura() {
         return dataAbertura;
     }
 
-    public void setDataAbertura(LocalDateTime dataAbertura) {
+    public void setDataAbertura(Date dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
 
@@ -121,11 +124,11 @@ public class Chamado implements Serializable {
         this.solucao = solucao;
     }
 
-    public LocalDateTime getDataFechamento() {
+    public Date getDataFechamento() {
         return dataFechamento;
     }
 
-    public void setDataFechamento(LocalDateTime dataFechamento) {
+    public void setDataFechamento(Date dataFechamento) {
         this.dataFechamento = dataFechamento;
     }
 
@@ -139,8 +142,16 @@ public class Chamado implements Serializable {
 
     @Override
     public String toString() {
-        return "Chamado{" + "id=" + id + ", notebook=" + notebook + ", dataAbertura=" + dataAbertura + ", defeitoRelatado=" + defeitoRelatado + ", defeitoConstatado=" + defeitoConstatado + ", solucao=" + solucao + ", dataFechamento=" + dataFechamento + ", status=" + status + '}';
+        return "Chamado{"
+                + "id=" + id
+                + ", Dono (Nome)=" + getNotebook().getDono().getNome()
+                + ", notebook (Serial)=" + getNotebook().getSerial()
+                + ", dataAbertura=" + dataAbertura
+                + ", defeitoRelatado=" + defeitoRelatado
+                + ", defeitoConstatado=" + defeitoConstatado
+                + ", solucao=" + solucao
+                + ", dataFechamento=" + dataFechamento
+                + ", status=" + status + '}';
     }
-    
-    
+
 }
