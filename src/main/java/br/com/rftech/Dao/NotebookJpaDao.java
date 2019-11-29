@@ -141,4 +141,14 @@ public class NotebookJpaDao implements Dao {
         }
     }
     
+    public List<Notebook> getAllByIdDono(int idDono) {
+        try {
+            Query query = entityManager.createQuery("Select n FROM Notebook n WHERE n.dono.id = :idDono");
+            query.setParameter("idDono", idDono);
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
 }
