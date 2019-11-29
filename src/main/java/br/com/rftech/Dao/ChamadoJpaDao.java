@@ -77,6 +77,7 @@ public class ChamadoJpaDao implements Dao {
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
+        instance = null;
         return entityManager.createQuery("SELECT ch FROM Chamado ch", Chamado.class).getResultList();
     }
 
