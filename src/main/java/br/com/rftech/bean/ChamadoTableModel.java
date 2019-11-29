@@ -1,6 +1,8 @@
 package br.com.rftech.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -9,9 +11,9 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ChamadoTableModel extends AbstractTableModel {
 
-    private ArrayList<Chamado> dados = new ArrayList<>();
-    private String[] colunas = {"Id Chamado", "Id Equipamento", "Serial", "Data de Abertura", "Defeito Relatado",
-        "Defeito Apresentado", "Solução", "Status", "Tela", "Ram", "Hd"};
+    private List<Chamado> dados = new ArrayList<>();
+    private String[] colunas = {"Id Chamado", "Detalhes do Equipamento",
+        "Data de Abertura", "Defeito Relatado", "Defeito Constatado", "Solução", "Data do fechamento","Status"};
 
     @Override
     public String getColumnName(int col) {
@@ -34,25 +36,19 @@ public class ChamadoTableModel extends AbstractTableModel {
             case 0:
                 return dados.get(linha).getId();
             case 1:
-                return dados.get(linha).getDono().getId();
+                return dados.get(linha).getNotebook();
             case 2:
-                return dados.get(linha).getDono().getCpf();
+                return dados.get(linha).getDataAbertura();
             case 3:
-                return dados.get(linha).getDono().getNome();
+                return dados.get(linha).getDefeitoRelatado();
             case 4:
-                return dados.get(linha).getEquipamentoTipo();
+                return dados.get(linha).getDefeitoConstatado();
             case 5:
-                return dados.get(linha).getFabricante();
+                return dados.get(linha).getSolucao();
             case 6:
-                return dados.get(linha).getModelo();
+                return dados.get(linha).getDataFechamento();
             case 7:
-                return dados.get(linha).getSerial();
-            case 8:
-                return dados.get(linha).getTamanhoTela();
-            case 9:
-                return dados.get(linha).getRam();
-            case 10:
-                return dados.get(linha).getHd();
+                return dados.get(linha).getStatus();
             default:
                 return null;
         }
@@ -64,25 +60,19 @@ public class ChamadoTableModel extends AbstractTableModel {
             case 0:
                 dados.get(linha).setId((int) valor);
             case 1:
-                dados.get(linha).getDono().setId((int) valor);
+                dados.get(linha).setNotebook((Notebook) valor);
             case 2:
-                dados.get(linha).getDono().setCpf((String) valor);
+                dados.get(linha).setDataAbertura((Date) valor);
             case 3:
-                dados.get(linha).getDono().setNome((String) valor);
+                dados.get(linha).setDefeitoRelatado((String) valor);
             case 4:
-                dados.get(linha).getEquipamentoTipo().setTipo((String) valor);
+                dados.get(linha).setDefeitoConstatado((String) valor);
             case 5:
-                dados.get(linha).getFabricante().setNome((String) valor);
+                dados.get(linha).setSolucao((String) valor);
             case 6:
-                dados.get(linha).setModelo((String) valor);
+                dados.get(linha).setDataFechamento((Date) valor);
             case 7:
-                dados.get(linha).setSerial((String) valor);
-            case 8:
-                dados.get(linha).setTamanhoTela((String) valor);
-            case 9:
-                dados.get(linha).setRam((String) valor);
-            case 10:
-                dados.get(linha).setHd((String) valor);
+                dados.get(linha).setSolucao((String) valor);
         }
         this.fireTableRowsUpdated(linha, linha);
     }

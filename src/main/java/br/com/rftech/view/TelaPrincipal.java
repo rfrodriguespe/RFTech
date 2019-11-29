@@ -78,12 +78,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuArquivoSair = new javax.swing.JMenuItem();
         jMenuCadastro = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuClientes = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuEquipamentos = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuChamado = new javax.swing.JMenu();
+        jMenuItemChamados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RF Loja");
@@ -132,7 +134,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGS/user.png"))); // NOI18N
         jMenuCadastro.setText("Cadastro");
 
-        jMenu2.setText("Clientes");
+        jMenuClientes.setText("Clientes");
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem6.setText("Clientes Pessoa Física");
@@ -141,7 +143,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenuClientes.add(jMenuItem6);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setText("Clientes Pessoa Jurídica");
@@ -150,11 +152,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenuClientes.add(jMenuItem3);
 
-        jMenuCadastro.add(jMenu2);
+        jMenuCadastro.add(jMenuClientes);
 
-        jMenu1.setText("Equipamentos");
+        jMenuEquipamentos.setText("Equipamentos");
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Notebook");
@@ -163,9 +165,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenuEquipamentos.add(jMenuItem4);
 
-        jMenuCadastro.add(jMenu1);
+        jMenuCadastro.add(jMenuEquipamentos);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Funcionários");
@@ -177,6 +179,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCadastro.add(jMenuItem2);
 
         jMenuBarMenuPrincipal.add(jMenuCadastro);
+
+        jMenuChamado.setText("Chamados");
+
+        jMenuItemChamados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemChamados.setText("Menu Chamados");
+        jMenuItemChamados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemChamadosActionPerformed(evt);
+            }
+        });
+        jMenuChamado.add(jMenuItemChamados);
+
+        jMenuBarMenuPrincipal.add(jMenuChamado);
 
         setJMenuBar(jMenuBarMenuPrincipal);
 
@@ -265,6 +280,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItemChamadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemChamadosActionPerformed
+        // TODO add your handling code here:
+        ChamadoView tela = new ChamadoView();
+        jDesktopPanel.add(tela);
+        tela.setVisible(true);
+        try {
+            tela.setSelected(true);
+            //diz que a janela interna é maximizável   
+            tela.setMaximizable(true);
+            //set o tamanho máximo dela, que depende da janela pai   
+            tela.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
+    }//GEN-LAST:event_jMenuItemChamadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -305,16 +335,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPanel;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuArquivoSair;
     private javax.swing.JMenuBar jMenuBarMenuPrincipal;
     private javax.swing.JMenu jMenuCadastro;
+    private javax.swing.JMenu jMenuChamado;
+    private javax.swing.JMenu jMenuClientes;
+    private javax.swing.JMenu jMenuEquipamentos;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItemChamados;
     private javax.swing.JMenu jMenuLogin;
     // End of variables declaration//GEN-END:variables
 

@@ -44,6 +44,8 @@ public class Chamado implements Serializable {
 
     public static final String ABERTO = "Aberto";
     public static final String FECHADO = "Fechado";
+    public static final String AT = "At";
+    public static final String CANCELADO = "Cancelado";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
