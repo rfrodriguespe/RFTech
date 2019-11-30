@@ -29,8 +29,11 @@ import br.com.rftech.Dao.NotebookJpaDao;
 import br.com.rftech.bean.Chamado;
 import br.com.rftech.bean.ChamadoTableModel;
 import br.com.rftech.bean.ClientePf;
+import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.Notebook;
+import br.com.rftech.bean.Sessao;
 import br.com.rftech.bean.TableColumnAdjuster;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -44,12 +47,21 @@ import javax.swing.JTable;
 public class ChamadoView extends javax.swing.JInternalFrame {
 
     public static Chamado chEmAt;
+    public static SimpleDateFormat dataFormatada = new SimpleDateFormat("dd'/'MM'/'yyyy HH:mm");
 
     /**
      * Creates new form ClientesPFView
      */
     public ChamadoView() {
+
+        //Vendo se o funcionário é Técnico, se for, não pode abrir chamado
+        Funcionario funcLogado = Sessao.getInstance().getFuncionario();
+        if (funcLogado.getCargo().toString().substring(0, 2).equals("Té")) {
+            jPanelAbertura.setVisible(false);
+        }
+
         initComponents();
+
         jTableChamado.setModel(tableModel);
         habilitaCamposAbaAbrir(false);
     }
@@ -66,6 +78,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btGroupStatus = new javax.swing.ButtonGroup();
         jTabbedPaneChamados = new javax.swing.JTabbedPane();
         jPanelConsulta = new javax.swing.JPanel();
         jPanelTabela = new javax.swing.JPanel();
@@ -73,34 +86,47 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         jTableChamado = new javax.swing.JTable();
         jPanelAcoes = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        tfAbaConsultaPesquisar = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        cbAbaConsultaTipoPesquisa = new javax.swing.JComboBox<>();
+        btAbaConsultaPesquisar = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        rbTodos = new javax.swing.JRadioButton();
+        rbAberto = new javax.swing.JRadioButton();
+        rbFechado = new javax.swing.JRadioButton();
+        rbAt = new javax.swing.JRadioButton();
+        jLabel18 = new javax.swing.JLabel();
+        labelAbaConsultaQtdeChamados = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabelId11 = new javax.swing.JLabel();
-        tfAbaFechaIdChamado2 = new javax.swing.JTextField();
+        tfAbaConsultaId = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         tfAbaFechaNomeCliente2 = new javax.swing.JTextField();
         jLabelId12 = new javax.swing.JLabel();
-        tfAbaFechaIdCliente2 = new javax.swing.JTextField();
+        tfAbaConsultaIdCliente = new javax.swing.JTextField();
         jLabelId13 = new javax.swing.JLabel();
-        tfAbaFechaIdEquipamento2 = new javax.swing.JTextField();
+        tfAbaConsultaIdEquipamento = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        tfAbaFechaFabricanteEquipamento2 = new javax.swing.JTextField();
+        tfAbaConsultaFabricante = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        tfAbaFechaModeloEquipamento2 = new javax.swing.JTextField();
+        tfAbaConsultaModelo = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        tfAbaFechaSerialEquipamento2 = new javax.swing.JTextField();
+        tfAbaConsultaSerial = new javax.swing.JTextField();
         jLabelId14 = new javax.swing.JLabel();
-        tfAbaFechaDataAbertura2 = new javax.swing.JTextField();
+        tfAbaConsultaDataAbertura = new javax.swing.JTextField();
         jLabelId15 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        taAbaFechaDefeitoRelatado2 = new javax.swing.JTextArea();
+        taAbaConsultaDefeitoRelatado = new javax.swing.JTextArea();
         jLabelId16 = new javax.swing.JLabel();
-        tfAbaFechaDataAbertura3 = new javax.swing.JTextField();
+        tfAbaConsultaDataEncerramento = new javax.swing.JTextField();
         jLabelId17 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        taAbaFechaDefeitoRelatado3 = new javax.swing.JTextArea();
+        taAbaConsultaDefeitoConstatado = new javax.swing.JTextArea();
         jLabelId18 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        taAbaFechaDefeitoRelatado4 = new javax.swing.JTextArea();
+        taAbaConsultaSolucao = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        labelAbaConsultaStatus = new javax.swing.JLabel();
         jPanelAbertura = new javax.swing.JPanel();
         jPanelDadosChamado = new javax.swing.JPanel();
         jLabelFabricante = new javax.swing.JLabel();
@@ -140,11 +166,11 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         taAbaFechamentoSolucao = new javax.swing.JTextArea();
         jPanelBotoes1 = new javax.swing.JPanel();
-        jButtonLimpar1 = new javax.swing.JButton();
-        btFechaChamado = new javax.swing.JButton();
+        btAbaFechaLimpar = new javax.swing.JButton();
+        btAbaFechaFechaChamado = new javax.swing.JButton();
         btAbaFechaListarChamados = new javax.swing.JButton();
-        jButtonCancelar1 = new javax.swing.JButton();
-        btAbaEncerramentoFechaJanela = new javax.swing.JButton();
+        btAbaFechaCancelar = new javax.swing.JButton();
+        btAbaFechaFechaJanela = new javax.swing.JButton();
         btAbaFechaAtChamado = new javax.swing.JButton();
         btAbaFechaCancelaAt = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -206,23 +232,64 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         jPanelTabela.setLayout(jPanelTabelaLayout);
         jPanelTabelaLayout.setHorizontalGroup(
             jPanelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addGroup(jPanelTabelaLayout.createSequentialGroup()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanelTabelaLayout.setVerticalGroup(
             jPanelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 142, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanelAcoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
 
-        jButton1.setText("Consultar");
+        jButton1.setText("Listar Todos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Pesquisar Chamados");
+
+        cbAbaConsultaTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesquisar por", "Id Chamado", "Id Cliente", "Id Equipamento", "Data de Abertura", "Data de Encerramento" }));
+        cbAbaConsultaTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAbaConsultaTipoPesquisaActionPerformed(evt);
+            }
+        });
+
+        btAbaConsultaPesquisar.setText("Pesquisar");
+        btAbaConsultaPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbaConsultaPesquisarActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Status:");
+
+        btGroupStatus.add(rbTodos);
+        rbTodos.setSelected(true);
+        rbTodos.setText("Todos");
+        rbTodos.setActionCommand("tudo");
+
+        btGroupStatus.add(rbAberto);
+        rbAberto.setText("Abertos");
+        rbAberto.setActionCommand(new String("Aberto"));
+
+        btGroupStatus.add(rbFechado);
+        rbFechado.setText("Fechados");
+        rbFechado.setActionCommand(new String("Fechado"));
+
+        btGroupStatus.add(rbAt);
+        rbAt.setText("Atendimento");
+        rbAt.setActionCommand(new String("At"));
+
+        jLabel18.setText("Quantidade de chamados encontrados:");
+
+        labelAbaConsultaQtdeChamados.setText("     ");
 
         javax.swing.GroupLayout jPanelAcoesLayout = new javax.swing.GroupLayout(jPanelAcoes);
         jPanelAcoes.setLayout(jPanelAcoesLayout);
@@ -230,21 +297,59 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             jPanelAcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAcoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addGroup(jPanelAcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAcoesLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfAbaConsultaPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbAbaConsultaTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btAbaConsultaPesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbTodos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbAberto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbFechado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbAt))
+                    .addGroup(jPanelAcoesLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelAbaConsultaQtdeChamados)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelAcoesLayout.setVerticalGroup(
             jPanelAcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAcoesLayout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGroup(jPanelAcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfAbaConsultaPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAbaConsultaTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(btAbaConsultaPesquisar)
+                    .addComponent(jLabel17)
+                    .addComponent(rbTodos)
+                    .addComponent(rbAberto)
+                    .addComponent(rbFechado)
+                    .addComponent(rbAt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelAcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(labelAbaConsultaQtdeChamados))
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalhes do chamado"));
 
         jLabelId11.setText("ID do Chamado");
 
-        tfAbaFechaIdChamado2.setEditable(false);
+        tfAbaConsultaId.setEditable(false);
 
         jLabel10.setText("Nome do Cliente:");
 
@@ -252,61 +357,65 @@ public class ChamadoView extends javax.swing.JInternalFrame {
 
         jLabelId12.setText("ID do Cliente");
 
-        tfAbaFechaIdCliente2.setEditable(false);
+        tfAbaConsultaIdCliente.setEditable(false);
 
         jLabelId13.setText("ID do Equipamento");
 
-        tfAbaFechaIdEquipamento2.setEditable(false);
+        tfAbaConsultaIdEquipamento.setEditable(false);
 
         jLabel11.setText("Fabricante");
 
-        tfAbaFechaFabricanteEquipamento2.setEnabled(false);
+        tfAbaConsultaFabricante.setEnabled(false);
 
         jLabel12.setText("Modelo:");
 
-        tfAbaFechaModeloEquipamento2.setEnabled(false);
+        tfAbaConsultaModelo.setEnabled(false);
 
         jLabel13.setText("Serial:");
 
-        tfAbaFechaSerialEquipamento2.setEnabled(false);
+        tfAbaConsultaSerial.setEnabled(false);
 
         jLabelId14.setText("Abertura");
 
-        tfAbaFechaDataAbertura2.setEditable(false);
+        tfAbaConsultaDataAbertura.setEditable(false);
 
         jLabelId15.setText("Defeito Relatado");
 
-        taAbaFechaDefeitoRelatado2.setBackground(new java.awt.Color(240, 240, 240));
-        taAbaFechaDefeitoRelatado2.setColumns(20);
-        taAbaFechaDefeitoRelatado2.setLineWrap(true);
-        taAbaFechaDefeitoRelatado2.setRows(5);
-        taAbaFechaDefeitoRelatado2.setToolTipText("Descreve o problema do Equipamento");
-        taAbaFechaDefeitoRelatado2.setEnabled(false);
-        jScrollPane7.setViewportView(taAbaFechaDefeitoRelatado2);
+        taAbaConsultaDefeitoRelatado.setBackground(new java.awt.Color(240, 240, 240));
+        taAbaConsultaDefeitoRelatado.setColumns(20);
+        taAbaConsultaDefeitoRelatado.setLineWrap(true);
+        taAbaConsultaDefeitoRelatado.setRows(5);
+        taAbaConsultaDefeitoRelatado.setToolTipText("Descreve o problema do Equipamento");
+        taAbaConsultaDefeitoRelatado.setEnabled(false);
+        jScrollPane7.setViewportView(taAbaConsultaDefeitoRelatado);
 
         jLabelId16.setText("Encerramento");
 
-        tfAbaFechaDataAbertura3.setEditable(false);
+        tfAbaConsultaDataEncerramento.setEditable(false);
 
         jLabelId17.setText("Defeito Constatado:");
 
-        taAbaFechaDefeitoRelatado3.setBackground(new java.awt.Color(240, 240, 240));
-        taAbaFechaDefeitoRelatado3.setColumns(20);
-        taAbaFechaDefeitoRelatado3.setLineWrap(true);
-        taAbaFechaDefeitoRelatado3.setRows(5);
-        taAbaFechaDefeitoRelatado3.setToolTipText("Descreve o problema do Equipamento");
-        taAbaFechaDefeitoRelatado3.setEnabled(false);
-        jScrollPane8.setViewportView(taAbaFechaDefeitoRelatado3);
+        taAbaConsultaDefeitoConstatado.setBackground(new java.awt.Color(240, 240, 240));
+        taAbaConsultaDefeitoConstatado.setColumns(20);
+        taAbaConsultaDefeitoConstatado.setLineWrap(true);
+        taAbaConsultaDefeitoConstatado.setRows(5);
+        taAbaConsultaDefeitoConstatado.setToolTipText("Descreve o problema do Equipamento");
+        taAbaConsultaDefeitoConstatado.setEnabled(false);
+        jScrollPane8.setViewportView(taAbaConsultaDefeitoConstatado);
 
         jLabelId18.setText("Solução");
 
-        taAbaFechaDefeitoRelatado4.setBackground(new java.awt.Color(240, 240, 240));
-        taAbaFechaDefeitoRelatado4.setColumns(20);
-        taAbaFechaDefeitoRelatado4.setLineWrap(true);
-        taAbaFechaDefeitoRelatado4.setRows(5);
-        taAbaFechaDefeitoRelatado4.setToolTipText("Descreve o problema do Equipamento");
-        taAbaFechaDefeitoRelatado4.setEnabled(false);
-        jScrollPane9.setViewportView(taAbaFechaDefeitoRelatado4);
+        taAbaConsultaSolucao.setBackground(new java.awt.Color(240, 240, 240));
+        taAbaConsultaSolucao.setColumns(20);
+        taAbaConsultaSolucao.setLineWrap(true);
+        taAbaConsultaSolucao.setRows(5);
+        taAbaConsultaSolucao.setToolTipText("Descreve o problema do Equipamento");
+        taAbaConsultaSolucao.setEnabled(false);
+        jScrollPane9.setViewportView(taAbaConsultaSolucao);
+
+        jLabel1.setText("Status:");
+
+        labelAbaConsultaStatus.setText("Status");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -318,11 +427,11 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabelId11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaFechaIdChamado2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAbaConsultaId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelId12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaFechaIdCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAbaConsultaIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -330,37 +439,41 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabelId13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaFechaIdEquipamento2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAbaConsultaIdEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaFechaFabricanteEquipamento2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAbaConsultaFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaFechaModeloEquipamento2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAbaConsultaModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaFechaSerialEquipamento2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
+                        .addComponent(tfAbaConsultaSerial, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabelId14)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tfAbaFechaDataAbertura2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tfAbaConsultaDataAbertura, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabelId16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfAbaFechaDataAbertura3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(tfAbaConsultaDataEncerramento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelId17)
                                     .addComponent(jLabelId15))
                                 .addGap(6, 6, 6))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelAbaConsultaStatus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelId18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,38 +488,41 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelId11)
-                    .addComponent(tfAbaFechaIdChamado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAbaConsultaId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(tfAbaFechaNomeCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelId12)
-                    .addComponent(tfAbaFechaIdCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAbaConsultaIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(tfAbaFechaFabricanteEquipamento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAbaConsultaFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelId13)
-                    .addComponent(tfAbaFechaIdEquipamento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAbaConsultaIdEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(tfAbaFechaModeloEquipamento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAbaConsultaModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(tfAbaFechaSerialEquipamento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAbaConsultaSerial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelId14)
-                        .addComponent(tfAbaFechaDataAbertura2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAbaConsultaDataAbertura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelId15))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelId16)
-                        .addComponent(tfAbaFechaDataAbertura3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAbaConsultaDataEncerramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelId17))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelId18)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelId18)
+                        .addComponent(jLabel1)
+                        .addComponent(labelAbaConsultaStatus))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -415,12 +531,12 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         jPanelConsulta.setLayout(jPanelConsultaLayout);
         jPanelConsultaLayout.setHorizontalGroup(
             jPanelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelConsultaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelAcoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelAcoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelConsultaLayout.setVerticalGroup(
@@ -430,8 +546,8 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 .addComponent(jPanelAcoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -450,6 +566,11 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         cbAbaAbreCliente.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbAbaAbreClienteItemStateChanged(evt);
+            }
+        });
+        cbAbaAbreCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cbAbaAbreClienteFocusLost(evt);
             }
         });
 
@@ -521,7 +642,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaAbreSerialEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                        .addComponent(tfAbaAbreSerialEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -669,9 +790,9 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 .addComponent(btAbaAbreCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btAbaAbreLimparCampos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonFecharJanela)
-                .addGap(69, 69, 69))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelAberturaLayout = new javax.swing.GroupLayout(jPanelAbertura);
@@ -680,7 +801,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             jPanelAberturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAberturaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelDadosChamado, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
+                .addComponent(jPanelDadosChamado, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
@@ -690,9 +811,9 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             .addGroup(jPanelAberturaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelAberturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelDadosChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(220, Short.MAX_VALUE))
+                    .addComponent(jPanelDadosChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         jTabbedPaneChamados.addTab("Abertura de Chamados", jPanelAbertura);
@@ -749,18 +870,19 @@ public class ChamadoView extends javax.swing.JInternalFrame {
 
         jPanelBotoes1.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
 
-        jButtonLimpar1.setText("Limpar Campos");
-        jButtonLimpar1.setEnabled(false);
-        jButtonLimpar1.addActionListener(new java.awt.event.ActionListener() {
+        btAbaFechaLimpar.setText("Limpar Campos");
+        btAbaFechaLimpar.setEnabled(false);
+        btAbaFechaLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpar1ActionPerformed(evt);
+                btAbaFechaLimparActionPerformed(evt);
             }
         });
 
-        btFechaChamado.setText("Fechar Chamado");
-        btFechaChamado.addActionListener(new java.awt.event.ActionListener() {
+        btAbaFechaFechaChamado.setText("Fechar Chamado");
+        btAbaFechaFechaChamado.setEnabled(false);
+        btAbaFechaFechaChamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFechaChamadoActionPerformed(evt);
+                btAbaFechaFechaChamadoActionPerformed(evt);
             }
         });
 
@@ -771,22 +893,23 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonCancelar1.setText("Cancelar");
-        jButtonCancelar1.setEnabled(false);
-        jButtonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btAbaFechaCancelar.setText("Cancelar");
+        btAbaFechaCancelar.setEnabled(false);
+        btAbaFechaCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelar1ActionPerformed(evt);
+                btAbaFechaCancelarActionPerformed(evt);
             }
         });
 
-        btAbaEncerramentoFechaJanela.setText("Fechar");
-        btAbaEncerramentoFechaJanela.addActionListener(new java.awt.event.ActionListener() {
+        btAbaFechaFechaJanela.setText("Fechar");
+        btAbaFechaFechaJanela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAbaEncerramentoFechaJanelaActionPerformed(evt);
+                btAbaFechaFechaJanelaActionPerformed(evt);
             }
         });
 
         btAbaFechaAtChamado.setText("Iniciar Atendimento");
+        btAbaFechaAtChamado.setEnabled(false);
         btAbaFechaAtChamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAbaFechaAtChamadoActionPerformed(evt);
@@ -794,6 +917,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         });
 
         btAbaFechaCancelaAt.setText("Cancelar Atendimento");
+        btAbaFechaCancelaAt.setEnabled(false);
         btAbaFechaCancelaAt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAbaFechaCancelaAtActionPerformed(evt);
@@ -810,10 +934,10 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                     .addComponent(btAbaFechaAtChamado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btAbaFechaCancelaAt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btAbaFechaListarChamados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btFechaChamado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonLimpar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btAbaEncerramentoFechaJanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btAbaFechaFechaChamado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btAbaFechaCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btAbaFechaLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btAbaFechaFechaJanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelBotoes1Layout.setVerticalGroup(
@@ -826,13 +950,13 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btAbaFechaCancelaAt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btFechaChamado)
+                .addComponent(btAbaFechaFechaChamado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCancelar1)
+                .addComponent(btAbaFechaCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonLimpar1)
+                .addComponent(btAbaFechaLimpar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btAbaEncerramentoFechaJanela)
+                .addComponent(btAbaFechaFechaJanela)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
@@ -872,6 +996,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
 
         jLabelId5.setText("Defeito Relatado");
 
+        taAbaFechaDefeitoRelatado.setEditable(false);
         taAbaFechaDefeitoRelatado.setBackground(new java.awt.Color(240, 240, 240));
         taAbaFechaDefeitoRelatado.setColumns(20);
         taAbaFechaDefeitoRelatado.setLineWrap(true);
@@ -984,7 +1109,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addComponent(cbChamadosAbertos, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelFechamentoLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jPanelDadosChamado1, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE))
+                        .addComponent(jPanelDadosChamado1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelFechamentoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -1006,7 +1131,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelDadosChamado1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         jTabbedPaneChamados.addTab("Fechamento de Chamados", jPanelFechamento);
@@ -1016,14 +1141,14 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneChamados, javax.swing.GroupLayout.PREFERRED_SIZE, 1199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneChamados)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneChamados, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneChamados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         pack();
@@ -1041,13 +1166,15 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             Chamado chamado = new Chamado(notebook, defeitoRelatado);
             if (ChamadoJpaDao.getInstance().create(chamado)) {
                 JOptionPane.showMessageDialog(this, "Chamado aberto com sucesso");
-                listarChamadosNaTabela();
+                habilitaCamposAbaAbrir(false);
+                habilitaBotoesAbaAbrir(false);
+                taAbaAbreDefeitoRelatado.setText("");
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao abrir chamado");
             }
-            
+
         } else {
-                JOptionPane.showMessageDialog(this, "Descreva o problema do equipamento.");
+            JOptionPane.showMessageDialog(this, "Descreva o problema do equipamento.");
         }
     }//GEN-LAST:event_btAbaAbreAbrirChamadoActionPerformed
 
@@ -1062,8 +1189,8 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         habilitaBotoesAbaAbrir(false);
         habilitaCamposAbaAbrir(false);
-        cbAbaAbreCliente.setSelectedIndex(-1);
-        cbAbaAbreEquipamentos.setSelectedIndex(-1);
+        cbAbaAbreCliente.removeAllItems();
+        cbAbaAbreEquipamentos.removeAllItems();
         taAbaAbreDefeitoRelatado.setText("");
     }//GEN-LAST:event_btAbaAbreCancelarActionPerformed
 
@@ -1083,14 +1210,16 @@ public class ChamadoView extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        listarChamadosNaTabela();
+        listarChamadosNaTabela(btGroupStatus.getSelection().getActionCommand());
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButtonLimpar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpar1ActionPerformed
+    private void btAbaFechaLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbaFechaLimparActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonLimpar1ActionPerformed
+        taAbaFechaDefeitoRelatado.setText("");
+        taAbaFechamentoSolucao.setText("");
+    }//GEN-LAST:event_btAbaFechaLimparActionPerformed
 
-    private void btFechaChamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFechaChamadoActionPerformed
+    private void btAbaFechaFechaChamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbaFechaFechaChamadoActionPerformed
         // TODO add your handling code here:
         if (cbChamadosAbertos.getSelectedIndex() != -1) {
             Chamado chamadoAt = ChamadoJpaDao.getInstance().getById(Integer.parseInt(tfAbaFechaIdChamado.getText()));
@@ -1098,15 +1227,18 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             chamadoAt.setSolucao(taAbaFechamentoSolucao.getText());
             chamadoAt.setDataFechamento(Calendar.getInstance().getTime());
             chamadoAt.setStatus(Chamado.FECHADO);
-
             if (ChamadoJpaDao.getInstance().update(chamadoAt)) {
                 JOptionPane.showMessageDialog(null, "Chamado fechado com sucesso");
+                habilitaBotoesAbaFechar(false);
                 cbChamadosAbertos.removeAllItems();
                 getChamadosAbertos();
                 tfAbaFechaIdChamado.setText("");
                 taAbaFechaDefeitoRelatado.setText("");
                 taAbaFechamentoDefeitoConstatado.setText("");
                 taAbaFechamentoSolucao.setText("");
+                btAbaFechaCancelaAt.setEnabled(false);
+                btAbaFechaFechaChamado.setEnabled(false);
+                btAbaFechaFechaJanela.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao tentar fechar chamado");
             }
@@ -1114,19 +1246,20 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um chamado aberto para fechar");
         }
-    }//GEN-LAST:event_btFechaChamadoActionPerformed
+    }//GEN-LAST:event_btAbaFechaFechaChamadoActionPerformed
 
     private void btAbaFechaListarChamadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbaFechaListarChamadosActionPerformed
         listarChamados();
     }//GEN-LAST:event_btAbaFechaListarChamadosActionPerformed
 
-    private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
+    private void btAbaFechaCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbaFechaCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelar1ActionPerformed
+        habilitaBotoesAbaFechar(false);
+    }//GEN-LAST:event_btAbaFechaCancelarActionPerformed
 
-    private void btAbaEncerramentoFechaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbaEncerramentoFechaJanelaActionPerformed
+    private void btAbaFechaFechaJanelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbaFechaFechaJanelaActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btAbaEncerramentoFechaJanelaActionPerformed
+    }//GEN-LAST:event_btAbaFechaFechaJanelaActionPerformed
 
     private void cbChamadosAbertosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbChamadosAbertosItemStateChanged
         // TODO add your handling code here:
@@ -1140,7 +1273,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             tfAbaFechaFabricanteEquipamento.setText("" + chAt.getNotebook().getFabricante());
             tfAbaFechaModeloEquipamento.setText(chAt.getNotebook().getModelo());
             tfAbaFechaSerialEquipamento.setText(chAt.getNotebook().getSerial());
-            tfAbaFechaDataAbertura.setText("" + chAt.getDataAbertura());
+            tfAbaFechaDataAbertura.setText(dataFormatada.format(chAt.getDataAbertura()));
             taAbaFechaDefeitoRelatado.setText(chAt.getDefeitoRelatado());
         }
     }//GEN-LAST:event_cbChamadosAbertosItemStateChanged
@@ -1150,11 +1283,16 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         if (cbChamadosAbertos.getSelectedIndex() != -1) {
             Chamado chtAux = (Chamado) cbChamadosAbertos.getSelectedItem();
             chEmAt = ChamadoJpaDao.getInstance().getById(chtAux.getId());
-
             chEmAt.setStatus(Chamado.AT);
             if (ChamadoJpaDao.getInstance().update(chEmAt)) {
                 cbChamadosAbertos.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "Iniciado atendimento ao chamado " + chEmAt.getId() + " com sucesso.");
+                btAbaFechaListarChamados.setEnabled(false);
+                btAbaFechaAtChamado.setEnabled(false);
+                btAbaFechaCancelaAt.setEnabled(true);
+                btAbaFechaFechaChamado.setEnabled(true);
+                btAbaFechaCancelar.setEnabled(false);
+                btAbaFechaFechaJanela.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao iniciar o atendimento ao " + chEmAt.getId() + " .");
             }
@@ -1170,6 +1308,12 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         if (ChamadoJpaDao.getInstance().update(pararChamado)) {
             cbChamadosAbertos.setEnabled(true);
             JOptionPane.showMessageDialog(null, "Cancelado atendimento ao chamado " + pararChamado.getId() + " com sucesso.");
+            habilitaBotoesAbaFechar(false);
+            btAbaFechaCancelaAt.setEnabled(false);
+            btAbaFechaAtChamado.setEnabled(true);
+            btAbaFechaFechaChamado.setEnabled(false);
+            btAbaFechaFechaJanela.setEnabled(true);
+
         } else {
             JOptionPane.showMessageDialog(null, "Erro ao cancelar o atendimento ao " + pararChamado.getId() + " .");
         }
@@ -1180,15 +1324,15 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         if (cbAbaAbreEquipamentos.getSelectedIndex() != -1 && cbAbaAbreCliente.getSelectedIndex() != -1) {
             Notebook noteExemplo = (Notebook) cbAbaAbreEquipamentos.getSelectedItem();
             Notebook noteBanco = NotebookJpaDao.getInstance().getById(noteExemplo.getId());
-            
-            tfAbaAbreIdEquipamento.setText(""+noteBanco.getId());
-            tfAbaAbreFabricanteEquipamento.setText(""+noteBanco.getFabricante());
+
+            tfAbaAbreIdEquipamento.setText("" + noteBanco.getId());
+            tfAbaAbreFabricanteEquipamento.setText("" + noteBanco.getFabricante());
             tfAbaAbreModeloEquipamento.setText(noteBanco.getModelo());
             tfAbaAbreSerialEquipamento.setText(noteBanco.getSerial());
             tfAbaAbreTelaEquipamento.setText(noteBanco.getTamanhoTela());
             tfAbaAbreRamEquipamento.setText(noteBanco.getRam());
             tfAbaAbreHdEquipamento.setText(noteBanco.getHd());
-            
+
         }
     }//GEN-LAST:event_cbAbaAbreEquipamentosItemStateChanged
 
@@ -1197,23 +1341,94 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         popularEquipamentosDoClienteSelecionado();
     }//GEN-LAST:event_cbAbaAbreClienteItemStateChanged
 
+    private void btAbaConsultaPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbaConsultaPesquisarActionPerformed
+        // TODO add your handling code here:
+        List<Chamado> listaChamados = null;
+        if (!tfAbaConsultaPesquisar.getText().replaceAll(" ", "").equals("")) {
+            switch (cbAbaConsultaTipoPesquisa.getSelectedIndex()) {
+                case 0:
+                    labelAbaConsultaQtdeChamados.setText("0");
+                    JOptionPane.showMessageDialog(null, "Selecione um tipo para pesquisar");
+                    break;
+                case 1:
+                    try {
+                    Chamado chamado = ChamadoJpaDao.getInstance().getById(Integer.parseInt(tfAbaConsultaPesquisar.getText()));
+                    labelAbaConsultaQtdeChamados.setText("1");
+                    tableModel.limpaTabela();
+                    tableModel.addRow(chamado);
+                    jTableChamado.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+                    TableColumnAdjuster tca = new TableColumnAdjuster(jTableChamado);
+                    tca.adjustColumns();
+                    break;
+                } catch (NumberFormatException e) {
+                    labelAbaConsultaQtdeChamados.setText("0");
+                    JOptionPane.showMessageDialog(null, "Chamado " + tfAbaConsultaPesquisar.getText() + " não foi localizado.");
+                    break;
+                }
+                case 2:
+                    try {
+                    List<Chamado> listaChamado = ChamadoJpaDao.getInstance().getAllByIdDono(Integer.parseInt(tfAbaConsultaPesquisar.getText()));
+                    if (!listaChamado.isEmpty()) {
+                        tableModel.limpaTabela();
+                        listaChamado.forEach((chamado) -> {
+                            tableModel.addRow(chamado);
+                        });
+                        labelAbaConsultaQtdeChamados.setText("" + listaChamado.size());
+                        jTableChamado.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+                        TableColumnAdjuster tca = new TableColumnAdjuster(jTableChamado);
+                        tca.adjustColumns();
+                    } else {
+                        labelAbaConsultaQtdeChamados.setText("0");
+                        JOptionPane.showMessageDialog(null, "Cliente id: " + tfAbaConsultaPesquisar.getText() + " não possui chamados.");
+                    }
+                    break;
+                } catch (NumberFormatException e) {
+                    labelAbaConsultaQtdeChamados.setText("0");
+                    JOptionPane.showMessageDialog(null, "Chamado " + tfAbaConsultaPesquisar.getText() + " não foi localizado.");
+                    break;
+                }
+                default:
+                    labelAbaConsultaQtdeChamados.setText("0");
+                    JOptionPane.showMessageDialog(null, "Selecione um tipo para pesquisar");
+                    break;
+            }
+        } else {
+            labelAbaConsultaQtdeChamados.setText("0");
+            JOptionPane.showMessageDialog(null, "Campo pesquisar não pode estar em branco");
+        }
+
+    }//GEN-LAST:event_btAbaConsultaPesquisarActionPerformed
+
+    private void cbAbaConsultaTipoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAbaConsultaTipoPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAbaConsultaTipoPesquisaActionPerformed
+
+    private void cbAbaAbreClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbAbaAbreClienteFocusLost
+        // TODO add your handling code here:
+//        popularEquipamentosDoClienteSelecionado();
+    }//GEN-LAST:event_cbAbaAbreClienteFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAbaAbreAbrirChamado;
     private javax.swing.JButton btAbaAbreCancelar;
     private javax.swing.JButton btAbaAbreLimparCampos;
-    private javax.swing.JButton btAbaEncerramentoFechaJanela;
+    private javax.swing.JButton btAbaConsultaPesquisar;
     private javax.swing.JButton btAbaFechaAtChamado;
     private javax.swing.JButton btAbaFechaCancelaAt;
+    private javax.swing.JButton btAbaFechaCancelar;
+    private javax.swing.JButton btAbaFechaFechaChamado;
+    private javax.swing.JButton btAbaFechaFechaJanela;
+    private javax.swing.JButton btAbaFechaLimpar;
     private javax.swing.JButton btAbaFechaListarChamados;
-    private javax.swing.JButton btFechaChamado;
+    private javax.swing.ButtonGroup btGroupStatus;
     private javax.swing.JButton btNovo;
     private javax.swing.JComboBox<ClientePf> cbAbaAbreCliente;
     private javax.swing.JComboBox<Notebook> cbAbaAbreEquipamentos;
+    private javax.swing.JComboBox<String> cbAbaConsultaTipoPesquisa;
     private javax.swing.JComboBox<Chamado> cbChamadosAbertos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonCancelar1;
     private javax.swing.JButton jButtonFecharJanela;
-    private javax.swing.JButton jButtonLimpar1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1221,10 +1436,13 @@ public class ChamadoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1270,11 +1488,17 @@ public class ChamadoView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPaneChamados;
     private javax.swing.JTable jTableChamado;
+    private javax.swing.JLabel labelAbaConsultaQtdeChamados;
+    private javax.swing.JLabel labelAbaConsultaStatus;
+    private javax.swing.JRadioButton rbAberto;
+    private javax.swing.JRadioButton rbAt;
+    private javax.swing.JRadioButton rbFechado;
+    private javax.swing.JRadioButton rbTodos;
     private javax.swing.JTextArea taAbaAbreDefeitoRelatado;
+    private javax.swing.JTextArea taAbaConsultaDefeitoConstatado;
+    private javax.swing.JTextArea taAbaConsultaDefeitoRelatado;
+    private javax.swing.JTextArea taAbaConsultaSolucao;
     private javax.swing.JTextArea taAbaFechaDefeitoRelatado;
-    private javax.swing.JTextArea taAbaFechaDefeitoRelatado2;
-    private javax.swing.JTextArea taAbaFechaDefeitoRelatado3;
-    private javax.swing.JTextArea taAbaFechaDefeitoRelatado4;
     private javax.swing.JTextArea taAbaFechamentoDefeitoConstatado;
     private javax.swing.JTextArea taAbaFechamentoSolucao;
     private javax.swing.JTextField tfAbaAbreFabricanteEquipamento;
@@ -1284,54 +1508,74 @@ public class ChamadoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfAbaAbreRamEquipamento;
     private javax.swing.JTextField tfAbaAbreSerialEquipamento;
     private javax.swing.JTextField tfAbaAbreTelaEquipamento;
+    private javax.swing.JTextField tfAbaConsultaDataAbertura;
+    private javax.swing.JTextField tfAbaConsultaDataEncerramento;
+    private javax.swing.JTextField tfAbaConsultaFabricante;
+    private javax.swing.JTextField tfAbaConsultaId;
+    private javax.swing.JTextField tfAbaConsultaIdCliente;
+    private javax.swing.JTextField tfAbaConsultaIdEquipamento;
+    private javax.swing.JTextField tfAbaConsultaModelo;
+    private javax.swing.JTextField tfAbaConsultaPesquisar;
+    private javax.swing.JTextField tfAbaConsultaSerial;
     private javax.swing.JTextField tfAbaFechaDataAbertura;
-    private javax.swing.JTextField tfAbaFechaDataAbertura2;
-    private javax.swing.JTextField tfAbaFechaDataAbertura3;
     private javax.swing.JTextField tfAbaFechaFabricanteEquipamento;
-    private javax.swing.JTextField tfAbaFechaFabricanteEquipamento2;
     private javax.swing.JTextField tfAbaFechaIdChamado;
-    private javax.swing.JTextField tfAbaFechaIdChamado2;
     private javax.swing.JTextField tfAbaFechaIdCliente;
-    private javax.swing.JTextField tfAbaFechaIdCliente2;
     private javax.swing.JTextField tfAbaFechaIdEquipamento;
-    private javax.swing.JTextField tfAbaFechaIdEquipamento2;
     private javax.swing.JTextField tfAbaFechaModeloEquipamento;
-    private javax.swing.JTextField tfAbaFechaModeloEquipamento2;
     private javax.swing.JTextField tfAbaFechaNomeCliente;
     private javax.swing.JTextField tfAbaFechaNomeCliente2;
     private javax.swing.JTextField tfAbaFechaSerialEquipamento;
-    private javax.swing.JTextField tfAbaFechaSerialEquipamento2;
     // End of variables declaration//GEN-END:variables
 
     private void populaClientesAbaAbreChamados() {
         cbAbaAbreCliente.removeAllItems();
         List<ClientePf> listaClientesPf = ClientePfJpaDao.getInstance().readAll();
-        for (ClientePf clientePf : listaClientesPf) {
+        listaClientesPf.forEach((clientePf) -> {
             cbAbaAbreCliente.addItem(clientePf);
+        });
+        if(listaClientesPf.isEmpty()){
+            //JOptionPane.showMessageDialog(null, "Cliente não possui nenhum equipamento cadastrado");
+            JOptionPane.showMessageDialog(null, "Não há clientes cadastrados em nosso sistema");
         }
-        cbAbaAbreCliente.setSelectedIndex(-1);
     }
 
     private void popularEquipamentosDoClienteSelecionado() {
-        ClientePf clientePf = (ClientePf) cbAbaAbreCliente.getSelectedItem();
         cbAbaAbreEquipamentos.removeAllItems();
-        List<Notebook> listaEquipamentosCliente = NotebookJpaDao.getInstance().getAllByIdDono(clientePf.getId());
-        for (Notebook notebookCliente : listaEquipamentosCliente) {
-            cbAbaAbreEquipamentos.addItem(notebookCliente);
+        if (cbAbaAbreCliente.getItemCount() > 0) {
+            ClientePf clientePf = (ClientePf) cbAbaAbreCliente.getSelectedItem();
+            cbAbaAbreEquipamentos.removeAllItems();
+            List<Notebook> listaEquipamentosCliente = NotebookJpaDao.getInstance().getAllByIdDono(clientePf.getId());
+            listaEquipamentosCliente.forEach((notebookCliente) -> {
+                cbAbaAbreEquipamentos.addItem(notebookCliente);
+            });
+            if (listaEquipamentosCliente.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Cliente não possui nenhum equipamento cadastrado");
+            }
         }
-        cbAbaAbreEquipamentos.setSelectedIndex(-1);
     }
 
-    public void listarChamadosNaTabela() {
+    public void listarChamadosNaTabela(String status) {
         limpaTabela();
-        List<Chamado> listaChamado = ChamadoJpaDao.getInstance().readAll();
-        listaChamado.forEach((chamado) -> {
-            tableModel.addRow(chamado);
-        });
-        //jTableChamado.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        jTableChamado.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        TableColumnAdjuster tca = new TableColumnAdjuster(jTableChamado);
-        tca.adjustColumns();
+        List<Chamado> listaChamado = null;
+        if (btGroupStatus.getSelection().getActionCommand().equals("tudo")) {
+            listaChamado = ChamadoJpaDao.getInstance().readAll();
+        } else {
+            listaChamado = ChamadoJpaDao.getInstance().getAllByStatus(status);
+        }
+        if (!listaChamado.isEmpty()) {
+            for (Chamado chamado : listaChamado) {
+                tableModel.addRow(chamado);
+            }
+            labelAbaConsultaQtdeChamados.setText("" + listaChamado.size());
+            //jTableChamado.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            jTableChamado.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+            TableColumnAdjuster tca = new TableColumnAdjuster(jTableChamado);
+            tca.adjustColumns();
+        } else {
+            labelAbaConsultaQtdeChamados.setText("" + listaChamado.size());
+            JOptionPane.showMessageDialog(null, "Não há chamados que correspondam a pesquisa");
+        }
     }
 
     public void limpaTabela() {
@@ -1372,39 +1616,48 @@ public class ChamadoView extends javax.swing.JInternalFrame {
 
     private void populaCamposByJTable() {
         if (jTableChamado.getSelectedRow() != -1) {
-
-//            tfId.setText(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 0).toString());
-//            cbDono.setSelectedIndex(Integer.parseInt(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 1).toString()) - 1);
-//            EquipamentosTipo tipoEquipamento = (EquipamentosTipo) jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 4);
-//            jComboBoxTipoEquipamento.setSelectedIndex(tipoEquipamento.getId() - 1);
-//            Fabricante fabricante = (Fabricante) jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 5);
-//            cbEquipamento.setSelectedIndex(fabricante.getId() - 1);
-//            tfModelo.setText(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 6).toString());
-//            tfSerial.setText(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 7).toString());
-//            jComboBoxTela.setSelectedItem(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 8));
-//            jComboBoxRam.setSelectedItem(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 9));
-//            jComboBoxHd.setSelectedItem(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 10));
+            tfAbaConsultaId.setText("" + jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 0));
+            Notebook noteExemplo = (Notebook) jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 1);
+            tfAbaConsultaIdCliente.setText("" + noteExemplo.getDono().getId());
+            tfAbaFechaNomeCliente2.setText("" + noteExemplo.getDono().getNome());
+            tfAbaConsultaIdEquipamento.setText("" + noteExemplo.getId());
+            tfAbaConsultaFabricante.setText("" + noteExemplo.getFabricante().getNome());
+            tfAbaConsultaModelo.setText("" + noteExemplo.getModelo());
+            tfAbaConsultaSerial.setText("" + noteExemplo.getSerial());
+            tfAbaConsultaDataAbertura.setText(dataFormatada.format(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 2)));
+            taAbaConsultaDefeitoRelatado.setText("" + jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 3));
+            taAbaConsultaDefeitoConstatado.setText("" + jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 4));
+            taAbaConsultaSolucao.setText("" + jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 5));
+            if (jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 6) != null) {
+                tfAbaConsultaDataEncerramento.setText(dataFormatada.format(jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 6)));
+            } else {
+                tfAbaConsultaDataEncerramento.setText("");
+            }
+            labelAbaConsultaStatus.setText("" + jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 7));
         }
     }
 
     private void listarChamados() {
+        habilitaBotoesAbaFechar(true);
         getChamadosAbertos();
         cbChamadosAbertos.setEnabled(true);
-        taAbaFechaDefeitoRelatado.enable(true);
-        taAbaFechamentoDefeitoConstatado.enable(true);
-        taAbaFechamentoSolucao.enable(true);
-        btFechaChamado.setEnabled(true);
+        taAbaFechamentoDefeitoConstatado.setEnabled(true);
+        taAbaFechamentoSolucao.setEnabled(true);
     }
 
     private void getChamadosAbertos() {
         cbChamadosAbertos.removeAllItems();
         List<Chamado> listaChamadoAbertos = ChamadoJpaDao.getInstance().readAll();
-        for (Chamado chamado : listaChamadoAbertos) {
-            if (chamado.getStatus().equals(Chamado.ABERTO)) {
-                cbChamadosAbertos.addItem(chamado);
+        listaChamadoAbertos.stream().filter((chamado) -> (chamado.getStatus().equals(Chamado.ABERTO))).forEachOrdered((chamado) -> {
+            cbChamadosAbertos.addItem(chamado);
+        });
+    }
 
-            }
-        }
+    private void habilitaBotoesAbaFechar(boolean estado) {
+        btAbaFechaListarChamados.setEnabled(!estado);
+        btAbaFechaCancelar.setEnabled(estado);
+        btAbaFechaLimpar.setEnabled(estado);
+        btAbaFechaAtChamado.setEnabled(estado);
     }
 
 }

@@ -28,6 +28,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -130,7 +131,27 @@ public class ChamadoJpaDao implements Dao {
             return false;
         }
     }
-    
+
+    public List<Chamado> getAllByIdDono(int idDono) {
+        try {
+            Query query = entityManager.createQuery("Select c FROM Chamado c WHERE c.notebook.dono.id = :idDono");
+            query.setParameter("idDono", idDono);
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<Chamado> getAllByStatus(String status) {
+        try {
+            Query query = entityManager.createQuery("Select c FROM Chamado c WHERE c.status = :status");
+            query.setParameter("status", status);
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 //    public Chamado getBySerial(String serial) {
 //        try {
 //            Query query = entityManager.createQuery("Select ch FROM Chamado ch WHERE n.serial = :serial");
@@ -140,5 +161,4 @@ public class ChamadoJpaDao implements Dao {
 //            return null;
 //        }
 //    }
-    
 }

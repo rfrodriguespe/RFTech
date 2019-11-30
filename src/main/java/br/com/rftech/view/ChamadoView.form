@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="btGroupStatus">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
@@ -29,16 +33,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jTabbedPaneChamados" min="-2" pref="1199" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+              <Component id="jTabbedPaneChamados" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jTabbedPaneChamados" min="-2" pref="675" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
+              <Component id="jTabbedPaneChamados" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,11 +64,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanelAcoes" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanelTabela" max="32767" attributes="0"/>
+                          <Component id="jPanelAcoes" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -78,8 +82,8 @@
                       <Component id="jPanelAcoes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jPanelTabela" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanelTabela" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -101,14 +105,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jScrollPane2" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="231" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="142" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="206" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -180,18 +187,61 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaPesquisar" min="-2" pref="316" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cbAbaConsultaTipoPesquisa" min="-2" pref="141" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btAbaConsultaPesquisar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="rbTodos" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="rbAberto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="rbFechado" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="rbAt" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelAbaConsultaQtdeChamados" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfAbaConsultaPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbAbaConsultaTipoPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btAbaConsultaPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbTodos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbAberto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbFechado" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbAt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelAbaConsultaQtdeChamados" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -199,11 +249,104 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Consultar"/>
+                    <Property name="text" type="java.lang.String" value="Listar Todos"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaPesquisar">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pesquisar Chamados"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbAbaConsultaTipoPesquisa">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="6">
+                        <StringItem index="0" value="Pesquisar por"/>
+                        <StringItem index="1" value="Id Chamado"/>
+                        <StringItem index="2" value="Id Cliente"/>
+                        <StringItem index="3" value="Id Equipamento"/>
+                        <StringItem index="4" value="Data de Abertura"/>
+                        <StringItem index="5" value="Data de Encerramento"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbAbaConsultaTipoPesquisaActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="btAbaConsultaPesquisar">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaConsultaPesquisarActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel17">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Status:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbTodos">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btGroupStatus"/>
+                    </Property>
+                    <Property name="selected" type="boolean" value="true"/>
+                    <Property name="text" type="java.lang.String" value="Todos"/>
+                    <Property name="actionCommand" type="java.lang.String" value="tudo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbAberto">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btGroupStatus"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Abertos"/>
+                    <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new String(&quot;Aberto&quot;)" type="code"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbFechado">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btGroupStatus"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Fechados"/>
+                    <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new String(&quot;Fechado&quot;)" type="code"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbAt">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btGroupStatus"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Atendimento"/>
+                    <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new String(&quot;At&quot;)" type="code"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel18">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Quantidade de chamados encontrados:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelAbaConsultaQtdeChamados">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="     "/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -225,11 +368,11 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabelId11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaIdChamado2" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaId" min="-2" pref="33" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabelId12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaIdCliente2" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaIdCliente" min="-2" pref="33" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -238,33 +381,33 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabelId13" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaIdEquipamento2" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaIdEquipamento" min="-2" pref="33" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaFabricanteEquipamento2" min="-2" pref="188" max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaFabricante" min="-2" pref="188" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaModeloEquipamento2" min="-2" pref="275" max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaModelo" min="-2" pref="275" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaSerialEquipamento2" pref="408" max="32767" attributes="0"/>
+                                  <Component id="tfAbaConsultaSerial" pref="432" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabelId14" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="tfAbaFechaDataAbertura2" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <Component id="tfAbaConsultaDataAbertura" min="-2" pref="120" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabelId16" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="tfAbaFechaDataAbertura3" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <Component id="tfAbaConsultaDataEncerramento" min="-2" pref="120" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -275,6 +418,10 @@
                                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="labelAbaConsultaStatus" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabelId18" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
@@ -296,28 +443,28 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelId11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfAbaFechaIdChamado2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfAbaConsultaId" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfAbaFechaNomeCliente2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelId12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfAbaFechaIdCliente2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfAbaConsultaIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfAbaFechaFabricanteEquipamento2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfAbaConsultaFabricante" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelId13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfAbaFechaIdEquipamento2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfAbaConsultaIdEquipamento" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfAbaFechaModeloEquipamento2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfAbaConsultaModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfAbaFechaSerialEquipamento2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfAbaConsultaSerial" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelId14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaDataAbertura2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaDataAbertura" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelId15" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane7" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
@@ -326,14 +473,18 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="jLabelId16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfAbaFechaDataAbertura3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfAbaConsultaDataEncerramento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelId17" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelId18" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelId18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelAbaConsultaStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jScrollPane9" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -347,7 +498,7 @@
                     <Property name="text" type="java.lang.String" value="ID do Chamado"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaIdChamado2">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaId">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -367,7 +518,7 @@
                     <Property name="text" type="java.lang.String" value="ID do Cliente"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaIdCliente2">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaIdCliente">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -377,7 +528,7 @@
                     <Property name="text" type="java.lang.String" value="ID do Equipamento"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaIdEquipamento2">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaIdEquipamento">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -387,7 +538,7 @@
                     <Property name="text" type="java.lang.String" value="Fabricante"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaFabricanteEquipamento2">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaFabricante">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -397,7 +548,7 @@
                     <Property name="text" type="java.lang.String" value="Modelo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaModeloEquipamento2">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaModelo">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -407,7 +558,7 @@
                     <Property name="text" type="java.lang.String" value="Serial:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaSerialEquipamento2">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaSerial">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -417,7 +568,7 @@
                     <Property name="text" type="java.lang.String" value="Abertura"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaDataAbertura2">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaDataAbertura">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -434,7 +585,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="taAbaFechaDefeitoRelatado2">
+                    <Component class="javax.swing.JTextArea" name="taAbaConsultaDefeitoRelatado">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f0" green="f0" red="f0" type="rgb"/>
@@ -453,7 +604,7 @@
                     <Property name="text" type="java.lang.String" value="Encerramento"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfAbaFechaDataAbertura3">
+                <Component class="javax.swing.JTextField" name="tfAbaConsultaDataEncerramento">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -470,7 +621,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="taAbaFechaDefeitoRelatado3">
+                    <Component class="javax.swing.JTextArea" name="taAbaConsultaDefeitoConstatado">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f0" green="f0" red="f0" type="rgb"/>
@@ -496,7 +647,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="taAbaFechaDefeitoRelatado4">
+                    <Component class="javax.swing.JTextArea" name="taAbaConsultaSolucao">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f0" green="f0" red="f0" type="rgb"/>
@@ -510,6 +661,16 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Status:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelAbaConsultaStatus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Status"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -528,7 +689,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelDadosChamado" pref="968" max="32767" attributes="0"/>
+                      <Component id="jPanelDadosChamado" pref="992" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelBotoes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -540,10 +701,10 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanelBotoes" min="-2" pref="209" max="-2" attributes="0"/>
                           <Component id="jPanelDadosChamado" min="-2" pref="416" max="-2" attributes="0"/>
+                          <Component id="jPanelBotoes" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="220" max="32767" attributes="0"/>
+                      <EmptySpace pref="228" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -637,6 +798,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAbaAbreClienteItemStateChanged"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cbAbaAbreClienteFocusLost"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;ClientePf&gt;"/>
@@ -709,7 +871,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfAbaAbreSerialEquipamento" pref="190" max="32767" attributes="0"/>
+                                      <Component id="tfAbaAbreSerialEquipamento" pref="214" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
@@ -868,9 +1030,9 @@
                           <Component id="btAbaAbreCancelar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btAbaAbreLimparCampos" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonFecharJanela" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                          <EmptySpace pref="112" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -945,7 +1107,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="jPanelDadosChamado1" pref="954" max="32767" attributes="0"/>
+                              <Component id="jPanelDadosChamado1" pref="978" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -975,7 +1137,7 @@
                               <Component id="jPanelDadosChamado1" min="-2" pref="224" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="188" max="32767" attributes="0"/>
+                      <EmptySpace pref="196" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1096,10 +1258,10 @@
                               <Component id="btAbaFechaAtChamado" alignment="0" max="32767" attributes="0"/>
                               <Component id="btAbaFechaCancelaAt" alignment="0" max="32767" attributes="0"/>
                               <Component id="btAbaFechaListarChamados" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btFechaChamado" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jButtonCancelar1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jButtonLimpar1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btAbaEncerramentoFechaJanela" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btAbaFechaFechaChamado" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btAbaFechaCancelar" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btAbaFechaLimpar" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btAbaFechaFechaJanela" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1115,34 +1277,35 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btAbaFechaCancelaAt" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btFechaChamado" min="-2" max="-2" attributes="0"/>
+                          <Component id="btAbaFechaFechaChamado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonCancelar1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btAbaFechaCancelar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonLimpar1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btAbaFechaLimpar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btAbaEncerramentoFechaJanela" min="-2" max="-2" attributes="0"/>
+                          <Component id="btAbaFechaFechaJanela" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="85" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButtonLimpar1">
+                <Component class="javax.swing.JButton" name="btAbaFechaLimpar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Limpar Campos"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLimpar1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaFechaLimparActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btFechaChamado">
+                <Component class="javax.swing.JButton" name="btAbaFechaFechaChamado">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fechar Chamado"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btFechaChamadoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaFechaFechaChamadoActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btAbaFechaListarChamados">
@@ -1153,26 +1316,27 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaFechaListarChamadosActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButtonCancelar1">
+                <Component class="javax.swing.JButton" name="btAbaFechaCancelar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelar1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaFechaCancelarActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btAbaEncerramentoFechaJanela">
+                <Component class="javax.swing.JButton" name="btAbaFechaFechaJanela">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fechar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaEncerramentoFechaJanelaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaFechaFechaJanelaActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btAbaFechaAtChamado">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Iniciar Atendimento"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaFechaAtChamadoActionPerformed"/>
@@ -1181,6 +1345,7 @@
                 <Component class="javax.swing.JButton" name="btAbaFechaCancelaAt">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar Atendimento"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbaFechaCancelaAtActionPerformed"/>
@@ -1391,6 +1556,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JTextArea" name="taAbaFechaDefeitoRelatado">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f0" green="f0" red="f0" type="rgb"/>
                         </Property>

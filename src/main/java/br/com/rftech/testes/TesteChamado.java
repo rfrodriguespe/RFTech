@@ -23,32 +23,18 @@
  */
 package br.com.rftech.testes;
 
+import br.com.rftech.Dao.ChamadoJpaDao;
 import br.com.rftech.bean.Chamado;
-import java.util.List;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TesteLimpaFormatacao {
-
+public class TesteChamado {
     public static void main(String[] args) {
-//        String cpf = "013.231.974.86";
-//        String cpfCru = cpf.replace("-", "").replace(".", "");
-//        String telefone = "(19)993098029";
-//        String telefoneCru = telefone.replace("(", "").replace(")", "").replace("-", "");
-//        String cep = "13617-665";
-//        String cepCru = cep.replace("-", "");
-//        
-//        System.out.println("Meus campos eram: e agora ficaram...");
-//        System.out.println(cpf+" - "+ cpfCru);
-//        System.out.println(telefone+" - "+ telefoneCru);
-//        System.out.println(cep+" - "+ cepCru);
-        String teste = "1          2 3          4 56   7";
-        System.out.println(teste.replaceAll(" ", ""));
-        
-        List<Chamado> lista = null;
-        System.out.println(lista.size());
+        Chamado chamado = ChamadoJpaDao.getInstance().getById(5);
+        System.out.println(chamado);
+        System.out.println(chamado.getDataFechamento());
+                
     }
-
 }

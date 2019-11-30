@@ -45,6 +45,10 @@ public class TesteBrazilDocs {
             System.out.println("O CPF: '"+cpf+"' é inválido.");
         }
         
+        String cargo = "Rh";
+        
+        System.out.println(cargo.substring(0, 2));
+        
         
         
     }

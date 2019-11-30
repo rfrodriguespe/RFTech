@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package br.com.rftech.view;
 
 import br.com.rftech.Dao.FuncionarioJpaDao;
@@ -44,7 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Construtor
      */
     public TelaPrincipal() {
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // atribui look and feel
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
@@ -52,12 +51,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
 
         initComponents();
-        
+
         //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
         Funcionario funcionario = FuncionarioJpaDao.getInstance().getById(1);
         Sessao.getInstance().setFuncionario(funcionario);
         //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
-        
+
         permissoesFuncionario();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -83,7 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuEquipamentos = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemFuncionarios = new javax.swing.JMenuItem();
         jMenuChamado = new javax.swing.JMenu();
         jMenuItemChamados = new javax.swing.JMenuItem();
 
@@ -169,14 +168,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuCadastro.add(jMenuEquipamentos);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Funcionários");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFuncionarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemFuncionarios.setText("Funcionários");
+        jMenuItemFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemFuncionariosActionPerformed(evt);
             }
         });
-        jMenuCadastro.add(jMenuItem2);
+        jMenuCadastro.add(jMenuItemFuncionarios);
 
         jMenuBarMenuPrincipal.add(jMenuCadastro);
 
@@ -236,7 +235,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItemFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFuncionariosActionPerformed
         FuncionarioView tela = new FuncionarioView();
         jDesktopPanel.add(tela);
         tela.setVisible(true);
@@ -248,7 +247,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             tela.setMaximum(true);
         } catch (java.beans.PropertyVetoException e) {
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuItemFuncionariosActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
@@ -342,19 +341,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuClientes;
     private javax.swing.JMenu jMenuEquipamentos;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemChamados;
+    private javax.swing.JMenuItem jMenuItemFuncionarios;
     private javax.swing.JMenu jMenuLogin;
     // End of variables declaration//GEN-END:variables
 
     public void permissoesFuncionario() {
         Funcionario funcLogado = Sessao.getInstance().getFuncionario();
-        this.setTitle("RFTECH - usuário logado: " + funcLogado.getNome() + " Cargo: " + funcLogado.getCargo());
-        if (!funcLogado.getCargo().getNome().equals("Gerente")) {
-            jMenuCadastro.setVisible(false);
+        this.setTitle("RFTECH - Usuário logado: " + funcLogado.getNome() + " Cargo: " + funcLogado.getCargo());
+
+        switch (funcLogado.getCargo().getNome().substring(0, 2)) {
+            case "Ge":
+                //Vazio pois Gerente tem acesso a tudo.
+                break;
+            case "Co":
+                jMenuEquipamentos.setVisible(false);
+                jMenuItemFuncionarios.setVisible(false);
+                jMenuChamado.setVisible(false);
+                break;
+            case "Té":
+                jMenuCadastro.setVisible(false);
+                break;
+            case "Rh":
+                jMenuChamado.setVisible(false);
+                jMenuClientes.setVisible(false);
+                jMenuEquipamentos.setVisible(false);
+                break;
+            case "He":
+                jMenuCadastro.setVisible(false);
+                break;
+            default:
+                jMenuCadastro.setVisible(false);
+                jMenuChamado.setVisible(false);
+                break;
         }
     }
 }

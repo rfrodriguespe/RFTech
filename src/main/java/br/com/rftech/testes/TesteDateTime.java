@@ -23,16 +23,9 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.Dao.ChamadoJpaDao;
-import br.com.rftech.Dao.NotebookJpaDao;
-import br.com.rftech.bean.Chamado;
-import br.com.rftech.bean.Notebook;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.Date;
 
 /**
  *
@@ -41,29 +34,12 @@ import java.util.TimeZone;
 public class TesteDateTime {
 
     public static void main(String[] args) {
-        LocalDateTime agora = LocalDateTime.now();
-        DateTimeFormatter formataData = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(new Locale("pt", "br"));
-        agora.format(formataData); //08/04/14 10:02
 
-        Notebook note = NotebookJpaDao.getInstance().getById(1);
-        Chamado ch = new Chamado(note, "HD emitindo ruído");
-
-        System.out.println(ch);
-        ChamadoJpaDao.getInstance().create(ch);
-//        Chamado ch2 = ChamadoJpaDao.getInstance().getById(3);
-//        ch2.setDataFechamento(Calendar.getInstance().getTime());
-//        ch2.setDefeitoConstatado("HD precisa ser substituido");
-//        ch2.setSolucao("Efetuada a troca do HD e instalado o S.O");
-//        ch2.setStatus(Chamado.FECHADO);
-//        ChamadoJpaDao.getInstance().update(ch2);
-
-//        LocalDateTime teste = LocalDateTime.now();
-//        System.out.println(teste);
-        Chamado ch2 = ChamadoJpaDao.getInstance().getById(1);
-        System.out.println("Hora de Abertura do chamado é: "+ch2.getDataAbertura());
-        System.out.println("Data e hora do fechamento do chamado é: "+ch2.getDataFechamento());
-        
-
+        Date agora = Calendar.getInstance().getTime();
+        SimpleDateFormat formatadoData = new SimpleDateFormat("dd'/'MM'/'yyyy HH:mm");
+        formatadoData.format(agora);
+        System.out.println("Agora é: "+agora);
+        System.out.println("Agora é: "+formatadoData.format(agora));
     }
 
 }
