@@ -36,32 +36,31 @@ import jdk.nashorn.internal.objects.NativeArray;
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
 public class TesteFuncionario {
-    
+
     public static void main(String[] args) {
         Endereco end = new Endereco("54", "rua", "151", "casa", "bairro", "recife", "AC");
         Cargo cargo = CargoJpaDao.getInstance().getByName("Gerente");
-        Funcionario func1 = new Funcionario("01323197486", "rfrodrigues", cargo, "Rodrigo Ferreira Rodrigues", "rodrigo2208@gmail.com", "81988557802", end);
-        
+        Funcionario func1 = new Funcionario("07008330057", "mariab", cargo, "Maria Joaquina Borges", "mjoaquina@gmail.com", "81988557802", end);
+
 //        System.out.println("CEP: "+ func1.getEndereco().getCEP());
 //        func1.getEndereco().setCEP("12345678");
 //        System.out.println("mudei, agora é...");
 //        System.out.println("CEP: "+ func1.getEndereco().getCEP());
-        
         FuncionarioJpaDao.getInstance().create(func1);
-        
-        List<Funcionario> listaFunc = FuncionarioJpaDao.getInstance().readAll();
-        
-        listaFunc.forEach((funcionario) -> {
-            System.out.println(funcionario);
-        });
-        
-        FuncionarioJpaDao.getInstance().create(func1);
-        
-        listaFunc = FuncionarioJpaDao.getInstance().readAll();
-        
-        listaFunc.forEach((funcionario) -> {
-            System.out.println(funcionario);
-        });
+//
+//        List<Funcionario> listaFunc = FuncionarioJpaDao.getInstance().readAll();
+//
+//        listaFunc.forEach((funcionario) -> {
+//            System.out.println(funcionario);
+//        });
+//
+//        FuncionarioJpaDao.getInstance().create(func1);
+//
+//        listaFunc = FuncionarioJpaDao.getInstance().readAll();
+//
+//        listaFunc.forEach((funcionario) -> {
+//            System.out.println(funcionario);
+//        });
     }
-    
+
 }

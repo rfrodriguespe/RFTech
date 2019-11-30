@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 public class NotebookTableModel extends AbstractTableModel {
 
     private ArrayList<Notebook> dados = new ArrayList<>();
-    private String[] colunas = {"Id Equipamento", "Id Dono", "Cpf Dono", "Nome Dono", "Tipo de Equipamento",
+    private String[] colunas = {"Id Equipamento", "Dono", "Tipo de Equipamento",
         "Fabricante", "Modelo", "Serial", "Tela", "Ram", "Hd"};
 
     @Override
@@ -34,24 +34,20 @@ public class NotebookTableModel extends AbstractTableModel {
             case 0:
                 return dados.get(linha).getId();
             case 1:
-                return dados.get(linha).getDono().getId();
+                return dados.get(linha).getDono();
             case 2:
-                return dados.get(linha).getDono().getCpf();
-            case 3:
-                return dados.get(linha).getDono().getNome();
-            case 4:
                 return dados.get(linha).getEquipamentoTipo();
-            case 5:
+            case 3:
                 return dados.get(linha).getFabricante();
-            case 6:
+            case 4:
                 return dados.get(linha).getModelo();
-            case 7:
+            case 5:
                 return dados.get(linha).getSerial();
-            case 8:
+            case 6:
                 return dados.get(linha).getTamanhoTela();
-            case 9:
+            case 7:
                 return dados.get(linha).getRam();
-            case 10:
+            case 8:
                 return dados.get(linha).getHd();
             default:
                 return null;
@@ -64,11 +60,7 @@ public class NotebookTableModel extends AbstractTableModel {
             case 0:
                 dados.get(linha).setId((int) valor);
             case 1:
-                dados.get(linha).getDono().setId((int) valor);
-            case 2:
-                dados.get(linha).getDono().setCpf((String) valor);
-            case 3:
-                dados.get(linha).getDono().setNome((String) valor);
+                dados.get(linha).setDono((ClientePf) valor);
             case 4:
                 dados.get(linha).getEquipamentoTipo().setTipo((String) valor);
             case 5:

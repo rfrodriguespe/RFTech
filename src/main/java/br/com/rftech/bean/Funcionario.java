@@ -23,8 +23,10 @@
  */
 package br.com.rftech.bean;
 
-import br.com.rftech.util.Sha256;
+import java.util.Enumeration;
 import java.util.Objects;
+import java.util.Properties;
+import java.util.ResourceBundle;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -51,13 +53,14 @@ public class Funcionario extends Pessoa {
     private Cargo cargo;
     
     public Funcionario() {
+        this.senha = hashSenha();
     }
 
     public Funcionario(String Cpf, String nomeUsuario, Cargo cargo, String nome, String email, String telefone, Endereco endereco) {
         super(nome, email, telefone, endereco);
         this.Cpf = Cpf;
         this.nomeUsuario = nomeUsuario;
-        this.senha = Sha256.getInstance().getSHA256Hash("rftech");
+        this.senha = hashSenha();
         this.cargo = cargo;
     }
 
@@ -93,7 +96,19 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
     
-    
+    private String hashSenha() {
+        String senha = null;
+        Properties properties = new Properties();
+        ResourceBundle rb = ResourceBundle.getBundle("Funcionario");
+        for (@SuppressWarnings("rawtypes")
+                Enumeration keys = rb.getKeys(); keys.hasMoreElements();) {
+            final String key = (String) keys.nextElement();
+            final String value = rb.getString(key);
+            properties.put(key, value);
+        }
+        senha = properties.getProperty("hashPassWord");
+        return senha;
+    }
     
     
 

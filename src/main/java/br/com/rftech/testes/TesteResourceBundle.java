@@ -23,21 +23,35 @@
  */
 package br.com.rftech.testes;
 
-import br.com.rftech.util.Sha256;
+import br.com.rftech.util.ConnectionUtil;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class TesteSenha {
-    
+public class TesteResourceBundle {
+
     public static void main(String[] args) {
-        System.out.println("Senha 'rftech' criptografada");
-        System.out.println(Sha256.getInstance().getSHA256Hash("rftech"));
+        
+        Properties properties = new Properties();
+        ResourceBundle rb = ResourceBundle.getBundle("Funcionario");
+        for (@SuppressWarnings("rawtypes")
+                Enumeration keys = rb.getKeys(); keys.hasMoreElements();) {
+            final String key = (String) keys.nextElement();
+            final String value = rb.getString(key);
+            properties.put(key, value);
+        }
+        System.out.println(properties.getProperty("hashPassWord"));
         
         
-        
+        String senha = properties.getProperty("hashPassWord");
     }
-            
-    
 }

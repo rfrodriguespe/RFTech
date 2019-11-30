@@ -407,9 +407,11 @@ public class Login extends javax.swing.JFrame {
             Sessao.getInstance().getFuncionario().setSenha(Sha256.getInstance().getSHA256Hash(senha));
             if (FuncionarioJpaDao.getInstance().update(Sessao.getInstance().getFuncionario())) {
                 JOptionPane.showMessageDialog(null, "ALTERAÇÃO EFETUADA COM SUCESSO\n"
-                        + "Bem vindo, " + Sessao.getInstance().getFuncionario().getNomeUsuario());
-                new TelaPrincipal().setVisible(true);
-                this.dispose();
+                        + "Bem vindo, " + Sessao.getInstance().getFuncionario().getNomeUsuario()
+                        + "O programa se encerrará e logue novamente com a nova senha");
+                System.exit(0);
+//                new TelaPrincipal().setVisible(true);
+//                this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Senha mínima deve ter ao menos 4 caracteres");

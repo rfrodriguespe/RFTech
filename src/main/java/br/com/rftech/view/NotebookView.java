@@ -441,7 +441,8 @@ public class NotebookView extends javax.swing.JInternalFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         if (!CamposEmBranco()) {
             Notebook notebook = new Notebook();
-            ClientePf dono = ClientePfJpaDao.getInstance().getById(jComboBoxDono.getSelectedIndex() + 1);
+            ClientePf clientePfExemplo = (ClientePf)jComboBoxDono.getSelectedItem();
+            ClientePf dono = ClientePfJpaDao.getInstance().getById(clientePfExemplo.getId());
             notebook.setDono(dono);
             EquipamentosTipo equipamentoTipo = EquipamentosTipoJpaDao.getInstance().getById(jComboBoxTipoEquipamento.getSelectedIndex() + 1);
             notebook.setEquipamentoTipo(equipamentoTipo);
@@ -466,7 +467,8 @@ public class NotebookView extends javax.swing.JInternalFrame {
         if (!CamposEmBranco()) {
             if (jTableNotebook.getSelectedRow() != -1) {
                 Notebook notebook = NotebookJpaDao.getInstance().getById(Integer.parseInt(tfId.getText()));
-                ClientePf dono = ClientePfJpaDao.getInstance().getById(jComboBoxDono.getSelectedIndex() + 1);
+                ClientePf cliExemplo = (ClientePf) jComboBoxDono.getSelectedItem();
+                ClientePf dono = ClientePfJpaDao.getInstance().getById(cliExemplo.getId());
                 notebook.setDono(dono);
                 EquipamentosTipo equipamentoTipo = EquipamentosTipoJpaDao.getInstance().getById(jComboBoxTipoEquipamento.getSelectedIndex() + 1);
                 notebook.setEquipamentoTipo(equipamentoTipo);
@@ -535,7 +537,7 @@ public class NotebookView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVerificaPendencias;
-    private javax.swing.JComboBox<String> jComboBoxDono;
+    private javax.swing.JComboBox<ClientePf> jComboBoxDono;
     private javax.swing.JComboBox<String> jComboBoxFabricante;
     private javax.swing.JComboBox<String> jComboBoxHd;
     private javax.swing.JComboBox<String> jComboBoxRam;
@@ -567,7 +569,7 @@ public class NotebookView extends javax.swing.JInternalFrame {
 
         List<ClientePf> listaClientesPf = ClientePfJpaDao.getInstance().readAll();
         for (ClientePf clientePf : listaClientesPf) {
-            jComboBoxDono.addItem("Id: " + clientePf.getId() + " Cpf: " + clientePf.getCpf() + " Nome: " + clientePf.getNome());
+            jComboBoxDono.addItem(clientePf);
         }
 
         List<Fabricante> listaFabricantes = FabricanteJpaDao.getInstance().readAll();
@@ -658,8 +660,9 @@ public class NotebookView extends javax.swing.JInternalFrame {
             jButtonAlterar.setEnabled(true);
 
             tfId.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 0).toString());
-            jComboBoxDono.setSelectedIndex(Integer.parseInt(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 1).toString()) - 1);
-            EquipamentosTipo tipoEquipamento = (EquipamentosTipo) jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 4);
+            ClientePf cliEx = (ClientePf) jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 1);
+            jComboBoxDono.setSelectedItem(cliEx);
+            EquipamentosTipo tipoEquipamento = (EquipamentosTipo) jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 2);
             jComboBoxTipoEquipamento.setSelectedIndex(tipoEquipamento.getId() - 1);
             Fabricante fabricante = (Fabricante) jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 5);
             jComboBoxFabricante.setSelectedIndex(fabricante.getId() - 1);

@@ -29,13 +29,17 @@ import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.FuncionarioTableModel;
 import br.com.rftech.bean.Cargo;
 import br.com.rftech.bean.Endereco;
+import br.com.rftech.bean.Sessao;
 import br.com.rftech.bean.TableColumnAdjuster;
 import br.com.rftech.testes.TesteCEP;
 import br.com.rftech.util.ValidaCampos;
 import com.github.gilbertotorrezan.viacep.se.ViaCEPClient;
 import com.github.gilbertotorrezan.viacep.shared.ViaCEPEndereco;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
@@ -99,6 +103,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jButtonNovo = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonFecharJanela = new javax.swing.JButton();
+        btResetSenha = new javax.swing.JButton();
         jPanelEndereco = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         ftfCep = new javax.swing.JFormattedTextField();
@@ -277,14 +282,12 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jPanelTabelaLayout.setHorizontalGroup(
             jPanelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         jPanelTabelaLayout.setVerticalGroup(
             jPanelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
@@ -351,6 +354,14 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             }
         });
 
+        btResetSenha.setText("Reset de Senha");
+        btResetSenha.setEnabled(false);
+        btResetSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btResetSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
         jPanelBotoesLayout.setHorizontalGroup(
@@ -365,27 +376,29 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonFecharJanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonFecharJanela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btResetSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBotoesLayout.setVerticalGroup(
             jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jButtonNovo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addComponent(jButtonSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btResetSenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonVerificaPendencias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonLimpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jButtonFecharJanela)
                 .addContainerGap())
         );
@@ -467,7 +480,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                        .addComponent(tfComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -496,7 +509,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -504,28 +517,30 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanelTabela, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
                             .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(105, 105, 105)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         jPanelTabela.getAccessibleContext().setAccessibleName("Dados Pessoais");
@@ -567,7 +582,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
             funcionario.setCpf(ftfCpf.getText().replace("-", "").replace(".", ""));
             funcionario.setNome(tfNome.getText());
             funcionario.setNomeUsuario(tfNomeUsuario.getText());
-            funcionario.setSenha("7E32C6E5E1D0D0106FB6BC8F2F838CB71CEC1A14E9F165A4E77A0C3154E0D01F");
+            //funcionario.setSenha("7E32C6E5E1D0D0106FB6BC8F2F838CB71CEC1A14E9F165A4E77A0C3154E0D01F");
             funcionario.setTelefone(ftfTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
             funcionario.setEmail(tfEmail.getText());
             endereco.setCEP(ftfCep.getText().replace("-", ""));
@@ -637,6 +652,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         habilitaCampos(false);
         jButtonExcluir.setEnabled(false);
         jButtonAlterar.setEnabled(false);
+        btResetSenha.setEnabled(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTableFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFuncionarioMouseClicked
@@ -645,6 +661,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
 
             jButtonExcluir.setEnabled(true);
             jButtonAlterar.setEnabled(true);
+            btResetSenha.setEnabled(true);
 
             tfId.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 0).toString());
             ftfCpf.setText(jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 1).toString());
@@ -711,7 +728,29 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ftfCpfFocusLost
 
+    private void btResetSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetSenhaActionPerformed
+        // TODO add your handling code here:
+        if (jTableFuncionario.getSelectedRow() != -1) {
+            Funcionario master = Sessao.getInstance().getFuncionario();
+            if (master.getCargo().getId() == 1) {
+                Funcionario funcReset = FuncionarioJpaDao.getInstance().getById((int) jTableFuncionario.getValueAt(jTableFuncionario.getSelectedRow(), 0));
+                funcReset.setSenha(resetSenha());
+                if (FuncionarioJpaDao.getInstance().update(funcReset)) {
+                    JOptionPane.showMessageDialog(null, "Senha resetada para a padrão");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não foi possível resetar a senha");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não tem permissão para resetar senhas.\n"
+                        + "Nível exigido: Gerente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um funcionário para resetar a sua senha");
+        }
+    }//GEN-LAST:event_btResetSenhaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btResetSenha;
     private javax.swing.JFormattedTextField ftfCep;
     private javax.swing.JFormattedTextField ftfCpf;
     private javax.swing.JFormattedTextField ftfTelefone;
@@ -862,5 +901,18 @@ public class FuncionarioView extends javax.swing.JInternalFrame {
         jButtonSalvar.setEnabled(estado);
         jButtonVerificaPendencias.setEnabled(estado);
         jButtonPesquisaCep.setEnabled(estado);
+    }
+
+    private String resetSenha() {
+        String senha = null;
+        Properties properties = new Properties();
+        ResourceBundle rb = ResourceBundle.getBundle("Funcionario");
+        for (@SuppressWarnings("rawtypes") Enumeration keys = rb.getKeys(); keys.hasMoreElements();) {
+            final String key = (String) keys.nextElement();
+            final String value = rb.getString(key);
+            properties.put(key, value);
+        }
+        senha = properties.getProperty("hashPassWord");
+        return senha;
     }
 }
