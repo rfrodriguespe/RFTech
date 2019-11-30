@@ -24,17 +24,28 @@
 package br.com.rftech.testes;
 
 import br.com.rftech.Dao.ChamadoJpaDao;
+import br.com.rftech.Dao.ClientePfJpaDao;
+import br.com.rftech.Dao.NotebookJpaDao;
 import br.com.rftech.bean.Chamado;
+import br.com.rftech.bean.ClientePf;
+import br.com.rftech.bean.Notebook;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
 public class TesteChamado {
+
     public static void main(String[] args) {
-        Chamado chamado = ChamadoJpaDao.getInstance().getById(5);
-        System.out.println(chamado);
-        System.out.println(chamado.getDataFechamento());
-                
+//        Chamado chamado = ChamadoJpaDao.getInstance().getById(5);
+//        System.out.println(chamado);
+//        System.out.println(chamado.getDataFechamento());
+
+        ClientePf clientePf = ClientePfJpaDao.getInstance().getById(1);
+        Notebook notebook = NotebookJpaDao.getInstance().getById(1);
+        
+        Chamado chamado = new Chamado(notebook, "Testando o banco novo");
+        ChamadoJpaDao.getInstance().create(chamado);
+
     }
 }

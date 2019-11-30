@@ -52,7 +52,7 @@ public class Chamado implements Serializable {
     private int id;
     @OneToOne
     private Notebook notebook;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataAbertura;
     @Column
     private String defeitoRelatado;
@@ -60,7 +60,7 @@ public class Chamado implements Serializable {
     private String defeitoConstatado;
     @Column
     private String solucao;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataFechamento;
     @Column
     private String status;

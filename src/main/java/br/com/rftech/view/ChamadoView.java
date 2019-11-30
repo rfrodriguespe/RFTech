@@ -47,7 +47,7 @@ import javax.swing.JTable;
 public class ChamadoView extends javax.swing.JInternalFrame {
 
     public static Chamado chEmAt;
-    public static SimpleDateFormat dataFormatada = new SimpleDateFormat("dd'/'MM'/'yyyy HH:mm");
+    public static SimpleDateFormat dataFormatada = new SimpleDateFormat("dd'/'MM'/'yyyy");
 
     /**
      * Creates new form ClientesPFView
