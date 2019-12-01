@@ -589,7 +589,7 @@ public class NotebookView extends javax.swing.JInternalFrame {
         listaNotebook.forEach((notebook) -> {
             tableModel.addRow(notebook);
         });
-        jTableNotebook.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTableNotebook.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         TableColumnAdjuster tca = new TableColumnAdjuster(jTableNotebook);
         tca.adjustColumns();
     }
@@ -664,13 +664,13 @@ public class NotebookView extends javax.swing.JInternalFrame {
             jComboBoxDono.setSelectedItem(cliEx);
             EquipamentosTipo tipoEquipamento = (EquipamentosTipo) jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 2);
             jComboBoxTipoEquipamento.setSelectedIndex(tipoEquipamento.getId() - 1);
-            Fabricante fabricante = (Fabricante) jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 5);
+            Fabricante fabricante = (Fabricante) jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 3);
             jComboBoxFabricante.setSelectedIndex(fabricante.getId() - 1);
-            tfModelo.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 6).toString());
-            tfSerial.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 7).toString());
-            jComboBoxTela.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 8));
-            jComboBoxRam.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 9));
-            jComboBoxHd.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 10));
+            tfModelo.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 4).toString());
+            tfSerial.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 5).toString());
+            jComboBoxTela.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 6));
+            jComboBoxRam.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 7));
+            jComboBoxHd.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 8));
         }
     }
 }
