@@ -26,9 +26,14 @@ package br.com.rftech.testes;
 import br.com.rftech.Dao.ChamadoJpaDao;
 import br.com.rftech.Dao.ClientePfJpaDao;
 import br.com.rftech.Dao.NotebookJpaDao;
+import br.com.rftech.Dao.PecasJpaDao;
 import br.com.rftech.bean.Chamado;
 import br.com.rftech.bean.ClientePf;
 import br.com.rftech.bean.Notebook;
+import br.com.rftech.bean.Pecas;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  *
@@ -44,8 +49,29 @@ public class TesteChamado {
         ClientePf clientePf = ClientePfJpaDao.getInstance().getById(1);
         Notebook notebook = NotebookJpaDao.getInstance().getById(1);
         
-        Chamado chamado = new Chamado(notebook, "Testando o banco novo");
-        ChamadoJpaDao.getInstance().create(chamado);
+        Chamado chamado = new Chamado(notebook, "Tela não funciona");
+        //ChamadoJpaDao.getInstance().create(chamado);
+        
+        //Fechando chamado...
+        Pecas tela = PecasJpaDao.getInstance().getById(1);
+        Pecas carcaca = PecasJpaDao.getInstance().getById(4);
+        
+        List<Pecas> pecasUsadas = new ArrayList<>();
+        pecasUsadas.add(tela);
+        pecasUsadas.add(carcaca);
+        
+        
+        Chamado ch = ChamadoJpaDao.getInstance().getById(1);
+        
+        ch.setDataFechamento(Calendar.getInstance().getTime());
+        ch.setDefeitoRelatado("Tela trincada");
+        ch.setDefeitoConstatado("Tela e carcaça trincadas");
+        ch.setSolucao("Trocou a tela e o frame do lcd");
+        ch.setPecasUsadas(pecasUsadas);
+        
+        ChamadoJpaDao.getInstance().update(ch);
+
+            System.out.println(ch);
 
     }
 }

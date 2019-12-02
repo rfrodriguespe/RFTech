@@ -26,11 +26,13 @@ package br.com.rftech.bean;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,6 +62,10 @@ public class Chamado implements Serializable {
     private String defeitoConstatado;
     @Column
     private String solucao;
+    // Tentando implementar uso de paças
+    @OneToMany
+    private List<Pecas> pecasUsadas;
+    //
     @Temporal(TemporalType.DATE)
     private Date dataFechamento;
     @Column
@@ -74,6 +80,7 @@ public class Chamado implements Serializable {
         this.defeitoRelatado = defeitoRelatado;
         this.defeitoConstatado = "A analisar";
         this.solucao = "A analisar";
+        this.pecasUsadas = null;
         this.status = Chamado.ABERTO;
     }
 
@@ -125,6 +132,16 @@ public class Chamado implements Serializable {
         this.solucao = solucao;
     }
 
+    public List<Pecas> getPecasUsadas() {
+        return pecasUsadas;
+    }
+
+    public void setPecasUsadas(List<Pecas> pecasUsadas) {
+        this.pecasUsadas = pecasUsadas;
+    }
+    
+    
+    
     public Date getDataFechamento() {
         return dataFechamento;
     }
@@ -151,6 +168,7 @@ public class Chamado implements Serializable {
                 + ", defeitoRelatado=" + defeitoRelatado
                 + ", defeitoConstatado=" + defeitoConstatado
                 + ", solucao=" + solucao
+                + ", peçaso=" + pecasUsadas
                 + ", dataFechamento=" + dataFechamento
                 + ", status=" + status + '}';
     }

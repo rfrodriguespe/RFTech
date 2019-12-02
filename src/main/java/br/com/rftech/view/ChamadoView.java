@@ -26,14 +26,18 @@ package br.com.rftech.view;
 import br.com.rftech.Dao.ChamadoJpaDao;
 import br.com.rftech.Dao.ClientePfJpaDao;
 import br.com.rftech.Dao.NotebookJpaDao;
+import br.com.rftech.Dao.PecasJpaDao;
 import br.com.rftech.bean.Chamado;
 import br.com.rftech.bean.ChamadoTableModel;
 import br.com.rftech.bean.ClientePf;
 import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.Notebook;
+import br.com.rftech.bean.Pecas;
 import br.com.rftech.bean.Sessao;
 import br.com.rftech.bean.TableColumnAdjuster;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -127,6 +131,8 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         taAbaConsultaSolucao = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         labelAbaConsultaStatus = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        cbAbaConsultaPecasUsadas = new javax.swing.JComboBox<>();
         jPanelAbertura = new javax.swing.JPanel();
         jPanelDadosChamado = new javax.swing.JPanel();
         jLabelFabricante = new javax.swing.JLabel();
@@ -165,6 +171,19 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         jLabelModelo3 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         taAbaFechamentoSolucao = new javax.swing.JTextArea();
+        chBoxUsoupecas = new javax.swing.JCheckBox();
+        chBoxTela = new javax.swing.JCheckBox();
+        jLabel19 = new javax.swing.JLabel();
+        tfQtdeTela = new javax.swing.JTextField();
+        tfQtdeRam = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        chBoxRam = new javax.swing.JCheckBox();
+        tfQtdeCarcaca = new javax.swing.JTextField();
+        chBoxCarcaca = new javax.swing.JCheckBox();
+        jLabel21 = new javax.swing.JLabel();
+        chBoxHd = new javax.swing.JCheckBox();
+        jLabel22 = new javax.swing.JLabel();
+        tfQtdeHd = new javax.swing.JTextField();
         jPanelBotoes1 = new javax.swing.JPanel();
         btAbaFechaLimpar = new javax.swing.JButton();
         btAbaFechaFechaChamado = new javax.swing.JButton();
@@ -239,7 +258,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         jPanelTabelaLayout.setVerticalGroup(
             jPanelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -417,6 +436,8 @@ public class ChamadoView extends javax.swing.JInternalFrame {
 
         labelAbaConsultaStatus.setText("Status");
 
+        jLabel23.setText("Peças  Usadas");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -451,7 +472,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaConsultaSerial, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
+                        .addComponent(tfAbaConsultaSerial, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -467,19 +488,23 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelId17)
-                                    .addComponent(jLabelId15))
-                                .addGap(6, 6, 6))
+                                    .addComponent(jLabelId15)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelAbaConsultaStatus)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelId18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel23)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(labelAbaConsultaStatus)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabelId18)))
+                                .addGap(4, 4, 4)))
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane9)
                             .addComponent(jScrollPane7)
-                            .addComponent(jScrollPane8))))
+                            .addComponent(jScrollPane8)
+                            .addComponent(cbAbaConsultaPecasUsadas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -524,7 +549,11 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addComponent(labelAbaConsultaStatus))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(cbAbaConsultaPecasUsadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout jPanelConsultaLayout = new javax.swing.GroupLayout(jPanelConsulta);
@@ -545,9 +574,9 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanelAcoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 349, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -642,7 +671,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfAbaAbreSerialEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                        .addComponent(tfAbaAbreSerialEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -801,7 +830,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             jPanelAberturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAberturaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelDadosChamado, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+                .addComponent(jPanelDadosChamado, javax.swing.GroupLayout.DEFAULT_SIZE, 1195, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
@@ -813,7 +842,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 .addGroup(jPanelAberturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelDadosChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
 
         jTabbedPaneChamados.addTab("Abertura de Chamados", jPanelAbertura);
@@ -839,19 +868,88 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         taAbaFechamentoSolucao.setEnabled(false);
         jScrollPane5.setViewportView(taAbaFechamentoSolucao);
 
+        chBoxUsoupecas.setText("Usou peças?");
+        chBoxUsoupecas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chBoxUsoupecasItemStateChanged(evt);
+            }
+        });
+
+        chBoxTela.setText("Tela");
+        chBoxTela.setEnabled(false);
+
+        jLabel19.setText("Quantidade disponível:");
+
+        tfQtdeTela.setEnabled(false);
+
+        tfQtdeRam.setEnabled(false);
+
+        jLabel20.setText("Quantidade disponível:");
+
+        chBoxRam.setText("Ram");
+        chBoxRam.setEnabled(false);
+
+        tfQtdeCarcaca.setEnabled(false);
+
+        chBoxCarcaca.setText("Carcaças");
+        chBoxCarcaca.setEnabled(false);
+
+        jLabel21.setText("Quantidade disponível:");
+
+        chBoxHd.setText("Hd");
+        chBoxHd.setEnabled(false);
+
+        jLabel22.setText("Quantidade disponível:");
+
+        tfQtdeHd.setEnabled(false);
+
         javax.swing.GroupLayout jPanelDadosChamado1Layout = new javax.swing.GroupLayout(jPanelDadosChamado1);
         jPanelDadosChamado1.setLayout(jPanelDadosChamado1Layout);
         jPanelDadosChamado1Layout.setHorizontalGroup(
             jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosChamado1Layout.createSequentialGroup()
+            .addGroup(jPanelDadosChamado1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelModelo2)
-                    .addComponent(jLabelModelo3))
+                    .addComponent(jLabelModelo3)
+                    .addComponent(chBoxUsoupecas))
                 .addGap(24, 24, 24)
                 .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
-                    .addComponent(jScrollPane4))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
+                    .addGroup(jPanelDadosChamado1Layout.createSequentialGroup()
+                        .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosChamado1Layout.createSequentialGroup()
+                                    .addComponent(chBoxHd)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel22)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfQtdeHd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosChamado1Layout.createSequentialGroup()
+                                    .addComponent(chBoxCarcaca)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel21)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfQtdeCarcaca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelDadosChamado1Layout.createSequentialGroup()
+                                .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosChamado1Layout.createSequentialGroup()
+                                        .addComponent(chBoxRam)
+                                        .addGap(22, 22, 22))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosChamado1Layout.createSequentialGroup()
+                                        .addComponent(chBoxTela)
+                                        .addGap(24, 24, 24)))
+                                .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelDadosChamado1Layout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfQtdeRam, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelDadosChamado1Layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfQtdeTela, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelDadosChamado1Layout.setVerticalGroup(
@@ -865,6 +963,33 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelModelo3)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDadosChamado1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chBoxUsoupecas)
+                            .addComponent(chBoxTela))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chBoxRam))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosChamado1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(tfQtdeTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(tfQtdeRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chBoxHd)
+                    .addComponent(jLabel22)
+                    .addComponent(tfQtdeHd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDadosChamado1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chBoxCarcaca)
+                    .addComponent(jLabel21)
+                    .addComponent(tfQtdeCarcaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -1109,7 +1234,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addComponent(cbChamadosAbertos, javax.swing.GroupLayout.PREFERRED_SIZE, 896, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelFechamentoLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jPanelDadosChamado1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
+                        .addComponent(jPanelDadosChamado1, javax.swing.GroupLayout.DEFAULT_SIZE, 1181, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelFechamentoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -1130,8 +1255,8 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelDadosChamado1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                        .addComponent(jPanelDadosChamado1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         jTabbedPaneChamados.addTab("Fechamento de Chamados", jPanelFechamento);
@@ -1147,8 +1272,8 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneChamados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneChamados)
+                .addContainerGap())
         );
 
         pack();
@@ -1226,6 +1351,31 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             chamadoAt.setDefeitoConstatado(taAbaFechamentoDefeitoConstatado.getText());
             chamadoAt.setSolucao(taAbaFechamentoSolucao.getText());
             chamadoAt.setDataFechamento(Calendar.getInstance().getTime());
+
+            //Setando peças usadas
+            
+            List<Pecas> listaPecasUsadas = new ArrayList<>();
+            
+            if (chBoxTela.isSelected()) {
+                Pecas usouTela = PecasJpaDao.getInstance().getById(1);
+                listaPecasUsadas.add(usouTela);
+            }
+            if (chBoxRam.isSelected()) {
+                Pecas usouRam = PecasJpaDao.getInstance().getById(2);
+                listaPecasUsadas.add(usouRam);
+            }
+            if (chBoxHd.isSelected()) {
+                Pecas usouHd = PecasJpaDao.getInstance().getById(3);
+                listaPecasUsadas.add(usouHd);
+            }
+            if (chBoxCarcaca.isSelected()) {
+                Pecas usouCarcaca = PecasJpaDao.getInstance().getById(4);
+                listaPecasUsadas.add(usouCarcaca);
+            }
+
+            chamadoAt.setPecasUsadas(listaPecasUsadas);
+            
+            //Setando peças usadas
             chamadoAt.setStatus(Chamado.FECHADO);
             if (ChamadoJpaDao.getInstance().update(chamadoAt)) {
                 JOptionPane.showMessageDialog(null, "Chamado fechado com sucesso");
@@ -1324,7 +1474,6 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         if (cbAbaAbreEquipamentos.getSelectedIndex() != -1 && cbAbaAbreCliente.getSelectedIndex() != -1) {
             Notebook noteExemplo = (Notebook) cbAbaAbreEquipamentos.getSelectedItem();
             Notebook noteBanco = NotebookJpaDao.getInstance().getById(noteExemplo.getId());
-
             tfAbaAbreIdEquipamento.setText("" + noteBanco.getId());
             tfAbaAbreFabricanteEquipamento.setText("" + noteBanco.getFabricante());
             tfAbaAbreModeloEquipamento.setText(noteBanco.getModelo());
@@ -1408,6 +1557,27 @@ public class ChamadoView extends javax.swing.JInternalFrame {
 //        popularEquipamentosDoClienteSelecionado();
     }//GEN-LAST:event_cbAbaAbreClienteFocusLost
 
+    private void chBoxUsoupecasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chBoxUsoupecasItemStateChanged
+        // TODO add your handling code here:
+        //implementando Pecas
+        if (chBoxUsoupecas.isSelected()) {
+            chBoxTela.setEnabled(true);
+            chBoxRam.setEnabled(true);
+            chBoxHd.setEnabled(true);
+            chBoxCarcaca.setEnabled(true);
+        } else {
+            chBoxTela.setEnabled(false);
+            chBoxTela.setSelected(false);
+            chBoxRam.setEnabled(false);
+            chBoxRam.setSelected(false);
+            chBoxHd.setEnabled(false);
+            chBoxHd.setSelected(false);
+            chBoxCarcaca.setEnabled(false);
+            chBoxCarcaca.setSelected(false);
+        }
+        //implementando Pecas
+    }//GEN-LAST:event_chBoxUsoupecasItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAbaAbreAbrirChamado;
     private javax.swing.JButton btAbaAbreCancelar;
@@ -1424,8 +1594,14 @@ public class ChamadoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btNovo;
     private javax.swing.JComboBox<ClientePf> cbAbaAbreCliente;
     private javax.swing.JComboBox<Notebook> cbAbaAbreEquipamentos;
+    private javax.swing.JComboBox<Pecas> cbAbaConsultaPecasUsadas;
     private javax.swing.JComboBox<String> cbAbaConsultaTipoPesquisa;
     private javax.swing.JComboBox<Chamado> cbChamadosAbertos;
+    private javax.swing.JCheckBox chBoxCarcaca;
+    private javax.swing.JCheckBox chBoxHd;
+    private javax.swing.JCheckBox chBoxRam;
+    private javax.swing.JCheckBox chBoxTela;
+    private javax.swing.JCheckBox chBoxUsoupecas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonFecharJanela;
     private javax.swing.JLabel jLabel1;
@@ -1438,7 +1614,12 @@ public class ChamadoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1526,6 +1707,10 @@ public class ChamadoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfAbaFechaNomeCliente;
     private javax.swing.JTextField tfAbaFechaNomeCliente2;
     private javax.swing.JTextField tfAbaFechaSerialEquipamento;
+    private javax.swing.JTextField tfQtdeCarcaca;
+    private javax.swing.JTextField tfQtdeHd;
+    private javax.swing.JTextField tfQtdeRam;
+    private javax.swing.JTextField tfQtdeTela;
     // End of variables declaration//GEN-END:variables
 
     private void populaClientesAbaAbreChamados() {
@@ -1534,7 +1719,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
         listaClientesPf.forEach((clientePf) -> {
             cbAbaAbreCliente.addItem(clientePf);
         });
-        if(listaClientesPf.isEmpty()){
+        if (listaClientesPf.isEmpty()) {
             //JOptionPane.showMessageDialog(null, "Cliente não possui nenhum equipamento cadastrado");
             JOptionPane.showMessageDialog(null, "Não há clientes cadastrados em nosso sistema");
         }
@@ -1549,7 +1734,7 @@ public class ChamadoView extends javax.swing.JInternalFrame {
             listaEquipamentosCliente.forEach((notebookCliente) -> {
                 cbAbaAbreEquipamentos.addItem(notebookCliente);
             });
-            if (listaEquipamentosCliente.isEmpty()){
+            if (listaEquipamentosCliente.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Cliente não possui nenhum equipamento cadastrado");
             }
         }
@@ -1634,6 +1819,17 @@ public class ChamadoView extends javax.swing.JInternalFrame {
                 tfAbaConsultaDataEncerramento.setText("");
             }
             labelAbaConsultaStatus.setText("" + jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 7));
+            List<Pecas> pecasExemplo = (List<Pecas>) jTableChamado.getValueAt(jTableChamado.getSelectedRow(), 8);
+            if (!pecasExemplo.isEmpty()) {
+                cbAbaConsultaPecasUsadas.removeAllItems();
+                for (Pecas pecas : pecasExemplo) {
+                    cbAbaConsultaPecasUsadas.addItem(pecas);
+                }
+                cbAbaConsultaPecasUsadas.setEnabled(true);
+            } else {
+                cbAbaConsultaPecasUsadas.removeAllItems();
+                cbAbaConsultaPecasUsadas.setEnabled(false);
+            }
         }
     }
 

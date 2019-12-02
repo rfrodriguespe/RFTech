@@ -13,7 +13,7 @@ public class ChamadoTableModel extends AbstractTableModel {
 
     private List<Chamado> dados = new ArrayList<>();
     private String[] colunas = {"Id Chamado", "Detalhes do Equipamento",
-        "Data de Abertura", "Defeito Relatado", "Defeito Constatado", "Solução", "Data do fechamento","Status"};
+        "Data de Abertura", "Defeito Relatado", "Defeito Constatado", "Solução", "Data do fechamento","Status", "peças Usadas"};
 
     @Override
     public String getColumnName(int col) {
@@ -49,6 +49,8 @@ public class ChamadoTableModel extends AbstractTableModel {
                 return dados.get(linha).getDataFechamento();
             case 7:
                 return dados.get(linha).getStatus();
+            case 8:
+                return dados.get(linha).getPecasUsadas();
             default:
                 return null;
         }
@@ -73,6 +75,8 @@ public class ChamadoTableModel extends AbstractTableModel {
                 dados.get(linha).setDataFechamento((Date) valor);
             case 7:
                 dados.get(linha).setSolucao((String) valor);
+            case 8:
+                dados.get(linha).setPecasUsadas((List<Pecas>) valor);
         }
         this.fireTableRowsUpdated(linha, linha);
     }
