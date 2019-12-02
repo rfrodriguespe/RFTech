@@ -108,10 +108,7 @@ public class Fornecedor extends Pessoa {
             return false;
         }
         final Fornecedor other = (Fornecedor) obj;
-        if (!Objects.equals(this.Cnpj, other.Cnpj)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.Cnpj, other.Cnpj);
     }
 
 }
