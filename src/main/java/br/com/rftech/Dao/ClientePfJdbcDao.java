@@ -24,6 +24,7 @@
 package br.com.rftech.Dao;
 
 import br.com.rftech.bean.ClientePf;
+import br.com.rftech.bean.Endereco;
 import br.com.rftech.util.ConnectionUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -80,19 +81,20 @@ public class ClientePfJdbcDao implements Dao {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ClientePf clientePf = new ClientePf();
-                clientePf.setId(rs.getInt("id"));
+                clientePf.setId(rs.getInt("ID"));
                 clientePf.setCpf(rs.getString("CPF"));
-                clientePf.setNome(rs.getString("Nome"));
-                clientePf.setTelefone(rs.getString("Telefone"));
-                clientePf.setEmail(rs.getString("Email"));
-                //clientePf.getEndereco().setCEP(rs.getString("CEP"));
-//                clientePf.getEndereco().setCEP(rs.getString(6));
-//                clientePf.getEndereco().setBairro(rs.getString(7));
-//                clientePf.getEndereco().setCidade(rs.getString(8));
-//                clientePf.getEndereco().setComplemento(rs.getString(9));
-//                clientePf.getEndereco().setLogradouro(rs.getString(10));
-//                clientePf.getEndereco().setNumero(rs.getString(11));
-//                clientePf.getEndereco().setUf(rs.getString(12));
+                clientePf.setNome(rs.getString("NOME"));
+                clientePf.setTelefone(rs.getString("TELEFONE"));
+                clientePf.setEmail(rs.getString("EMAIL"));
+                Endereco end = new Endereco();
+                end.setCEP(rs.getString("CEP"));
+                end.setLogradouro(rs.getString("LOGRADOURO"));
+                end.setNumero(rs.getString("NUMERO"));
+                end.setComplemento(rs.getString("COMPLEMENTO"));
+                end.setBairro(rs.getString("BAIRRO"));
+                end.setCidade(rs.getString("CIDADE"));
+                end.setUf(rs.getString("UF"));
+                clientePf.setEndereco(end);
                 listaClientesPf.add(clientePf);
             }
         } catch (SQLException ex) {
@@ -108,7 +110,10 @@ public class ClientePfJdbcDao implements Dao {
         ClientePf clientePf = (ClientePf) arg0;
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "UPDATE `clientePf` SET `clientePf`=?,`obs`=? WHERE cod=?";
+        String sql = "UPDATE `clientepf` SET `CPF` = ?, `NOME` = ?, `TELEFONE` = ?, `EMAIL` = ?,"
+                + "`CEP` = ?, `LOGRADOURO` = ?, `NUMERO` = ?, `COMPLEMENTO` = ?, `BAIRRO` = ?,"
+                + "`CIDADE` = ?, `UF` = ? WHERE `clientepf`.`ID` = ?";
+                
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, clientePf.getCpf());
@@ -122,6 +127,7 @@ public class ClientePfJdbcDao implements Dao {
             stmt.setString(9, clientePf.getEndereco().getBairro());
             stmt.setString(10, clientePf.getEndereco().getCidade());
             stmt.setString(11, clientePf.getEndereco().getUf());
+            stmt.setInt(12, clientePf.getId());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -136,7 +142,7 @@ public class ClientePfJdbcDao implements Dao {
         ClientePf clientePf = (ClientePf) arg0;
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "DELETE from clientePf WHERE cod=?";
+        String sql = "DELETE FROM `clientepf` WHERE `clientepf`.`ID` = ?";
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, clientePf.getId());
@@ -144,6 +150,41 @@ public class ClientePfJdbcDao implements Dao {
             return true;
         } catch (SQLException ex) {
             return false;
+        } finally {
+            ConnectionUtil.closeConnection(conn, stmt);
+        }
+    }
+
+    public ClientePf getById(int id) {
+        ClientePf clientePf = null;
+        Connection conn = ConnectionUtil.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM `clientepf` WHERE `ID` = ?";
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                clientePf = new ClientePf();
+                clientePf.setId(rs.getInt("ID"));
+                clientePf.setCpf(rs.getString("CPF"));
+                clientePf.setNome(rs.getString("NOME"));
+                clientePf.setTelefone(rs.getString("TELEFONE"));
+                clientePf.setEmail(rs.getString("EMAIL"));
+                Endereco end = new Endereco();
+                end.setCEP(rs.getString("CEP"));
+                end.setLogradouro(rs.getString("LOGRADOURO"));
+                end.setNumero(rs.getString("NUMERO"));
+                end.setComplemento(rs.getString("COMPLEMENTO"));
+                end.setBairro(rs.getString("BAIRRO"));
+                end.setCidade(rs.getString("CIDADE"));
+                end.setUf(rs.getString("UF"));
+                clientePf.setEndereco(end);
+            }
+            return clientePf;
+        } catch (SQLException ex) {
+            return null;
         } finally {
             ConnectionUtil.closeConnection(conn, stmt);
         }
