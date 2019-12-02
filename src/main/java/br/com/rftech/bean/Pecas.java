@@ -24,6 +24,7 @@
 package br.com.rftech.bean;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,14 +34,48 @@ import javax.persistence.Id;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-@Entity
+@Entity(name="Peças")
 public class Pecas implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+    
+    public static final String TELA = "Tela";
+    public static final String RAM = "Memória";
+    public static final String HD = "Memória";
+    public static final String CARCACA = "Carcaça";
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
+    private String tipo;
+    @Column
+    private int quantidade;
 
+    public Pecas() {
+    }
+
+    public Pecas(String tipo, int quantidade) {
+        this.tipo = tipo;
+        this.quantidade = quantidade;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -71,7 +106,10 @@ public class Pecas implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.rftech.bean.Pecas[ id=" + id + " ]";
+        return "Peças:"
+                +" Id: " + id
+                + " Tipo: " + tipo
+                + " Quantidade: " + quantidade + ".";
     }
     
 }

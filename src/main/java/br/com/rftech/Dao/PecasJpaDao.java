@@ -23,7 +23,7 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.bean.Cargo;
+import br.com.rftech.bean.Pecas;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -34,19 +34,19 @@ import javax.persistence.Query;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class CargoJpaDao implements Dao {
+public class PecasJpaDao implements Dao {
 
-    private static CargoJpaDao instance;
+    private static PecasJpaDao instance;
     protected EntityManager entityManager;
 
-    public static CargoJpaDao getInstance() {
+    public static PecasJpaDao getInstance() {
         if (instance == null) {
-            instance = new CargoJpaDao();
+            instance = new PecasJpaDao();
         }
         return instance;
     }
 
-    private CargoJpaDao() {
+    private PecasJpaDao() {
         entityManager = getEntityManager();
     }
 
@@ -60,10 +60,10 @@ public class CargoJpaDao implements Dao {
 
     @Override
     public boolean create(Object arg0) {
-        Cargo cargo = (Cargo) arg0;
+        Pecas pecas = (Pecas) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(cargo);
+            entityManager.persist(pecas);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -78,16 +78,16 @@ public class CargoJpaDao implements Dao {
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
-        return entityManager.createQuery("SELECT c FROM Cargo c", Cargo.class).getResultList();
+        return entityManager.createQuery("SELECT p FROM Pecas p", Pecas.class).getResultList();
     }
 
     @Override
     public boolean update(Object arg0) {
-        Cargo cargo = (Cargo) arg0;
+        Pecas pecas = (Pecas) arg0;
         try {
             entityManager.getTransaction().begin();
-            cargo = entityManager.find(Cargo.class, cargo.getId());
-            entityManager.merge(cargo);
+            pecas = entityManager.find(Pecas.class, pecas.getId());
+            entityManager.merge(pecas);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -101,11 +101,11 @@ public class CargoJpaDao implements Dao {
 
     @Override
     public boolean delete(Object arg0) {
-        Cargo cargo = (Cargo) arg0;
+        Pecas pecas = (Pecas) arg0;
         try {
             entityManager.getTransaction().begin();
-            cargo = entityManager.find(Cargo.class, cargo.getId());
-            entityManager.remove(cargo);
+            pecas = entityManager.find(Pecas.class, pecas.getId());
+            entityManager.remove(pecas);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -117,25 +117,25 @@ public class CargoJpaDao implements Dao {
         }
     }
 
-    public Cargo getById(final int id) {
-        return entityManager.find(Cargo.class, id);
+    public Pecas getById(final int id) {
+        return entityManager.find(Pecas.class, id);
     }
 
     public boolean removeById(final int id) {
         try {
-            Cargo cargo = getById(id);
-            delete(cargo);
+            Pecas pecas = getById(id);
+            delete(pecas);
             return true;
         } catch (Exception ex) {
             return false;
         }
     }
     
-    public Cargo getByName(String nome) {
+    public Pecas getByTipo(String tipo) {
         try {
-            Query query = entityManager.createQuery("Select c FROM Cargo c WHERE c.nome = :nome");
-            query.setParameter("nome", nome);
-            return (Cargo) query.getSingleResult();
+            Query query = entityManager.createQuery("Select p FROM Pecas p WHERE p.tipo = :tipo");
+            query.setParameter("tipo", tipo);
+            return (Pecas) query.getSingleResult();
         } catch (Exception e) {
             return null;
         }
