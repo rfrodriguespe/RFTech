@@ -97,5 +97,4 @@ public class Pecas implements Serializable {
                 +" Id: " + id
                 + " Tipo: " + tipo + ".";
     }
-    
 }
