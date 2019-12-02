@@ -33,7 +33,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jTabbedPaneChamados" max="32767" attributes="0"/>
+              <Component id="jTabbedPaneChamados" pref="1233" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -393,7 +393,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfAbaConsultaSerial" pref="635" max="32767" attributes="0"/>
+                                  <Component id="tfAbaConsultaSerial" pref="442" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -719,7 +719,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelDadosChamado" pref="1195" max="32767" attributes="0"/>
+                      <Component id="jPanelDadosChamado" pref="1002" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelBotoes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -901,7 +901,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfAbaAbreSerialEquipamento" pref="417" max="32767" attributes="0"/>
+                                      <Component id="tfAbaAbreSerialEquipamento" pref="224" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
@@ -1137,7 +1137,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="jPanelDadosChamado1" pref="1181" max="32767" attributes="0"/>
+                              <Component id="jPanelDadosChamado1" pref="988" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -1197,7 +1197,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane5" pref="1031" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" max="32767" attributes="0"/>
                               <Component id="jScrollPane4" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">

@@ -39,6 +39,18 @@ import javax.swing.JOptionPane;
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
 public class ClientePfJdbcDao implements Dao {
+    
+    private static ClientePfJdbcDao instance = null;
+
+    private ClientePfJdbcDao() {
+    }
+
+    public static ClientePfJdbcDao getInstance() {
+        if (instance == null) {
+            instance = new ClientePfJdbcDao();
+        }
+        return instance;
+    }
 
     @Override
     public boolean create(Object arg0) {
@@ -66,6 +78,7 @@ public class ClientePfJdbcDao implements Dao {
             return false;
         } finally {
             ConnectionUtil.closeConnection(conn, stmt);
+            instance = null;
         }
 
     }
@@ -101,6 +114,7 @@ public class ClientePfJdbcDao implements Dao {
             JOptionPane.showMessageDialog(null, "Erro ao Consultar os dados" + ex);
         } finally {
             ConnectionUtil.closeConnection(conn, stmt, rs);
+            instance = null;
         }
         return listaClientesPf;
     }
@@ -134,6 +148,7 @@ public class ClientePfJdbcDao implements Dao {
             return false;
         } finally {
             ConnectionUtil.closeConnection(conn, stmt);
+            instance = null;
         }
     }
 
@@ -152,6 +167,7 @@ public class ClientePfJdbcDao implements Dao {
             return false;
         } finally {
             ConnectionUtil.closeConnection(conn, stmt);
+            instance = null;
         }
     }
 
@@ -187,6 +203,7 @@ public class ClientePfJdbcDao implements Dao {
             return null;
         } finally {
             ConnectionUtil.closeConnection(conn, stmt);
+            instance = null;
         }
     }
 }

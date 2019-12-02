@@ -38,10 +38,9 @@ public class TesteClientePfJdbc {
         Endereco end = new Endereco("54420160", "rua TESTE", "151", "casa", "TESTE piedade", "jaboatão dos guararapes", "PE");
         ClientePf cli = new ClientePf("91793483868", "Antonio Rodrigues TESTE", "TESTE.antoniorodrigues@gmail.com", "81033613927", end);
         
-        ClientePfJdbcDao cliDao = new ClientePfJdbcDao();
-        //cliDao.create(cli);
+        //ClientePfJdbcDao.getInstance().create(cli);
         
-        cliDao.delete(cliDao.getById(8));
+        //ClientePfJdbcDao.getInstance().delete(ClientePfJdbcDao.getInstance().getById(8));
         
 //        for (Object clientePf : cliDao.readAll()) {
 //            System.out.println(clientePf);

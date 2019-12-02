@@ -35,24 +35,20 @@ public class ClientePfController {
 
     public boolean create(Object arg0) {
         ClientePf clientePf = (ClientePf) arg0;
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
-        return dao.create(clientePf);
+        return ClientePfJdbcDao.getInstance().create(clientePf);
     }
 
     public List readAll() {
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
-        return dao.readAll();
+        return ClientePfJdbcDao.getInstance().readAll();
     }
 
     public boolean update(Object arg0) {
         ClientePf clientePf = (ClientePf) arg0;
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
-        return dao.update(clientePf);
+        return ClientePfJdbcDao.getInstance().update(clientePf);
     }
 
     public boolean delete(Object o) {
         ClientePf clientePf = (ClientePf) o;
-        ClientePfJdbcDao dao = new ClientePfJdbcDao();
-        return dao.delete(clientePf);
+        return ClientePfJdbcDao.getInstance().delete(clientePf);
     }  
 }
