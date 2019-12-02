@@ -77,9 +77,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuArquivoSair = new javax.swing.JMenuItem();
         jMenuCadastro = new javax.swing.JMenu();
-        jMenuClientes = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemClientePf = new javax.swing.JMenuItem();
+        jMenuItemFornecedor = new javax.swing.JMenuItem();
         jMenuEquipamentos = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItemFuncionarios = new javax.swing.JMenuItem();
@@ -133,27 +132,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGS/user.png"))); // NOI18N
         jMenuCadastro.setText("Cadastro");
 
-        jMenuClientes.setText("Clientes");
-
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setText("Clientes Pessoa Física");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemClientePf.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemClientePf.setText("Clientes Pessoa Física");
+        jMenuItemClientePf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                jMenuItemClientePfActionPerformed(evt);
             }
         });
-        jMenuClientes.add(jMenuItem6);
+        jMenuCadastro.add(jMenuItemClientePf);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Clientes Pessoa Jurídica");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFornecedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemFornecedor.setText("Fornecedor");
+        jMenuItemFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemFornecedorActionPerformed(evt);
             }
         });
-        jMenuClientes.add(jMenuItem3);
-
-        jMenuCadastro.add(jMenuClientes);
+        jMenuCadastro.add(jMenuItemFornecedor);
 
         jMenuEquipamentos.setText("Equipamentos");
 
@@ -213,7 +208,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuArquivoSairActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void jMenuItemClientePfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientePfActionPerformed
         // TODO add your handling code here:
         ClientePfView tela = new ClientePfView();
         jDesktopPanel.add(tela);
@@ -226,7 +221,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             tela.setMaximum(true);
         } catch (java.beans.PropertyVetoException e) {
         }
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_jMenuItemClientePfActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -249,9 +244,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemFuncionariosActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItemFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFornecedorActionPerformed
         // TODO add your handling code here:
-        ClientePjView tela = new ClientePjView();
+        FornecedorView tela = new FornecedorView();
         jDesktopPanel.add(tela);
         tela.setVisible(true);
         try {
@@ -262,7 +257,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             tela.setMaximum(true);
         } catch (java.beans.PropertyVetoException e) {
         }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMenuItemFornecedorActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
@@ -338,13 +333,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarMenuPrincipal;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenu jMenuChamado;
-    private javax.swing.JMenu jMenuClientes;
     private javax.swing.JMenu jMenuEquipamentos;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemChamados;
+    private javax.swing.JMenuItem jMenuItemClientePf;
+    private javax.swing.JMenuItem jMenuItemFornecedor;
     private javax.swing.JMenuItem jMenuItemFuncionarios;
     private javax.swing.JMenu jMenuLogin;
     // End of variables declaration//GEN-END:variables
@@ -367,11 +361,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 break;
             case "Rh":
                 jMenuChamado.setVisible(false);
-                jMenuClientes.setVisible(false);
+                jMenuItemClientePf.setVisible(false);
+                jMenuItemFornecedor.setVisible(false);
                 jMenuEquipamentos.setVisible(false);
                 break;
             case "He":
-                jMenuCadastro.setVisible(false);
+                jMenuItemClientePf.setVisible(false);
+                jMenuItemFornecedor.setVisible(false);
+                jMenuItemFuncionarios.setVisible(false);
                 break;
             default:
                 jMenuCadastro.setVisible(false);

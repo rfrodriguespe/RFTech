@@ -34,10 +34,10 @@ public class TestePecas {
     
     public static void main(String[] args) {
         
-        Pecas tela = new Pecas(Pecas.TELA, 10);
-        Pecas ram = new Pecas(Pecas.RAM, 10);
-        Pecas hd = new Pecas(Pecas.HD, 10);
-        Pecas carcaca = new Pecas(Pecas.CARCACA, 10);
+        Pecas tela = new Pecas(Pecas.TELA);
+        Pecas ram = new Pecas(Pecas.RAM);
+        Pecas hd = new Pecas(Pecas.HD);
+        Pecas carcaca = new Pecas(Pecas.CARCACA);
         
 //        PecasJpaDao.getInstance().create(tela);
 //        PecasJpaDao.getInstance().create(ram);

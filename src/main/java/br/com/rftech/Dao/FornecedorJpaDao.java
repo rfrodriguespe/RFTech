@@ -23,7 +23,7 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.bean.ClientePj;
+import br.com.rftech.bean.Fornecedor;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,19 +33,19 @@ import java.util.List;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class ClientePjJpaDao implements Dao {
+public class FornecedorJpaDao implements Dao {
 
-    private static ClientePjJpaDao instance;
+    private static FornecedorJpaDao instance;
     protected EntityManager entityManager;
 
-    public static ClientePjJpaDao getInstance() {
+    public static FornecedorJpaDao getInstance() {
         if (instance == null) {
-            instance = new ClientePjJpaDao();
+            instance = new FornecedorJpaDao();
         }
         return instance;
     }
 
-    private ClientePjJpaDao() {
+    private FornecedorJpaDao() {
         entityManager = getEntityManager();
     }
 
@@ -59,10 +59,10 @@ public class ClientePjJpaDao implements Dao {
 
     @Override
     public boolean create(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
+        Fornecedor fornecedor = (Fornecedor) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(clientePj);
+            entityManager.persist(fornecedor);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -77,15 +77,15 @@ public class ClientePjJpaDao implements Dao {
     @Override
     @SuppressWarnings("unchecked")
     public List readAll() {
-        return entityManager.createQuery("SELECT clientePj FROM ClientePj clientePj", ClientePj.class).getResultList();
+        return entityManager.createQuery("SELECT fornecedor FROM Fornecedor fornecedor", Fornecedor.class).getResultList();
     }
 
     @Override
     public boolean update(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
+        Fornecedor fornecedor = (Fornecedor) arg0;
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(clientePj);
+            entityManager.merge(fornecedor);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -100,11 +100,11 @@ public class ClientePjJpaDao implements Dao {
 
     @Override
     public boolean delete(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
+        Fornecedor fornecedor = (Fornecedor) arg0;
         try {
             entityManager.getTransaction().begin();
-            clientePj = entityManager.find(ClientePj.class, clientePj.getId());
-            entityManager.remove(clientePj);
+            fornecedor = entityManager.find(Fornecedor.class, fornecedor.getId());
+            entityManager.remove(fornecedor);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception ex) {
@@ -117,14 +117,14 @@ public class ClientePjJpaDao implements Dao {
         }
     }
 
-    public ClientePj getById(final int id) {
-        return entityManager.find(ClientePj.class, id);
+    public Fornecedor getById(final int id) {
+        return entityManager.find(Fornecedor.class, id);
     }
 
     public boolean removeById(final int id) {
         try {
-            ClientePj clientePj = getById(id);
-            delete(clientePj);
+            Fornecedor fornecedor = getById(id);
+            delete(fornecedor);
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();

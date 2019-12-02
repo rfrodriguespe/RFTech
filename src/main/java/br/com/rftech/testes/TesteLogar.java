@@ -26,7 +26,7 @@ package br.com.rftech.testes;
 import br.com.rftech.Dao.FuncionarioJpaDao;
 import br.com.rftech.bean.Cargo;
 import br.com.rftech.bean.ClientePf;
-import br.com.rftech.bean.ClientePj;
+import br.com.rftech.bean.Fornecedor;
 import br.com.rftech.bean.Endereco;
 import br.com.rftech.bean.Funcionario;
 import br.com.rftech.bean.Sessao;
@@ -43,7 +43,7 @@ public class TesteLogar {
         ClientePf cliPf = new ClientePf("01323197486", "Rodrigo Ferreira", "rodrigo2208@gmail.com", "81988557802", end);
         ClientePf cliPf2 = new ClientePf("29780622829", "Fabiana", "fabianabovo@gmail.com", "19993098039", end);
         ClientePf cliPf3 = new ClientePf("12345678900", "Lucas Bovo", "lucasbovo@gmail.com", "19993098039", end);
-        ClientePj cliPj = new ClientePj("47379565006126", "Marlise", "Proxxi Tecnologia LTDA", "Proxxi", "contato@proxxi.com.br", "8134247878", end);
+        Fornecedor cliPj = new Fornecedor("47379565006126", "Marlise", "Proxxi Tecnologia LTDA", "Proxxi", "contato@proxxi.com.br", "8134247878", end);
         Funcionario func = new Funcionario("01323197486", "rfrodrigues", cargo, "Rodrigo Ferreira", "tecnico@rftech.com.br", "8133613927", end);
 
         

@@ -23,7 +23,7 @@
  */
 package br.com.rftech.Dao;
 
-import br.com.rftech.bean.ClientePj;
+import br.com.rftech.bean.Fornecedor;
 import br.com.rftech.util.ConnectionUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,11 +37,11 @@ import javax.swing.JOptionPane;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class ClientePjJdbcDao implements Dao {
+public class FornecedorJdbcDao implements Dao {
 
     @Override
     public boolean create(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
+        Fornecedor clientePj = (Fornecedor) arg0;
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
         String sql = "INSERT INTO clientepf (CPF, NOME, EMAIL, TELEFONE, CEP, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
@@ -79,7 +79,7 @@ public class ClientePjJdbcDao implements Dao {
             stmt = conn.prepareStatement("SELECT * FROM clientePj");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                ClientePj clientePj = new ClientePj();
+                Fornecedor clientePj = new Fornecedor();
                 clientePj.setId(rs.getInt("id"));
                 clientePj.setCnpj(rs.getString("Cnpj"));
                 clientePj.setNome(rs.getString("Nome"));
@@ -105,7 +105,7 @@ public class ClientePjJdbcDao implements Dao {
 
     @Override
     public boolean update(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
+        Fornecedor clientePj = (Fornecedor) arg0;
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
         String sql = "UPDATE `clientePj` SET `clientePj`=?,`obs`=? WHERE cod=?";
@@ -133,7 +133,7 @@ public class ClientePjJdbcDao implements Dao {
 
     @Override
     public boolean delete(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
+        Fornecedor clientePj = (Fornecedor) arg0;
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
         String sql = "DELETE from clientePj WHERE cod=?";

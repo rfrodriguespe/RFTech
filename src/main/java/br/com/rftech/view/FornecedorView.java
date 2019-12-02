@@ -23,10 +23,10 @@
  */
 package br.com.rftech.view;
 
-import br.com.rftech.Dao.ClientePjJpaDao;
+import br.com.rftech.Dao.FornecedorJpaDao;
 import br.com.rftech.Dao.CargoJpaDao;
-import br.com.rftech.bean.ClientePj;
-import br.com.rftech.bean.ClientePjTableModel;
+import br.com.rftech.bean.Fornecedor;
+import br.com.rftech.bean.FornecedorTableModel;
 import br.com.rftech.bean.Cargo;
 import br.com.rftech.bean.Endereco;
 import br.com.rftech.bean.TableColumnAdjuster;
@@ -47,12 +47,12 @@ import javax.swing.JTextField;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class ClientePjView extends javax.swing.JInternalFrame {
+public class FornecedorView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClientesPFView
      */
-    public ClientePjView() {
+    public FornecedorView() {
         initComponents();
         jTableClientePj.setModel(tableModel);
         preencheTabela();
@@ -60,7 +60,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
     }
 
     //Instancia minha jTable com base no modelo de Tabela definido no pacote MODEL
-    ClientePjTableModel tableModel = new ClientePjTableModel();
+    FornecedorTableModel tableModel = new FornecedorTableModel();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -216,11 +216,11 @@ public class ClientePjView extends javax.swing.JInternalFrame {
                     .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                         .addComponent(jLabelNome1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfRazaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
+                        .addComponent(tfRazaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
                     .addGroup(jPanelDadosFuncionarioLayout.createSequentialGroup()
                         .addComponent(jLabelNome2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNomeContato, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))))
+                        .addComponent(tfNomeContato, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))))
         );
         jPanelDadosFuncionarioLayout.setVerticalGroup(
             jPanelDadosFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +250,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jPanelTabela.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes Pessoa Jurídica"));
+        jPanelTabela.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Fornecedores"));
 
         jTableClientePj.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -277,7 +277,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
         jPanelTabelaLayout.setHorizontalGroup(
             jPanelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelTabelaLayout.setVerticalGroup(
@@ -467,7 +467,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                        .addComponent(tfComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -508,7 +508,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
                     .addComponent(jPanelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+                            .addComponent(jPanelDadosFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                             .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -527,7 +527,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
                     .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jPanelTabela.getAccessibleContext().setAccessibleName("Dados Pessoais");
@@ -537,9 +537,9 @@ public class ClientePjView extends javax.swing.JInternalFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         if (jTableClientePj.getSelectedRow() != -1) {
-            ClientePj clientePj = new ClientePj();
+            Fornecedor clientePj = new Fornecedor();
             clientePj.setId(Integer.parseInt(tfId.getText()));
-            if (ClientePjJpaDao.getInstance().delete(clientePj)) {
+            if (FornecedorJpaDao.getInstance().delete(clientePj)) {
                 JOptionPane.showMessageDialog(this, "ClientePj deletado com sucesso");
                 preencheTabela();
                 limparCampos();
@@ -563,7 +563,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         if (!CamposEmBranco()) {
-            ClientePj clientePj = new ClientePj();
+            Fornecedor clientePj = new Fornecedor();
             Endereco endereco = new Endereco();
             clientePj.setCnpj(ftfCnpj.getText().replace("-", "").replace(".", "").replace("/", ""));
             clientePj.setNome(tfNome.getText());
@@ -579,7 +579,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
             endereco.setCidade(tfCidade.getText());
             endereco.setUf(jComboBoxEstado.getSelectedItem().toString());
             clientePj.setEndereco(endereco);
-            if (ClientePjJpaDao.getInstance().create(clientePj)) {
+            if (FornecedorJpaDao.getInstance().create(clientePj)) {
                 JOptionPane.showMessageDialog(this, "Salvo com sucesso");
                 preencheTabela();
             } else {
@@ -592,7 +592,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (!CamposEmBranco()) {
             if (jTableClientePj.getSelectedRow() != -1) {
-                ClientePj clientePj = ClientePjJpaDao.getInstance().getById(Integer.parseInt(tfId.getText()));
+                Fornecedor clientePj = FornecedorJpaDao.getInstance().getById(Integer.parseInt(tfId.getText()));
                 Endereco endereco = new Endereco();
                 clientePj.setCnpj(ftfCnpj.getText().replace("-", "").replace(".", "").replace("/", ""));
                 clientePj.setNome(tfNome.getText());
@@ -608,7 +608,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
                 endereco.setCidade(tfCidade.getText());
                 endereco.setUf(jComboBoxEstado.getSelectedItem().toString());
                 clientePj.setEndereco(endereco);
-                if (ClientePjJpaDao.getInstance().update(clientePj)) {
+                if (FornecedorJpaDao.getInstance().update(clientePj)) {
                     JOptionPane.showMessageDialog(this, "ClientePj Alterado com sucesso");
                     preencheTabela();
                     limparCampos();
@@ -759,7 +759,7 @@ public class ClientePjView extends javax.swing.JInternalFrame {
 
     public void preencheTabela() {
         limpaTabela();
-        List<ClientePj> listaClientePj = ClientePjJpaDao.getInstance().readAll();
+        List<Fornecedor> listaClientePj = FornecedorJpaDao.getInstance().readAll();
         listaClientePj.forEach((clientePj) -> {
             tableModel.addRow(clientePj);
         });

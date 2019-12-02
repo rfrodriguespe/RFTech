@@ -34,7 +34,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 @PrimaryKeyJoinColumn(name="id")
-public class ClientePj extends Pessoa {
+public class Fornecedor extends Pessoa {
     
     @Column
     private String Cnpj;
@@ -43,10 +43,10 @@ public class ClientePj extends Pessoa {
     @Column
     private String nomeContato;
   
-    public ClientePj() {
+    public Fornecedor() {
     }
 
-    public ClientePj(String Cnpj,String nomeContato, String razaoSocial, String nome, String email, String telefone, Endereco endereco) {
+    public Fornecedor(String Cnpj,String nomeContato, String razaoSocial, String nome, String email, String telefone, Endereco endereco) {
         super(nome, email, telefone, endereco);
         this.Cnpj = Cnpj;
         this.nomeContato = nomeContato;
@@ -107,7 +107,7 @@ public class ClientePj extends Pessoa {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ClientePj other = (ClientePj) obj;
+        final Fornecedor other = (Fornecedor) obj;
         if (!Objects.equals(this.Cnpj, other.Cnpj)) {
             return false;
         }

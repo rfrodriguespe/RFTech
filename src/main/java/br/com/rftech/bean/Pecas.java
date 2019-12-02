@@ -47,15 +47,12 @@ public class Pecas implements Serializable {
     private int id;
     @Column
     private String tipo;
-    @Column
-    private int quantidade;
 
     public Pecas() {
     }
 
-    public Pecas(String tipo, int quantidade) {
+    public Pecas(String tipo) {
         this.tipo = tipo;
-        this.quantidade = quantidade;
     }
 
     public String getTipo() {
@@ -65,17 +62,7 @@ public class Pecas implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-    
-    
-    
+ 
     public int getId() {
         return id;
     }
@@ -108,8 +95,7 @@ public class Pecas implements Serializable {
     public String toString() {
         return "Peças:"
                 +" Id: " + id
-                + " Tipo: " + tipo
-                + " Quantidade: " + quantidade + ".";
+                + " Tipo: " + tipo + ".";
     }
     
 }

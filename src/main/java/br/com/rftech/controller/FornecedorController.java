@@ -23,36 +23,36 @@
  */
 package br.com.rftech.controller;
 
-import br.com.rftech.Dao.ClientePjJdbcDao;
-import br.com.rftech.bean.ClientePj;
+import br.com.rftech.Dao.FornecedorJdbcDao;
+import br.com.rftech.bean.Fornecedor;
 import java.util.List;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class ClientePjController {
+public class FornecedorController {
 
     public boolean create(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
-        ClientePjJdbcDao dao = new ClientePjJdbcDao();
+        Fornecedor clientePj = (Fornecedor) arg0;
+        FornecedorJdbcDao dao = new FornecedorJdbcDao();
         return dao.create(clientePj);
     }
 
     public List readAll() {
-        ClientePjJdbcDao dao = new ClientePjJdbcDao();
+        FornecedorJdbcDao dao = new FornecedorJdbcDao();
         return dao.readAll();
     }
 
     public boolean update(Object arg0) {
-        ClientePj clientePj = (ClientePj) arg0;
-        ClientePjJdbcDao dao = new ClientePjJdbcDao();
+        Fornecedor clientePj = (Fornecedor) arg0;
+        FornecedorJdbcDao dao = new FornecedorJdbcDao();
         return dao.update(clientePj);
     }
 
     public boolean delete(Object o) {
-        ClientePj clientePj = (ClientePj) o;
-        ClientePjJdbcDao dao = new ClientePjJdbcDao();
+        Fornecedor clientePj = (Fornecedor) o;
+        FornecedorJdbcDao dao = new FornecedorJdbcDao();
         return dao.delete(clientePj);
     }  
 }

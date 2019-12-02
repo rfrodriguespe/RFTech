@@ -7,9 +7,9 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Rodrigo
  */
-public class ClientePjTableModel extends AbstractTableModel {
+public class FornecedorTableModel extends AbstractTableModel {
 
-    private ArrayList<ClientePj> dados = new ArrayList<>();
+    private ArrayList<Fornecedor> dados = new ArrayList<>();
     private String[] colunas = {"Id", "Cnpj", "Nome", "Razão Social", "Nome do Conato", "Telefone", "E-mail", "Cep",
         "logradouro", "Numero", "Complemento", "Bairro", "Cidade", "Uf"};
 
@@ -99,7 +99,7 @@ public class ClientePjTableModel extends AbstractTableModel {
         this.fireTableRowsUpdated(linha, linha);
     }
 
-    public void addRow(ClientePj clientePj) {
+    public void addRow(Fornecedor clientePj) {
         this.dados.add(clientePj);
         this.fireTableDataChanged();
     }
