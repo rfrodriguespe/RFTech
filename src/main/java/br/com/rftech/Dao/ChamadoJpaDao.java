@@ -151,14 +151,4 @@ public class ChamadoJpaDao implements Dao {
             return null;
         }
     }
-
-//    public Chamado getBySerial(String serial) {
-//        try {
-//            Query query = entityManager.createQuery("Select ch FROM Chamado ch WHERE n.serial = :serial");
-//            query.setParameter("serial", serial);
-//            return (Chamado) query.getSingleResult();
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
 }

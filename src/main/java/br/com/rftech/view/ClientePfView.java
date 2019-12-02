@@ -24,11 +24,9 @@
 package br.com.rftech.view;
 
 import br.com.rftech.Dao.ClientePfJpaDao;
-import br.com.rftech.Dao.CargoJpaDao;
 import br.com.rftech.Dao.ClientePfJdbcDao;
 import br.com.rftech.bean.ClientePf;
 import br.com.rftech.bean.ClientePfTableModel;
-import br.com.rftech.bean.Cargo;
 import br.com.rftech.bean.Endereco;
 import br.com.rftech.bean.TableColumnAdjuster;
 import br.com.rftech.testes.TesteCEP;
@@ -529,7 +527,7 @@ public class ClientePfView extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Pesquisar Cliente");
 
-        cbTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesquisar por", "Id Cliente" }));
+        cbTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesquisar por", "Id Cliente", "Nome" }));
         cbTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoPesquisaActionPerformed(evt);
@@ -636,12 +634,12 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                 }
             } else {
                 if (ClientePfJdbcDao.getInstance().delete(clientePf)) {
-                JOptionPane.showMessageDialog(this, "ClientePf deletado com sucesso");
-                preencheTabela();
-                limparCampos();
-            } else {
-                JOptionPane.showMessageDialog(this, "Não foi possível deletar o funcionário id: " + clientePf.getId());
-            }
+                    JOptionPane.showMessageDialog(this, "ClientePf deletado com sucesso");
+                    preencheTabela();
+                    limparCampos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Não foi possível deletar o funcionário id: " + clientePf.getId());
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um ClientePf para deletar");
@@ -803,9 +801,9 @@ public class ClientePfView extends javax.swing.JInternalFrame {
         if (!tfConsulta.getText().replaceAll(" ", "").equals("")) {
             switch (cbTipoPesquisa.getSelectedIndex()) {
                 case 0:
-                labelQtdeClientePf.setText("0");
-                JOptionPane.showMessageDialog(null, "Selecione um tipo para pesquisar");
-                break;
+                    labelQtdeClientePf.setText("0");
+                    JOptionPane.showMessageDialog(null, "Selecione um tipo para pesquisar");
+                    break;
                 case 1:
                 try {
                     ClientePf clientePf = null;
@@ -823,13 +821,35 @@ public class ClientePfView extends javax.swing.JInternalFrame {
                     break;
                 } catch (NumberFormatException e) {
                     labelQtdeClientePf.setText("0");
-                    JOptionPane.showMessageDialog(null, "Chamado " + tfConsulta.getText() + " não foi localizado.");
+                    JOptionPane.showMessageDialog(null, "Cliente " + tfConsulta.getText() + " não foi localizado.");
+                    break;
+                }
+                case 2:
+                    try {
+                    //List<ClientePf> listaClientePf = new ArrayList<>();
+                    if (rbJpa.isSelected()) {
+                        listaClientePf = ClientePfJpaDao.getInstance().getBy("nome", tfConsulta.getText());
+                    } else {
+                        listaClientePf = ClientePfJdbcDao.getInstance().getBy("nome", tfConsulta.getText());
+                    }
+                    labelQtdeClientePf.setText("1");
+                    tableModel.limpaTabela();
+                    for (ClientePf clientePf : listaClientePf) {
+                        tableModel.addRow(clientePf);
+                    }
+                    jTableClientePf.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+                    TableColumnAdjuster tca = new TableColumnAdjuster(jTableClientePf);
+                    tca.adjustColumns();
+                    break;
+                } catch (NumberFormatException e) {
+                    labelQtdeClientePf.setText("0");
+                    JOptionPane.showMessageDialog(null, "Cliente " + tfConsulta.getText() + " não foi localizado.");
                     break;
                 }
                 default:
-                labelQtdeClientePf.setText("0");
-                JOptionPane.showMessageDialog(null, "Selecione um tipo para pesquisar");
-                break;
+                    labelQtdeClientePf.setText("0");
+                    JOptionPane.showMessageDialog(null, "Selecione um tipo para pesquisar");
+                    break;
             }
         } else {
             labelQtdeClientePf.setText("0");

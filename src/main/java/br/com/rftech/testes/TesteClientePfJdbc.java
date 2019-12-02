@@ -24,6 +24,7 @@
 package br.com.rftech.testes;
 
 import br.com.rftech.Dao.ClientePfJdbcDao;
+import br.com.rftech.Dao.ClientePfJpaDao;
 import br.com.rftech.bean.ClientePf;
 import br.com.rftech.bean.Endereco;
 
@@ -42,9 +43,19 @@ public class TesteClientePfJdbc {
         
         //ClientePfJdbcDao.getInstance().delete(ClientePfJdbcDao.getInstance().getById(8));
         
-//        for (Object clientePf : cliDao.readAll()) {
-//            System.out.println(clientePf);
-//        }
+        
+        for (Object clientePf : ClientePfJdbcDao.getInstance().readAll()) {
+            System.out.println(clientePf);
+        }
+        
+        String campo = "nome";
+        String busca = "Antonio";
+        
+        System.out.println("Buscando por "+ campo + " e buscando: "+ busca);
+        for (Object clientePf : ClientePfJpaDao.getInstance().getBy(campo, busca)) {
+            System.out.println(clientePf);
+        }
+        
 //        
 //        ClientePf cli2 = cliDao.getById(5);
 //        

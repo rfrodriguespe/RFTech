@@ -28,6 +28,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -129,6 +130,17 @@ public class ClientePfJpaDao implements Dao {
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
+        }
+    }
+    
+      public List<ClientePf> getBy(String campo, String busca) {
+        try {
+            Query query = entityManager.createQuery("Select c FROM ClientePf c WHERE c."+campo+" LIKE :busca");
+            //Query query = entityManager.createQuery(pesquisa);
+            query.setParameter("busca", "%"+busca+"%");
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
         }
     }
 

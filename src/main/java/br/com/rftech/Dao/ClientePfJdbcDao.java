@@ -206,4 +206,43 @@ public class ClientePfJdbcDao implements Dao {
             instance = null;
         }
     }
+    public List<ClientePf> getBy(String campo, String busca) {
+        ClientePf clientePf = null;
+        List<ClientePf> listaClientePf = new ArrayList<>();
+        Connection conn = ConnectionUtil.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM `clientepf` WHERE `"+campo+"` LIKE ?";
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, campo);
+            stmt.setString(1, "%" + busca + "%");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                clientePf = new ClientePf();
+                clientePf.setId(rs.getInt("ID"));
+                clientePf.setCpf(rs.getString("CPF"));
+                clientePf.setNome(rs.getString("NOME"));
+                clientePf.setTelefone(rs.getString("TELEFONE"));
+                clientePf.setEmail(rs.getString("EMAIL"));
+                Endereco end = new Endereco();
+                end.setCEP(rs.getString("CEP"));
+                end.setLogradouro(rs.getString("LOGRADOURO"));
+                end.setNumero(rs.getString("NUMERO"));
+                end.setComplemento(rs.getString("COMPLEMENTO"));
+                end.setBairro(rs.getString("BAIRRO"));
+                end.setCidade(rs.getString("CIDADE"));
+                end.setUf(rs.getString("UF"));
+                clientePf.setEndereco(end);
+                listaClientePf.add(clientePf);
+                
+            }
+            return listaClientePf;
+        } catch (SQLException ex) {
+            return null;
+        } finally {
+            ConnectionUtil.closeConnection(conn, stmt);
+            instance = null;
+        }
+    }
 }
