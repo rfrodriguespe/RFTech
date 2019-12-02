@@ -52,10 +52,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         initComponents();
 
-        //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
-        Funcionario funcionario = FuncionarioJpaDao.getInstance().getById(1);
-        Sessao.getInstance().setFuncionario(funcionario);
-        //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
+//        //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
+//        Funcionario funcionario = FuncionarioJpaDao.getInstance().getById(1);
+//        Sessao.getInstance().setFuncionario(funcionario);
+//        //BLOCO PARA LOGAR DIRETO, DEPOIS REMOVER
 
         permissoesFuncionario();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
